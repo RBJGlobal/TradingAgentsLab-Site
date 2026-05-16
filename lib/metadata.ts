@@ -8,7 +8,7 @@ import type { Metadata } from 'next';
  * `metadata`. Mission statement is locked verbatim per CLAUDE.md.
  */
 
-export const SITE_URL = 'https://tradingagentslab.com';
+export const SITE_URL = 'https://tradingagentslab.ai';
 export const SITE_NAME = 'Trading Agents Lab';
 export const SITE_TAGLINE = 'AI-driven Diligence on any ticker.';
 

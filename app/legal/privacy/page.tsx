@@ -37,7 +37,7 @@ export default function PrivacyPolicy() {
         <h2>What this policy covers.</h2>
         <p>
           This Privacy Policy covers (a) the marketing website at{' '}
-          <code>tradingagentslab.com</code> (and any aliases), and (b) the
+          <code>tradingagentslab.ai</code> (and any aliases), and (b) the
           desktop application Trading Agents Lab distributed via{' '}
           <a
             href="https://github.com/RBJGlobal/TradingAgentsLab"

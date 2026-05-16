@@ -23,7 +23,7 @@ export default function Terms() {
       <div className="docs-prose mt-10">
         <h2>1. Acceptance.</h2>
         <p>
-          By accessing the website at <code>tradingagentslab.com</code>{' '}
+          By accessing the website at <code>tradingagentslab.ai</code>{' '}
           (the &quot;Site&quot;) or by downloading, installing, or using
           the Trading Agents Lab desktop application (the
           &quot;Software&quot;), you agree to these Terms of Use (the

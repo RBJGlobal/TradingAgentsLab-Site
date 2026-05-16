@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const NAV = [
   { href: '/how-it-works/', label: 'How it works' },
@@ -14,6 +14,8 @@ const NAV = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const hamburgerRef = useRef<HTMLButtonElement | null>(null);
+  const drawerRef = useRef<HTMLDivElement | null>(null);
 
   // Auto-close the mobile drawer on route change so users can navigate
   // from inside the drawer without it staying stuck open.
@@ -21,18 +23,53 @@ export default function Navbar() {
     setOpen(false);
   }, [pathname]);
 
-  // Lock body scroll + bind Escape while the drawer is open.
+  // Body-scroll lock + Escape + focus management while the drawer is open.
   useEffect(() => {
     if (!open) return;
+
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+
+    // Move focus into the drawer (first focusable element). Defer one
+    // microtask so the dialog has actually mounted.
+    const focusTimer = window.setTimeout(() => {
+      const first = drawerRef.current?.querySelector<HTMLElement>(
+        'a[href], button:not([disabled])'
+      );
+      first?.focus();
+    }, 0);
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false);
+      if (e.key === 'Escape') {
+        setOpen(false);
+        return;
+      }
+      // Simple focus trap: if Tab would move focus outside the drawer,
+      // push it back to the first/last focusable element inside it.
+      if (e.key !== 'Tab' || !drawerRef.current) return;
+      const focusables = drawerRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled])'
+      );
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement;
+      if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     document.addEventListener('keydown', onKey);
+
     return () => {
+      window.clearTimeout(focusTimer);
       document.body.style.overflow = prev;
       document.removeEventListener('keydown', onKey);
+      // Restore focus to the trigger so keyboard users land where they were.
+      hamburgerRef.current?.focus();
     };
   }, [open]);
 
@@ -80,6 +117,7 @@ export default function Navbar() {
             </Link>
             <button
               type="button"
+              ref={hamburgerRef}
               onClick={() => setOpen((o) => !o)}
               aria-label={open ? 'Close menu' : 'Open menu'}
               aria-expanded={open}
@@ -98,6 +136,7 @@ export default function Navbar() {
       {open ? (
         <div
           id="mobile-nav-panel"
+          ref={drawerRef}
           role="dialog"
           aria-modal="true"
           aria-label="Site menu"
