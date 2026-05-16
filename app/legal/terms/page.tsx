@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'Terms of use',
   description:
     'Terms of use for the Trading Agents Lab marketing site and desktop application.',
+  robots: { index: false, follow: true },
 };
 
 export default function Terms() {
@@ -132,7 +133,7 @@ export default function Terms() {
           These Terms are governed by the laws of the State of Texas,
           United States, without regard to its conflict-of-laws
           provisions. You agree to the exclusive jurisdiction of the
-          state and federal courts located in Dallas County, Texas, for
+          state and federal courts located in Travis County, Texas, for
           any dispute arising out of or relating to these Terms or your
           use of the Site or Software.
         </p>

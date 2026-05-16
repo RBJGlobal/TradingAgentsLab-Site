@@ -6,6 +6,9 @@ import { getAllDocSlugs } from '@/lib/docs';
 // as dynamic and refuses to emit a static sitemap.xml.
 export const dynamic = 'force-static';
 
+// Marketing + docs only. Legal pages carry `robots: noindex` and are
+// intentionally excluded so they don't compete with product pages for
+// ranking; they remain reachable via the footer for human readers.
 const STATIC_ROUTES = [
   '/',
   '/how-it-works/',
@@ -13,9 +16,6 @@ const STATIC_ROUTES = [
   '/security/',
   '/download/',
   '/docs/',
-  '/legal/disclaimer/',
-  '/legal/privacy/',
-  '/legal/terms/',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

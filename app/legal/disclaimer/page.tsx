@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'Disclaimer',
   description:
     'For educational and research purposes only. Not investment advice. Read the full disclaimer for Trading Agents Lab.',
+  robots: { index: false, follow: true },
 };
 
 export default function Disclaimer() {
@@ -20,7 +21,7 @@ export default function Disclaimer() {
       </p>
 
       <div className="docs-prose mt-10">
-        <h2>For educational and research purposes only — not investment advice.</h2>
+        <h2>For educational and research purposes only. Not investment advice.</h2>
         <p>
           Trading Agents Lab (&quot;the Software&quot;) is a free,
           open-source desktop application that uses large language models

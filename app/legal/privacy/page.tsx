@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'Privacy policy',
   description:
     'Trading Agents Lab collects zero user data. No analytics, no telemetry, no accounts. This page explains the full posture.',
+  // Legal pages excluded from search-engine ranking so they do not
+  // compete with product pages. Internal links from the footer still
+  // make them discoverable.
+  robots: { index: false, follow: true },
 };
 
 export default function PrivacyPolicy() {
@@ -55,7 +59,7 @@ export default function PrivacyPolicy() {
             <strong>No analytics.</strong> No Google Analytics, no
             Plausible, no Fathom, no Cloudflare Web Analytics. (Cloudflare
             edge-level request logs may exist on Cloudflare&apos;s side
-            per their standard infrastructure — we do not access them and
+            per their standard infrastructure. We do not access them and
             we have not enabled any analytics product on top of them.)
           </li>
           <li>
@@ -80,7 +84,7 @@ export default function PrivacyPolicy() {
         </p>
         <ul>
           <li>
-            <strong>Your LLM provider</strong> — OpenAI, Anthropic,
+            <strong>Your LLM provider.</strong> OpenAI, Anthropic,
             OpenRouter, Google Gemini, or a local model via Ollama / LM
             Studio. The API key lives in your operating system&apos;s
             keychain (macOS Keychain, Windows DPAPI, Linux libsecret)
@@ -89,19 +93,19 @@ export default function PrivacyPolicy() {
             operate any servers.
           </li>
           <li>
-            <strong>Your data provider</strong> — Yahoo Finance (default,
+            <strong>Your data provider.</strong> Yahoo Finance (default,
             no key needed) and Alpaca (if you configure keys; locked to
             data and paper-trading endpoints only).
           </li>
           <li>
-            <strong>Webhook receivers you configured</strong> — when a
+            <strong>Webhook receivers you configured.</strong> When a
             Diligence completes, the application POSTs the result to the
             URLs you set in Settings → Webhooks. URLs are treated as
             secrets: never logged, never echoed into the persisted
             History.
           </li>
           <li>
-            <strong>OpenRouter courtesy headers</strong> — if you use
+            <strong>OpenRouter courtesy headers.</strong> If you use
             OpenRouter as your LLM provider, our adapter sends two HTTP
             headers (<code>HTTP-Referer</code> and <code>X-Title</code>)
             so OpenRouter can attribute traffic. This is their telemetry,
@@ -113,12 +117,12 @@ export default function PrivacyPolicy() {
         <h2>What we store on your machine.</h2>
         <ul>
           <li>
-            <code>secrets.json</code> — encrypted via OS keychain
+            <code>secrets.json</code>: encrypted via OS keychain
             primitives. Holds API keys, webhook URLs, and similar
             credentials.
           </li>
           <li>
-            <code>sessions.db</code> — SQLite database of your previous
+            <code>sessions.db</code>: SQLite database of your previous
             Diligence runs. Local-only.
           </li>
           <li>
@@ -144,7 +148,7 @@ export default function PrivacyPolicy() {
         <p>
           We will update the &quot;Last updated&quot; date above when
           this policy changes. The full revision history is available in
-          our public GitHub repository — every change is in the git log.
+          our public GitHub repository. Every change is in the git log.
         </p>
 
         <h2>Contact.</h2>
