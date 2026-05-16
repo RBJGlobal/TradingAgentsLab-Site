@@ -1,0 +1,12 @@
+# Cloudflare Pages — redirects.
+# Keep this file even when empty; Pages reads it on every deploy.
+
+# Tier-3 disclaimer route alias — anyone clicking "Disclaimer" anywhere
+# in the family ecosystem lands on the canonical page.
+/disclaimer       /legal/disclaimer/   301
+/privacy          /legal/privacy/      301
+/terms            /legal/terms/        301
+
+# Catch the canonical .com → .ai mirror once we own both domains.
+# Uncomment after DNS lands:
+# https://tradingagentslab.ai/*  https://tradingagentslab.com/:splat   301

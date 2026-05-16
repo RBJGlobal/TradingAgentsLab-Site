@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+#
+# sync-docs.sh — copy the user-facing knowledge base from the main
+# TradingAgentsLab repo into this site's `content/docs/` directory.
+#
+# Source of truth lives in the product repo so KB and code ship together.
+# This script keeps the marketing site's bundled content in sync without
+# the build pipeline needing a sibling repo at build time (Cloudflare
+# Pages only sees this repo).
+#
+# Usage:  npm run sync-docs
+#
+# Expects:
+#   $TAL_REPO  — absolute path to the TradingAgentsLab checkout,
+#                defaults to ../TradingAgents
+
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+SRC="${TAL_REPO:-$(cd "$ROOT/../TradingAgents" 2>/dev/null && pwd)}"
+DEST="$ROOT/content/docs"
+
+if [[ -z "${SRC:-}" || ! -d "$SRC/docs/kb" ]]; then
+  echo "✗ Could not find docs/kb under TradingAgentsLab checkout." >&2
+  echo "  Set TAL_REPO=/path/to/TradingAgents or run from a sibling layout." >&2
+  exit 1
+fi
+
+mkdir -p "$DEST"
+echo "→ Syncing from $SRC/docs/kb"
+echo "  to             $DEST"
+
+# Copy all .md files, excluding README.md (we render our own index).
+copied=0
+for f in "$SRC"/docs/kb/*.md; do
+  bn="$(basename "$f")"
+  if [[ "$bn" == "README.md" ]]; then continue; fi
+  cp "$f" "$DEST/$bn"
+  copied=$((copied + 1))
+done
+
+echo "✓ Synced $copied file(s)."
