@@ -38,11 +38,19 @@ const COLUMNS = [
   },
   {
     title: 'Family',
+    // RBJ Global is the parent company; it sits at the top with a tiny
+    // "parent" tag and a divider, then the sibling products follow.
+    // `parent: true` controls the visual treatment in the renderer below.
     links: [
+      {
+        href: 'https://rbjglobal.com',
+        label: 'RBJ Global',
+        external: true,
+        parent: true,
+      },
       { href: 'https://clawless.ai', label: 'Clawless', external: true },
       { href: 'https://clawdemy.org', label: 'Clawdemy', external: true },
       { href: 'https://whisprdesk.com', label: 'WhisprDesk', external: true },
-      { href: 'https://rbjglobal.com', label: 'RBJ Global', external: true },
     ],
   },
 ] as const;
@@ -61,27 +69,45 @@ export default function Footer() {
                 {col.title}
               </h3>
               <ul className="space-y-2.5">
-                {col.links.map((link) => (
-                  <li key={link.href}>
-                    {'external' in link && link.external ? (
-                      <a
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-accent)]"
-                      >
-                        {link.label}
-                      </a>
-                    ) : (
-                      <Link
-                        href={link.href}
-                        className="text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-accent)]"
-                      >
-                        {link.label}
-                      </Link>
-                    )}
-                  </li>
-                ))}
+                {col.links.map((link) => {
+                  const isParent = 'parent' in link && link.parent;
+                  return (
+                    <li
+                      key={link.href}
+                      className={
+                        isParent
+                          ? 'mb-3 border-b border-[var(--color-border-muted)] pb-3'
+                          : ''
+                      }
+                    >
+                      {'external' in link && link.external ? (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-accent)]"
+                        >
+                          <span>{link.label}</span>
+                          {isParent ? (
+                            <span
+                              className="rounded border border-[var(--color-accent-tint)] bg-[var(--color-accent-tint)] px-1.5 py-px text-[9px] uppercase tracking-widest text-[var(--color-accent)]"
+                              style={{ fontFamily: 'var(--font-mono)' }}
+                            >
+                              parent
+                            </span>
+                          ) : null}
+                        </a>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          className="text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-accent)]"
+                        >
+                          {link.label}
+                        </Link>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

@@ -1,6 +1,63 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
+interface ProductCardProps {
+  name: string;
+  href?: string;
+  tagline: string;
+  description: string;
+  /** Marks the current product so visitors get a "you are here" cue. */
+  hereLabel?: boolean;
+}
+
+function ProductCard({
+  name,
+  href,
+  tagline,
+  description,
+  hereLabel,
+}: ProductCardProps) {
+  const content = (
+    <>
+      <div className="flex items-start justify-between gap-3">
+        <h4 className="text-lg text-[var(--color-text-primary)]">{name}</h4>
+        {hereLabel ? (
+          <span
+            className="shrink-0 rounded border border-[var(--color-accent)] px-2 py-0.5 text-[10px] uppercase tracking-widest text-[var(--color-accent)]"
+            style={{ fontFamily: 'var(--font-mono)' }}
+          >
+            you are here
+          </span>
+        ) : null}
+      </div>
+      <p
+        className="mt-1 text-xs text-[var(--color-accent)]"
+        style={{ fontFamily: 'var(--font-mono)' }}
+      >
+        {tagline}
+      </p>
+      <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+        {description}
+      </p>
+    </>
+  );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="card block"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return <div className="card">{content}</div>;
+}
+
 export const metadata: Metadata = {
   title: 'About',
   description:
@@ -174,66 +231,75 @@ export default function About() {
         <div className="container-prose">
           <h2 className="text-3xl">Family.</h2>
           <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            Trading Agents Lab is part of a small family of independent,
-            single-purpose, privacy-first software:
+            Trading Agents Lab is part of a small portfolio of
+            independent, single-purpose, privacy-first software built by
+            RBJ Global.
           </p>
-          <ul className="mt-6 space-y-4">
-            <li>
-              <strong className="text-[var(--color-text-primary)]">
-                <a
-                  href="https://clawless.ai"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="prose-link"
-                >
-                  Clawless
-                </a>
-              </strong>{' '}
-              — operating system for AI. Trading Agents Lab is the{' '}
-              <em>standalone trading companion for Clawless</em>; it works
-              perfectly on its own and connects optionally.
-            </li>
-            <li>
-              <strong className="text-[var(--color-text-primary)]">
-                <a
-                  href="https://whisprdesk.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="prose-link"
-                >
-                  WhisprDesk
-                </a>
-              </strong>{' '}
-              — privacy-first Mac dictation. No cloud, no transcripts
-              leaving the device.
-            </li>
-            <li>
-              <strong className="text-[var(--color-text-primary)]">
-                <a
-                  href="https://clawdemy.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="prose-link"
-                >
-                  Clawdemy
-                </a>
-              </strong>{' '}
-              — free AI education for the worried generalist.
-            </li>
-            <li>
-              <strong className="text-[var(--color-text-primary)]">
-                <a
-                  href="https://rbjglobal.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="prose-link"
-                >
-                  RBJ Global
-                </a>
-              </strong>{' '}
-              — the studio behind the family.
-            </li>
-          </ul>
+
+          {/* Parent company callout — visually emphasised with the
+              accent tint to mark hierarchy at a glance. */}
+          <div className="mt-10 rounded border border-[var(--color-accent-tint)] bg-[var(--color-accent-tint)] p-6">
+            <span
+              className="text-xs uppercase tracking-widest text-[var(--color-accent)]"
+              style={{ fontFamily: 'var(--font-mono)' }}
+            >
+              parent company
+            </span>
+            <h3 className="mt-2 text-2xl">
+              <a
+                href="https://rbjglobal.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--color-text-primary)] hover:text-[var(--color-accent)]"
+              >
+                RBJ Global
+              </a>
+            </h3>
+            <p className="mt-3 text-[var(--color-text-secondary)]">
+              An independent software studio building practical AI tools
+              that respect your time, your money, and your privacy.
+            </p>
+          </div>
+
+          {/* Visual connector between parent and products — short
+              vertical line with a "products" chip at the midpoint. */}
+          <div className="mt-2 flex flex-col items-center" aria-hidden="true">
+            <div className="h-6 w-px bg-[var(--color-border-strong)]" />
+            <span
+              className="my-1 rounded border border-[var(--color-border-default)] bg-[var(--color-bg-card)] px-2 py-0.5 text-[10px] uppercase tracking-widest text-[var(--color-text-muted)]"
+              style={{ fontFamily: 'var(--font-mono)' }}
+            >
+              products
+            </span>
+            <div className="h-6 w-px bg-[var(--color-border-strong)]" />
+          </div>
+
+          <div className="mt-2 grid grid-cols-1 gap-4 md:grid-cols-2">
+            <ProductCard
+              name="Trading Agents Lab"
+              tagline="AI-driven Diligence on any ticker."
+              description="Multi-agent LLM research lab. Free, open-source, AGPL-3.0."
+              hereLabel
+            />
+            <ProductCard
+              name="Clawless"
+              href="https://clawless.ai"
+              tagline="An operating system for AI."
+              description="The host platform that Trading Agents Lab optionally connects to as the standalone trading companion."
+            />
+            <ProductCard
+              name="WhisprDesk"
+              href="https://whisprdesk.com"
+              tagline="Privacy-first Mac dictation."
+              description="No cloud, no transcripts leaving the device."
+            />
+            <ProductCard
+              name="Clawdemy"
+              href="https://clawdemy.org"
+              tagline="Free AI literacy for the worried generalist."
+              description="AI education built for people who fear being left behind, not the curious developer."
+            />
+          </div>
         </div>
       </section>
     </article>
