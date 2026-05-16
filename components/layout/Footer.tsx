@@ -1,9 +1,7 @@
 import Link from 'next/link';
 
-// Umbrella RBJ Global LinkedIn page — shared by all four family
-// products until per-product pages are spun up. Confirm with founder
-// before swapping to a TradingAgentsLab-specific URL.
-const LINKEDIN_URL = 'https://www.linkedin.com/company/117174575/';
+// TradingAgentsLab-specific LinkedIn company page.
+const LINKEDIN_URL = 'https://www.linkedin.com/company/117584287/';
 
 const COLUMNS = [
   {
