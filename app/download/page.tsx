@@ -51,7 +51,7 @@ export default function Download() {
 
           <Step n="1" title="Clone the repository">
             <Code>
-              git clone https://github.com/jaysidd/TradingAgentsLab.git
+              git clone https://github.com/RBJGlobal/TradingAgentsLab.git
               {'\n'}cd TradingAgentsLab
             </Code>
           </Step>
@@ -96,7 +96,7 @@ export default function Download() {
           <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
             Subscribe to{' '}
             <a
-              href="https://github.com/jaysidd/TradingAgentsLab/releases"
+              href="https://github.com/RBJGlobal/TradingAgentsLab/releases"
               target="_blank"
               rel="noopener noreferrer"
               className="prose-link"

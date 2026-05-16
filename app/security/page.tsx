@@ -144,7 +144,7 @@ export default function Security() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <a
-                href="https://github.com/jaysidd/TradingAgentsLab"
+                href="https://github.com/RBJGlobal/TradingAgentsLab"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"
@@ -152,7 +152,7 @@ export default function Security() {
                 Open the repository
               </a>
               <a
-                href="https://github.com/jaysidd/TradingAgentsLab/blob/main/LICENSE"
+                href="https://github.com/RBJGlobal/TradingAgentsLab/blob/main/LICENSE"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary"

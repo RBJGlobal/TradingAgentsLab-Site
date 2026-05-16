@@ -1,6 +1,6 @@
 # TradingAgentsLab Site
 
-Marketing + documentation site for **[TradingAgentsLab](https://github.com/jaysidd/TradingAgentsLab)** — the free, open-source multi-agent AI research lab for the markets.
+Marketing + documentation site for **[TradingAgentsLab](https://github.com/RBJGlobal/TradingAgentsLab)** — the free, open-source multi-agent AI research lab for the markets.
 
 Brochure-only. No analytics, no tracking, no accounts. Static export hosted on Cloudflare Pages.
 

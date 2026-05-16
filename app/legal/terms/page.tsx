@@ -142,7 +142,7 @@ export default function Terms() {
         <p>
           Questions about these Terms: open an issue on{' '}
           <a
-            href="https://github.com/jaysidd/TradingAgentsLab/issues"
+            href="https://github.com/RBJGlobal/TradingAgentsLab/issues"
             target="_blank"
             rel="noopener noreferrer"
           >

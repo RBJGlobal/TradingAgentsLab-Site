@@ -40,7 +40,7 @@ export default function PrivacyPolicy() {
           <code>tradingagentslab.com</code> (and any aliases), and (b) the
           desktop application Trading Agents Lab distributed via{' '}
           <a
-            href="https://github.com/jaysidd/TradingAgentsLab"
+            href="https://github.com/RBJGlobal/TradingAgentsLab"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -156,7 +156,7 @@ export default function PrivacyPolicy() {
           Privacy questions, security disclosures, or anything you think
           we should know: open an issue on{' '}
           <a
-            href="https://github.com/jaysidd/TradingAgentsLab/issues"
+            href="https://github.com/RBJGlobal/TradingAgentsLab/issues"
             target="_blank"
             rel="noopener noreferrer"
           >

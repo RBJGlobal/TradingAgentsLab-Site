@@ -50,7 +50,7 @@ function Hero() {
               Download for macOS
             </Link>
             <a
-              href="https://github.com/jaysidd/TradingAgentsLab"
+              href="https://github.com/RBJGlobal/TradingAgentsLab"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary"
@@ -444,7 +444,7 @@ function CTASection() {
               Download
             </Link>
             <a
-              href="https://github.com/jaysidd/TradingAgentsLab"
+              href="https://github.com/RBJGlobal/TradingAgentsLab"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary"

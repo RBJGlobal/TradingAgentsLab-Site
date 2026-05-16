@@ -133,7 +133,7 @@ export default function About() {
             as a teaching reference, we&apos;d love to hear from you.
             File an issue on{' '}
             <a
-              href="https://github.com/jaysidd/TradingAgentsLab"
+              href="https://github.com/RBJGlobal/TradingAgentsLab"
               target="_blank"
               rel="noopener noreferrer"
               className="prose-link"

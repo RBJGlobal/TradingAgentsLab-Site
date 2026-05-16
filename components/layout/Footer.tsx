@@ -13,7 +13,7 @@ const COLUMNS = [
       { href: '/how-it-works/', label: 'How it works' },
       { href: '/download/', label: 'Download' },
       {
-        href: 'https://github.com/jaysidd/TradingAgentsLab',
+        href: 'https://github.com/RBJGlobal/TradingAgentsLab',
         label: 'GitHub',
         external: true,
       },
