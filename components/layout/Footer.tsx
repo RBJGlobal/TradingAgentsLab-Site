@@ -41,7 +41,7 @@ const COLUMNS = [
     links: [
       { href: 'https://clawless.ai', label: 'Clawless', external: true },
       { href: 'https://clawdemy.org', label: 'Clawdemy', external: true },
-      { href: 'https://whisperdesk.ai', label: 'WhisperDesk', external: true },
+      { href: 'https://whisprdesk.com', label: 'WhisprDesk', external: true },
       { href: 'https://rbjglobal.com', label: 'RBJ Global', external: true },
     ],
   },

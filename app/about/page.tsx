@@ -196,12 +196,12 @@ export default function About() {
             <li>
               <strong className="text-[var(--color-text-primary)]">
                 <a
-                  href="https://whisperdesk.ai"
+                  href="https://whisprdesk.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="prose-link"
                 >
-                  WhisperDesk
+                  WhisprDesk
                 </a>
               </strong>{' '}
               — privacy-first Mac dictation. No cloud, no transcripts
