@@ -1,4 +1,8 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const NAV = [
   { href: '/how-it-works/', label: 'How it works' },
@@ -8,47 +12,161 @@ const NAV = [
 ] as const;
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Auto-close the mobile drawer on route change so users can navigate
+  // from inside the drawer without it staying stuck open.
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll + bind Escape while the drawer is open.
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--color-border-default)] bg-[var(--color-bg-base-translucent)] backdrop-blur-md">
-      <div className="container-wide flex h-16 items-center justify-between">
-        <Link
-          href="/"
-          className="flex items-center gap-3"
-          aria-label="Trading Agents Lab — home"
-        >
-          <Logo />
-          <span
-            className="text-sm font-semibold tracking-wide text-[var(--color-text-primary)]"
-            style={{ fontFamily: 'var(--font-mono)' }}
+    <>
+      <header className="sticky top-0 z-50 border-b border-[var(--color-border-default)] bg-[var(--color-bg-base-translucent)] backdrop-blur-md">
+        <div className="container-wide flex h-16 items-center justify-between">
+          <Link
+            href="/"
+            className="flex items-center gap-3"
+            aria-label="Trading Agents Lab — home"
           >
-            Trading Agents Lab
-          </span>
-        </Link>
-
-        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-accent)]"
+            <Logo />
+            <span
+              className="text-sm font-semibold tracking-wide text-[var(--color-text-primary)]"
+              style={{ fontFamily: 'var(--font-mono)' }}
             >
-              {item.label}
-            </Link>
-          ))}
-          <Link href="/download/" className="btn-primary">
-            Download
+              Trading Agents Lab
+            </span>
           </Link>
-        </nav>
 
-        {/* Mobile — links collapse to a download CTA; full nav lives in
-            footer for now. Keeps the mobile header from getting cluttered. */}
-        <div className="md:hidden">
-          <Link href="/download/" className="btn-primary">
-            Download
-          </Link>
+          {/* Desktop nav */}
+          <nav
+            aria-label="Primary"
+            className="hidden items-center gap-8 md:flex"
+          >
+            {NAV.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-accent)]"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <Link href="/download/" className="btn-primary">
+              Download
+            </Link>
+          </nav>
+
+          {/* Mobile: Download CTA + hamburger */}
+          <div className="flex items-center gap-3 md:hidden">
+            <Link href="/download/" className="btn-primary">
+              Download
+            </Link>
+            <button
+              type="button"
+              onClick={() => setOpen((o) => !o)}
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              aria-expanded={open}
+              aria-controls="mobile-nav-panel"
+              className="flex h-10 w-10 items-center justify-center rounded border border-[var(--color-border-strong)] text-[var(--color-text-primary)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+            >
+              {open ? <CloseIcon /> : <HamburgerIcon />}
+            </button>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* Mobile drawer — full-screen overlay below the header. Always
+          rendered so transitions/animations can play if added later;
+          gated to `md:hidden` so desktop never sees it. */}
+      {open ? (
+        <div
+          id="mobile-nav-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site menu"
+          className="fixed inset-0 top-16 z-40 overflow-y-auto bg-[var(--color-bg-base)] md:hidden"
+        >
+          <nav aria-label="Primary mobile" className="container-wide py-10">
+            <ul className="space-y-1">
+              {NAV.map((item, i) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`flex items-baseline justify-between border-b border-[var(--color-border-muted)] py-5 text-2xl transition-colors hover:text-[var(--color-accent)] ${
+                      pathname === item.href
+                        ? 'text-[var(--color-accent)]'
+                        : 'text-[var(--color-text-primary)]'
+                    }`}
+                    style={{ fontFamily: 'var(--font-mono)' }}
+                  >
+                    <span>{item.label}</span>
+                    <span
+                      className="text-xs text-[var(--color-text-muted)]"
+                      style={{ fontFamily: 'var(--font-mono)' }}
+                    >
+                      0{i + 1}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <Link
+              href="/download/"
+              className="btn-primary mt-10 flex w-full items-center justify-center"
+            >
+              Download for macOS
+            </Link>
+
+            <div className="mt-12 space-y-2 text-xs text-[var(--color-text-muted)]" style={{ fontFamily: 'var(--font-mono)' }}>
+              <a
+                href="https://github.com/RBJGlobal/TradingAgentsLab"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block hover:text-[var(--color-accent)]"
+              >
+                → GitHub
+              </a>
+              <Link
+                href="/legal/disclaimer/"
+                className="block hover:text-[var(--color-accent)]"
+              >
+                → Disclaimer
+              </Link>
+              <Link
+                href="/legal/privacy/"
+                className="block hover:text-[var(--color-accent)]"
+              >
+                → Privacy
+              </Link>
+              <Link
+                href="/legal/terms/"
+                className="block hover:text-[var(--color-accent)]"
+              >
+                → Terms
+              </Link>
+            </div>
+          </nav>
+        </div>
+      ) : null}
+    </>
   );
 }
 
@@ -62,7 +180,6 @@ function Logo() {
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      {/* Amber compass rose — mirrors the desktop app icon */}
       <circle
         cx="16"
         cy="16"
@@ -71,16 +188,53 @@ function Logo() {
         strokeWidth="1.5"
         opacity="0.7"
       />
-      <path
-        d="M16 4 L18 16 L16 28 L14 16 Z"
-        fill="var(--color-accent)"
-      />
+      <path d="M16 4 L18 16 L16 28 L14 16 Z" fill="var(--color-accent)" />
       <path
         d="M4 16 L16 14 L28 16 L16 18 Z"
         fill="var(--color-accent)"
         opacity="0.55"
       />
       <circle cx="16" cy="16" r="1.4" fill="var(--color-bg-base)" />
+    </svg>
+  );
+}
+
+function HamburgerIcon() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M2 5h14M2 9h14M2 13h14"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M4 4l10 10M14 4L4 14"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
