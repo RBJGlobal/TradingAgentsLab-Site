@@ -80,7 +80,7 @@ export default function Navbar() {
           <Link
             href="/"
             className="flex items-center gap-3"
-            aria-label="Trading Agents Lab — home"
+            aria-label="Trading Agents Lab, home"
           >
             <Logo />
             <span
@@ -130,7 +130,7 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile drawer — full-screen overlay below the header. Always
+      {/* Mobile drawer, full-screen overlay below the header. Always
           rendered so transitions/animations can play if added later;
           gated to `md:hidden` so desktop never sees it. */}
       {open ? (

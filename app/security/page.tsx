@@ -33,7 +33,7 @@ export default function Security() {
             <ul className="mt-6 space-y-3">
               <Row no>
                 No analytics SDKs (no Google Analytics, no Plausible, no
-                Fathom, no Cloudflare Web Analytics — even though we host
+                Fathom, no Cloudflare Web Analytics, even though we host
                 on Cloudflare Pages)
               </Row>
               <Row no>No telemetry beacons or remote error reporting</Row>
@@ -58,9 +58,9 @@ export default function Security() {
       <section className="section">
         <div className="container-wide">
           <div className="mx-auto max-w-3xl">
-            <h2 className="text-3xl">What we do — and where it stays.</h2>
+            <h2 className="text-3xl">What we do, and where it stays.</h2>
             <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-              The desktop app makes outbound network calls — but only to
+              The desktop app makes outbound network calls, but only to
               providers you have explicitly configured. Every call goes
               directly from your machine to the provider; we have no
               servers in between, because we have no servers at all.
@@ -77,7 +77,7 @@ export default function Security() {
               />
               <NetworkCall
                 target="Outbound webhooks you configured"
-                detail="If you set up Telegram, Slack, Discord, or a custom JSON receiver, the debate result is POSTed to that endpoint. URLs treated as secrets — never logged, never echoed into the persisted History."
+                detail="If you set up Telegram, Slack, Discord, or a custom JSON receiver, the debate result is POSTed to that endpoint. URLs treated as secrets, never logged, never echoed into the persisted History."
               />
               <NetworkCall
                 target="OpenRouter courtesy headers"
@@ -100,7 +100,7 @@ export default function Security() {
                 <code className="rounded bg-[var(--color-bg-sunken)] px-2 py-0.5 text-sm" style={{ fontFamily: 'var(--font-mono)' }}>
                   secrets.json
                 </code>{' '}
-                — encrypted via OS-native primitives (macOS Keychain,
+               , encrypted via OS-native primitives (macOS Keychain,
                 Windows DPAPI, Linux libsecret). Holds your LLM keys,
                 Alpaca keys, webhook URLs.
               </li>
@@ -108,7 +108,7 @@ export default function Security() {
                 <code className="rounded bg-[var(--color-bg-sunken)] px-2 py-0.5 text-sm" style={{ fontFamily: 'var(--font-mono)' }}>
                   sessions.db
                 </code>{' '}
-                — SQLite database of your previous Diligence runs. Lives
+               , SQLite database of your previous Diligence runs. Lives
                 under your user data directory. Delete it at any time and
                 the app re-creates an empty one.
               </li>
@@ -139,7 +139,7 @@ export default function Security() {
             <h2 className="text-3xl">Source is the spec.</h2>
             <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
               AGPL-3.0 means the entire codebase is open to inspection.
-              You don&apos;t need to trust our copy on this page — read
+              You don&apos;t need to trust our copy on this page, read
               the source.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">

@@ -7,7 +7,7 @@ import type { AnchorHTMLAttributes } from 'react';
 /**
  * Server-rendered markdown for docs pages.
  *
- * No `dangerouslySetInnerHTML` — react-markdown parses into the React tree,
+ * No `dangerouslySetInnerHTML`, react-markdown parses into the React tree,
  * which prevents script injection from sneaking through an upstream KB sync.
  * We deliberately do NOT include rehype-raw.
  */
@@ -18,7 +18,7 @@ import type { AnchorHTMLAttributes } from 'react';
  * The KB markdown sources live in the desktop product repo, where authors
  * cross-link like `[Reading the debate](reading-the-debate.md)` so the
  * pages also work as a flat directory in the source. When rendered on the
- * web, those become 404s — fix them in-flight.
+ * web, those become 404s, fix them in-flight.
  *
  * Handles:
  *   - `slug.md`

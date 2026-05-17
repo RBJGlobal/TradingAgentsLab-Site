@@ -1,5 +1,5 @@
 /**
- * AgentFlow — visual representation of the four-phase Diligence pipeline.
+ * AgentFlow, visual representation of the four-phase Diligence pipeline.
  *
  * Pure SSR (no client state, no animation hooks). Renders four columns:
  *   Analysts → Researchers → Trader → Risk → Decision
@@ -51,7 +51,7 @@ export default function AgentFlow() {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
         {PHASES.map((phase, i) => (
           <div key={phase.name} className="relative">
-            {/* Connector arrow — only between columns on md+ */}
+            {/* Connector arrow, only between columns on md+ */}
             {i < PHASES.length - 1 && (
               <div className="absolute -right-3 top-12 hidden h-px w-6 bg-[var(--color-border-strong)] md:block">
                 <span

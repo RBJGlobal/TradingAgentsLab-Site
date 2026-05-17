@@ -37,8 +37,8 @@ function Hero() {
             style={{ animationDelay: '120ms' }}
           >
             Trading Agents Lab is a free, open-source desktop research lab.
-            Twelve specialised AI agents — analysts, researchers, a trader,
-            risk seats — independently study a stock, debate from opposing
+            Twelve specialised AI agents (analysts, researchers, a trader,
+            risk seats) independently study a stock, debate from opposing
             angles, and converge on a recommendation you can read end to end.
           </p>
           <div
@@ -106,7 +106,7 @@ function DiligenceSection() {
             </p>
             <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
               You read the entire transcript. You see the disagreement. You
-              decide whether the reasoning is sound — long before you decide
+              decide whether the reasoning is sound, long before you decide
               whether to act on it.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
@@ -161,7 +161,7 @@ function DiligenceSection() {
               <TranscriptLine
                 role="bear_researcher"
                 tone="red"
-                text="Customer concentration is real — top 4 = 40% of DC revenue."
+                text="Customer concentration is real, top 4 = 40% of DC revenue."
               />
               <TranscriptLine
                 role="trader"
@@ -171,7 +171,7 @@ function DiligenceSection() {
               <TranscriptLine
                 role="risk_aggressive"
                 tone="green"
-                text="Asymmetric — capex cycle lasts longer than current multiple implies."
+                text="Asymmetric, capex cycle lasts longer than current multiple implies."
               />
               <TranscriptLine
                 role="risk_conservative"
@@ -258,7 +258,7 @@ function CapabilitiesSection() {
           <Capability
             title="Bring your own LLM"
             mono="OpenAI · Anthropic · OpenRouter · Gemini · Ollama · LM Studio"
-            body="Use your existing API key with the provider you trust, or run entirely on-device with Ollama. No keys are stored on our servers — there are no servers."
+            body="Use your existing API key with the provider you trust, or run entirely on-device with Ollama. No keys are stored on our servers. There are no servers."
           />
           <Capability
             title="Real market data"
@@ -268,7 +268,7 @@ function CapabilitiesSection() {
           <Capability
             title="Spend that you can prove"
             mono="cost-guard · per-token math · OAuth-aware"
-            body="A Cost Guard reserves spend before each run, enforces daily and weekly caps, and shows a live $0.0034 → $0.05 tick during the debate. Subscription and local-LLM runs cost zero — and the UI says so."
+            body="A Cost Guard reserves spend before each run, enforces daily and weekly caps, and shows a live $0.0034 → $0.05 tick during the debate. Subscription and local-LLM runs cost zero, and the UI says so."
           />
           <Capability
             title="The full transcript"
@@ -278,7 +278,7 @@ function CapabilitiesSection() {
           <Capability
             title="Outbound webhooks"
             mono="telegram · slack · discord · generic JSON + HMAC"
-            body="When a debate finishes, push the decision to Telegram, Slack, Discord, or your own endpoint. Wire that endpoint to your broker on your terms — we never see the trade."
+            body="When a debate finishes, push the decision to Telegram, Slack, Discord, or your own endpoint. Wire that endpoint to your broker on your terms. We never see the trade."
           />
           <Capability
             title="Zero telemetry"
@@ -328,7 +328,7 @@ function FlowSection() {
             Twelve agents. Four phases. One transcript.
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            The same pipeline every research desk runs informally — codified,
+            The same pipeline every research desk runs informally, codified,
             paralleled, and made visible.
           </p>
         </div>
@@ -359,7 +359,7 @@ function PostureSection() {
               Analysis, not execution.
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-              Trading Agents Lab will never place a trade on your behalf —
+              Trading Agents Lab will never place a trade on your behalf , 
               not via paper trading, not via a hidden flag, not even if you
               ask it to. We build the analysis layer; you keep the brokerage
               relationship.
@@ -384,7 +384,7 @@ function PostureSection() {
             <PostureRow ok>Free and open-source · AGPL-3.0</PostureRow>
             <PostureRow ok>No accounts, no email, no install ping</PostureRow>
             <PostureRow ok>Your LLM key never leaves your machine</PostureRow>
-            <PostureRow ok>Source code is the spec — read it</PostureRow>
+            <PostureRow ok>Source code is the spec, read it</PostureRow>
             <PostureRow ok>Locked to data and paper endpoints</PostureRow>
             <PostureRow>No live-trading code, ever</PostureRow>
             <PostureRow>No broker integrations shipped</PostureRow>

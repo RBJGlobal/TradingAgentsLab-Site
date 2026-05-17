@@ -5,7 +5,7 @@
  * memory: project_disclaimer_language.md). Must be visible
  * BEFORE any product copy loads so it's never lost in scroll.
  *
- * Verbatim language locked — do not paraphrase.
+ * Verbatim language locked, do not paraphrase.
  */
 export default function DisclaimerBar() {
   return (
@@ -16,7 +16,7 @@ export default function DisclaimerBar() {
       style={{ fontFamily: 'var(--font-mono)' }}
     >
       <span className="text-[var(--color-text-muted)]">
-        For educational and research purposes only — not investment advice.
+        For educational and research purposes only, not investment advice.
       </span>
     </div>
   );

@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/metadata';
 import { getAllDocSlugs } from '@/lib/docs';
 
-// Required for `output: 'export'` — without this, Next.js treats the route
+// Required for `output: 'export'`, without this, Next.js treats the route
 // as dynamic and refuses to emit a static sitemap.xml.
 export const dynamic = 'force-static';
 

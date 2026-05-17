@@ -34,7 +34,7 @@ export default function Download() {
               Pre-built installers are not yet available. The macOS DMG
               ships once code-signing &amp; notarisation are in place
               (gated on Apple Developer Program registration). In the
-              meantime, you can build from source in a few minutes — it
+              meantime, you can build from source in a few minutes. It
               runs identically on macOS, Linux, and Windows once you
               have Node and Python on hand.
             </p>
@@ -103,7 +103,7 @@ export default function Download() {
             >
               GitHub releases
             </a>{' '}
-            on the main repository — that&apos;s where signed installers
+            on the main repository. That&apos;s where signed installers
             for macOS will be published the moment they&apos;re ready.
             We&apos;ll also link them directly from this page.
           </p>

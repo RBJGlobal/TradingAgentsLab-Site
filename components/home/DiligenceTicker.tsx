@@ -1,13 +1,13 @@
 /**
- * DiligenceTicker — decorative ticker row, terminal-style.
+ * DiligenceTicker, decorative ticker row, terminal-style.
  *
  * Renders the universe of symbols a Diligence can run on, NOT live prices.
  * We deliberately do not emit numeric percentage moves: this is a
  * regulator-aware site that says "we don't predict the market" and showing
- * fake percentages — even labelled as decorative — is exactly the AI-washing
+ * fake percentages, even labelled as decorative, is exactly the AI-washing
  * surface the SEC flagged in 2026. Symbol + an "illustrative" marker only.
  *
- * Marquee uses CSS animation only — no client JS, no client state. The
+ * Marquee uses CSS animation only, no client JS, no client state. The
  * prefers-reduced-motion media block in globals.css disables the animation
  * for users who request it.
  */
@@ -33,7 +33,7 @@ export default function DiligenceTicker() {
     <div
       className="relative overflow-hidden rounded border border-[var(--color-border-default)] bg-[var(--color-bg-sunken)]"
       role="img"
-      aria-label="A sample of tickers Trading Agents Lab can run a Diligence on — illustrative, not live data."
+      aria-label="A sample of tickers Trading Agents Lab can run a Diligence on, illustrative, not live data."
       style={{ padding: '12px 0' }}
     >
       {/* Small "illustrative" label on the left so even sighted users

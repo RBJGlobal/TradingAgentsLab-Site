@@ -6,10 +6,10 @@ import path from 'node:path';
  *
  * The docs are kept as plain Markdown under `content/docs/`. We optionally
  * support a YAML-ish front-matter header for `title`, `description`, and
- * `order` — but if absent, we derive title from the first H1 and order
+ * `order`, but if absent, we derive title from the first H1 and order
  * alphabetically by slug.
  *
- * No `gray-matter` dependency by design — the front-matter shape is tiny
+ * No `gray-matter` dependency by design, the front-matter shape is tiny
  * and a parser is a few lines.
  */
 

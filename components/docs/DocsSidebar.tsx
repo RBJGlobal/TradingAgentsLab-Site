@@ -9,7 +9,7 @@ import type { DocMeta } from '@/lib/docs';
  *
  * Marked `'use client'` so we can read `usePathname()` and highlight the
  * currently-active doc. The parent layout passes the doc list (filesystem
- * read at build time), and we derive the active slug from the pathname —
+ * read at build time), and we derive the active slug from the pathname , 
  * keeps the layout itself a Server Component while letting the sidebar
  * react to navigation.
  */

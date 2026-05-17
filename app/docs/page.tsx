@@ -5,7 +5,7 @@ import { getAllDocs } from '@/lib/docs';
 export const metadata: Metadata = {
   title: 'Documentation',
   description:
-    'Comprehensive documentation for Trading Agents Lab — multi-agent LLM trading research, end to end.',
+    'Comprehensive documentation for Trading Agents Lab, multi-agent LLM trading research, end to end.',
 };
 
 export default function DocsIndex() {
@@ -18,7 +18,7 @@ export default function DocsIndex() {
       <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--color-text-secondary)]">
         Everything you need to install, configure, and reason about Trading
         Agents Lab. The same documentation that ships inside the desktop
-        app&apos;s Help menu — published here so anyone can learn from it,
+        app&apos;s Help menu, published here so anyone can learn from it,
         not just users.
       </p>
 

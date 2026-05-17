@@ -19,13 +19,13 @@ export default function HowItWorks() {
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
             A Diligence is not one prompt answered by one model. It is a
-            structured sequence of independent agents — each with their
+            structured sequence of independent agents, each with their
             own role, their own facts to look at first, and their own
             instruction to disagree with the others when it matters.
           </p>
           <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
             The result is a transcript you can read, audit, and learn
-            from — not a black-box score. Below is the full pipeline as it
+            from, not a black-box score. Below is the full pipeline as it
             ships in{' '}
             <Link href="/docs/how-it-works/" className="prose-link">
               the codebase today
@@ -61,7 +61,7 @@ export default function HowItWorks() {
               {
                 role: 'fundamental_analyst',
                 what:
-                  'Asset-class-aware context — equities get earnings/valuation framing, crypto gets supply/macro framing. Never asserts numbers it cannot ground.',
+                  'Asset-class-aware context, equities get earnings/valuation framing, crypto gets supply/macro framing. Never asserts numbers it cannot ground.',
               },
               {
                 role: 'sentiment_analyst',
@@ -97,7 +97,7 @@ export default function HowItWorks() {
           <Phase
             n="03"
             name="Trader"
-            summary="A single agent proposes a specific position — not just a direction."
+            summary="A single agent proposes a specific position, not just a direction."
             agents={[
               {
                 role: 'trader',
@@ -130,7 +130,7 @@ export default function HowItWorks() {
               {
                 role: 'portfolio_manager',
                 what:
-                  'Reads all three risk seats plus the trader proposal and makes the final call. The decision card the user sees comes from this agent and carries a confidence score (0.0–1.0).',
+                  'Reads all three risk seats plus the trader proposal and makes the final call. The decision card the user sees comes from this agent and carries a confidence score (0.0, 1.0).',
               },
             ]}
           />
@@ -172,7 +172,7 @@ export default function HowItWorks() {
         <div className="container-prose">
           <span className="badge">honest about ai</span>
           <h2 className="mt-6 text-3xl">
-            What the system cannot do — by design.
+            What the system cannot do, by design.
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
             A Diligence does not predict the market. It does not guarantee

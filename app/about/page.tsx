@@ -74,7 +74,7 @@ export default function About() {
           <p className="mt-8 text-lg leading-relaxed text-[var(--color-text-secondary)]">
             Trading Agents Lab provides a high-quality, professional-grade
             tool purely for educational purposes. We do not force user
-            adoption and we do not provide trading tools — we provide a
+            adoption and we do not provide trading tools. We provide a
             free resource for analysis and learning.
           </p>
           <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
@@ -105,7 +105,7 @@ export default function About() {
 
       <section className="section border-t border-[var(--color-border-muted)] bg-[var(--color-bg-sunken)]">
         <div className="container-prose">
-          <h2 className="text-3xl">Positioning — analysis, not execution.</h2>
+          <h2 className="text-3xl">Positioning, analysis, not execution.</h2>
           <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
             This is the most important sentence on this page:
           </p>
@@ -119,7 +119,7 @@ export default function About() {
           <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
             The product empowers users with multi-agent LLM analysis to
             make their own trading decisions. It does not execute trades
-            on a user&apos;s behalf — not via paper-trading suites that
+            on a user&apos;s behalf, not via paper-trading suites that
             look like real trading apps, not via a hidden feature flag,
             not via a future patch.
           </p>
@@ -175,7 +175,7 @@ export default function About() {
             >
               Clawdemy.org
             </a>{' '}
-            — a free, open AI-education platform. Students can read the
+           , a free, open AI-education platform. Students can read the
             source to learn how to design real multi-agent LLM systems
             that ship.
           </p>
@@ -204,7 +204,7 @@ export default function About() {
 
       <section className="section border-t border-[var(--color-border-muted)] bg-[var(--color-bg-sunken)]">
         <div className="container-prose">
-          <h2 className="text-3xl">Business model — free, no monetisation.</h2>
+          <h2 className="text-3xl">Business model: free, no monetisation.</h2>
           <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
             Free. Open source. AGPL-3.0. No subscription, no paywall, no
             premium tier, no enterprise upsell.
@@ -236,7 +236,7 @@ export default function About() {
             RBJ Global.
           </p>
 
-          {/* Parent company callout — visually emphasised with the
+          {/* Parent company callout, visually emphasised with the
               accent tint to mark hierarchy at a glance. */}
           <div className="mt-10 rounded border border-[var(--color-accent-tint)] bg-[var(--color-accent-tint)] p-6">
             <span
@@ -261,7 +261,7 @@ export default function About() {
             </p>
           </div>
 
-          {/* Visual connector between parent and products — short
+          {/* Visual connector between parent and products, short
               vertical line with a "products" chip at the midpoint. */}
           <div className="mt-2 flex flex-col items-center" aria-hidden="true">
             <div className="h-6 w-px bg-[var(--color-border-strong)]" />
