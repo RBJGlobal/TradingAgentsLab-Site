@@ -12,7 +12,6 @@ const PHASES = [
   {
     n: '01',
     name: 'Analysts',
-    color: 'var(--color-accent)',
     agents: [
       { role: 'market_analyst', focus: 'price action · volume' },
       { role: 'news_analyst', focus: 'recent headlines' },
@@ -23,7 +22,6 @@ const PHASES = [
   {
     n: '02',
     name: 'Researchers',
-    color: 'var(--color-accent)',
     agents: [
       { role: 'bull_researcher', focus: 'thesis for' },
       { role: 'bear_researcher', focus: 'thesis against' },
@@ -33,13 +31,11 @@ const PHASES = [
   {
     n: '03',
     name: 'Trader',
-    color: 'var(--color-accent)',
     agents: [{ role: 'trader', focus: 'proposes position' }],
   },
   {
     n: '04',
     name: 'Risk',
-    color: 'var(--color-accent)',
     agents: [
       { role: 'risk_aggressive', focus: 'upside view' },
       { role: 'risk_conservative', focus: 'downside view' },
@@ -75,7 +71,7 @@ export default function AgentFlow() {
                 </span>
                 <span
                   className="h-2 w-2 rounded-full"
-                  style={{ backgroundColor: phase.color }}
+                  style={{ backgroundColor: 'var(--color-accent)' }}
                 />
               </div>
               <h3

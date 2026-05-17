@@ -1,18 +1,21 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import type { DocMeta } from '@/lib/docs';
 
 /**
  * Grouped sidebar for the docs section.
  *
- * We hand-curate the ordering and grouping for the published KB. The
- * `kbCategoryFor` map is small enough to live inline; the alternative
- * (front-matter in every .md) means the docs in the main app repo would
- * carry site-specific metadata, which we want to avoid.
+ * Marked `'use client'` so we can read `usePathname()` and highlight the
+ * currently-active doc. The parent layout passes the doc list (filesystem
+ * read at build time), and we derive the active slug from the pathname —
+ * keeps the layout itself a Server Component while letting the sidebar
+ * react to navigation.
  */
 
 interface Props {
   docs: DocMeta[];
-  activeSlug?: string;
 }
 
 const GROUPS: Array<{ name: string; slugs: string[] }> = [
@@ -45,7 +48,17 @@ const GROUPS: Array<{ name: string; slugs: string[] }> = [
   },
 ];
 
-export default function DocsSidebar({ docs, activeSlug }: Props) {
+function slugFromPathname(pathname: string | null): string | undefined {
+  if (!pathname) return undefined;
+  // /docs/getting-started/ → "getting-started"
+  const m = pathname.match(/^\/docs\/([a-z0-9-]+)\/?$/i);
+  return m ? m[1] : undefined;
+}
+
+export default function DocsSidebar({ docs }: Props) {
+  const pathname = usePathname();
+  const activeSlug = slugFromPathname(pathname);
+
   // Build a slug → meta map so we can render in our curated order and
   // fall through to "Other" for anything new in the KB we haven't placed.
   const bySlug = new Map(docs.map((d) => [d.slug, d]));
@@ -78,6 +91,7 @@ export default function DocsSidebar({ docs, activeSlug }: Props) {
                 <li key={slug}>
                   <Link
                     href={`/docs/${slug}/`}
+                    aria-current={isActive ? 'page' : undefined}
                     className={`block rounded px-2 py-1.5 transition-colors ${
                       isActive
                         ? 'bg-[var(--color-accent-tint)] text-[var(--color-accent)]'

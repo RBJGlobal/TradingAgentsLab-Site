@@ -386,10 +386,10 @@ function PostureSection() {
             <PostureRow ok>Your LLM key never leaves your machine</PostureRow>
             <PostureRow ok>Source code is the spec — read it</PostureRow>
             <PostureRow ok>Locked to data and paper endpoints</PostureRow>
-            <PostureRow no>No live-trading code, ever</PostureRow>
-            <PostureRow no>No broker integrations shipped</PostureRow>
-            <PostureRow no>No subscription, no premium tier</PostureRow>
-            <PostureRow no>No analytics, no telemetry, no tracking</PostureRow>
+            <PostureRow>No live-trading code, ever</PostureRow>
+            <PostureRow>No broker integrations shipped</PostureRow>
+            <PostureRow>No subscription, no premium tier</PostureRow>
+            <PostureRow>No analytics, no telemetry, no tracking</PostureRow>
           </div>
         </div>
       </div>
@@ -401,8 +401,8 @@ function PostureRow({
   ok,
   children,
 }: {
+  /** true = green check, false/omitted = red x. */
   ok?: boolean;
-  no?: boolean;
   children: React.ReactNode;
 }) {
   return (
