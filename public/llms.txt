@@ -1,0 +1,73 @@
+# Trading Agents Lab
+
+> Free, open-source desktop research lab where multi-agent LLMs run institutional-grade diligence on any ticker. Educational and research purposes only, not investment advice.
+
+Trading Agents Lab is an AGPL-3.0 desktop application (Electron, Vite, React frontend with a Python FastAPI sidecar). It orchestrates a multi-agent LLM debate (analyst, researcher, trader, risk-manager) using LangGraph to surface multiple perspectives on a ticker and date. Forked from TauricResearch/TradingAgents (Apache 2.0 upstream preserved). Parent organization: RBJ Global LLC. The product is an analysis platform, not an execution platform: no live trading code, no order routing, no broker integration. Users connect their own LLM provider keys (OpenAI, Anthropic, OpenRouter, Gemini, or local runtimes like Ollama / LM Studio) and bring their own data adapters (Yahoo Finance default, Alpaca paper-data for power users). Zero telemetry, zero analytics, zero user accounts.
+
+## Capabilities
+
+- [How the multi-agent debate works](https://tradingagentslab.ai/how-it-works/)
+- [Reading the debate output](https://tradingagentslab.ai/docs/reading-the-debate/)
+- [Configuring LLM providers (OpenAI, Anthropic, OpenRouter, Gemini, Local)](https://tradingagentslab.ai/docs/configuring-llm-providers/)
+- [Local LLM support (Ollama, LM Studio, llama.cpp)](https://tradingagentslab.ai/docs/local-llm/)
+- [Data providers (Yahoo Finance default, Alpaca for power users)](https://tradingagentslab.ai/docs/data-providers/)
+- [Crypto ticker support](https://tradingagentslab.ai/docs/crypto-tickers/)
+- [Sentiment analysis inputs](https://tradingagentslab.ai/docs/sentiment/)
+- [CostGuard (per-session and daily spend caps)](https://tradingagentslab.ai/docs/cost-guard/)
+- [Webhooks (outbound JSON push on session.complete)](https://tradingagentslab.ai/docs/webhooks/)
+- [OAuth flows (OpenAI only; Anthropic OAuth is banned by Anthropic TOS)](https://tradingagentslab.ai/docs/oauth/)
+- [Security and storage (OS keychain encryption, 127.0.0.1 only)](https://tradingagentslab.ai/docs/security-and-storage/)
+- [Optional Clawless desktop connector](https://tradingagentslab.ai/docs/clawless-connector/)
+
+## Stack and openness
+
+- Source: github.com/RBJGlobal/TradingAgentsLab
+- License: AGPL-3.0 (our additions), Apache 2.0 (upstream code, preserved)
+- Frontend: Electron, Vite, React, TypeScript
+- Backend: Python, FastAPI, LangGraph, LangChain
+- Multi-agent orchestration via LangGraph state machine
+- WebSocket streaming of debate phases to the renderer
+- Storage: SQLite for session history, OS keychain (macOS Keychain, Windows DPAPI, Linux Secret Service) for credentials
+- Defense in depth: engine hard-codes Alpaca data and paper endpoints only, never live execution endpoints
+
+## Audience
+
+- Quantitative researchers exploring multi-agent LLM design patterns
+- Algorithmic traders running structured diligence on watchlist tickers
+- Students and educators studying multi-agent LLM systems (the codebase is a teaching artifact for clawdemy.org)
+- Developers evaluating LangGraph for production agentic workflows
+
+## Roadmap signals
+
+- Shipped: Phase 1 desktop closeout (debate engine, history, watchlist, batch runner, CostGuard, webhooks, navigate-away survival, settings UX)
+- Queued: Phase 6 Clawless gateway connector (LLM RPC tap), Phase 8c bidirectional Telegram bot, paid licensing tier
+- Not on roadmap, ever: live trading execution, broker order routing, real-money trade placement
+
+## Disclaimers
+
+- Educational and research purposes only
+- Not investment advice, not a recommendation to buy or sell any security
+- Past performance does not indicate future results
+- LLM outputs may be inaccurate, incomplete, or hallucinated
+- Users are solely responsible for their own trading decisions
+- Three-tier disclaimer surface in the app: persistent footer, inline below decision card, page-level full text. See [disclaimer page](https://tradingagentslab.ai/legal/disclaimer/) for the canonical copy.
+
+## Key pages
+
+- [Homepage](https://tradingagentslab.ai/)
+- [How it works](https://tradingagentslab.ai/how-it-works/)
+- [About](https://tradingagentslab.ai/about/)
+- [Security](https://tradingagentslab.ai/security/)
+- [Download](https://tradingagentslab.ai/download/)
+- [Documentation index](https://tradingagentslab.ai/docs/)
+- [Privacy Policy](https://tradingagentslab.ai/legal/privacy/)
+- [Terms of Use](https://tradingagentslab.ai/legal/terms/)
+- [Disclaimer (locked SEC-aware copy)](https://tradingagentslab.ai/legal/disclaimer/)
+
+## Family (RBJ Global)
+
+- [RBJ Global](https://rbjglobal.com/): parent studio
+- [Clawdemy](https://clawdemy.org/): AI education platform
+- [Clawless](https://clawless.ai/): desktop AI workspace
+- [WhisprDesk](https://whisprdesk.com/): local dictation
+- [iLoveMD](https://iluvmd.com/): document converter
