@@ -49,6 +49,10 @@ function Hero() {
               <ChevronRight />
               Download for macOS
             </Link>
+            <Link href="/tour/" className="btn-secondary">
+              <ChevronRight />
+              See it running
+            </Link>
             <a
               href="https://github.com/RBJGlobal/TradingAgentsLab"
               target="_blank"
