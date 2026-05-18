@@ -38,19 +38,14 @@ const COLUMNS = [
   },
   {
     title: 'Family',
-    // RBJ Global is the parent company; it sits at the top with a tiny
-    // "parent" tag and a divider, then the sibling products follow.
-    // `parent: true` controls the visual treatment in the renderer below.
+    // Collapsed per family-wide /family rollout (2026-05-18). Footer used
+    // to enumerate every sibling; now it points to the dedicated /family
+    // page, which carries the JSON-LD parent + subOrganization graph and
+    // the full per-sibling descriptions. One internal link, no parent
+    // flag needed, no per-sibling enumeration to keep in sync across
+    // sites.
     links: [
-      {
-        href: 'https://rbjglobal.com',
-        label: 'RBJ Global',
-        external: true,
-        parent: true,
-      },
-      { href: 'https://clawless.ai', label: 'Clawless', external: true },
-      { href: 'https://clawdemy.org', label: 'Clawdemy', external: true },
-      { href: 'https://whisprdesk.com', label: 'WhisprDesk', external: true },
+      { href: '/family/', label: 'Part of the RBJ Global family →' },
     ],
   },
 ] as const;
