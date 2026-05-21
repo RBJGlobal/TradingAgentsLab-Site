@@ -314,6 +314,129 @@ export default function TourPage() {
         </div>
       </section>
 
+      <section className="section pt-0">
+        <div className="container-wide">
+          <div className="container-prose">
+            <span
+              className="text-xs uppercase tracking-widest text-[var(--color-accent)]"
+              style={{ fontFamily: 'var(--font-mono)' }}
+            >
+              08 · channels
+            </span>
+            <h2 className="mt-2 text-3xl">Take it on your phone.</h2>
+            <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
+              The Channels tab is where the desktop app reaches out to
+              meet you wherever you are. The first channel is a
+              bidirectional Telegram bot. Message a ticker like NVDA
+              from your phone and the Diligence runs on your laptop;
+              the decision card lands back in the chat. Useful when
+              you&apos;re at work, on a walk, or anywhere away from
+              the desktop where you originally configured everything.
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
+              The bot connects outbound to Telegram via long polling.
+              Nothing on your machine is exposed to the internet, no
+              public URL, no relay server. An allowlist of chat IDs
+              gates who can trigger a Diligence; messages from anyone
+              else are silently dropped. A per-chat daily spend cap
+              keeps a leaked bot token from draining your LLM budget.
+            </p>
+          </div>
+          <Shot
+            src="/screenshots/telegram-channels-tab.png"
+            alt="Settings Channels tab showing the Telegram Bot panel with bot token, LLM provider dropdown, allowlist, daily cap, Stop bot button, and POLLING status pill."
+            caption="Channels · Telegram bot · configure once on the desktop"
+          />
+
+          <div className="container-prose mt-12">
+            <h3 className="text-2xl">Configure once. Use anywhere.</h3>
+            <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
+              Paste the bot token from BotFather, pick the LLM
+              provider, list the Telegram user IDs you want to allow,
+              set a per-chat daily cap, hit Save and Start. The bot
+              comes online and remembers your settings across engine
+              restarts.
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
+              The first time you message the bot, you tap a button or
+              type a ticker. The bot replies with a status, runs the
+              Diligence on your laptop, and streams the result back.
+            </p>
+          </div>
+          <Shot
+            src="/screenshots/telegram-ready.png"
+            alt="Telegram chat showing the bot replying 'Trading Agents Lab is ready' with the current mode, plus a persistent two-by-two reply keyboard with Full debate mode, Summary mode, Current mode, and Help buttons."
+            caption="Telegram · ready state with the persistent button grid"
+          />
+
+          <div className="container-prose mt-12">
+            <h3 className="text-2xl">Two ways to read a debate.</h3>
+            <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
+              In summary mode (the default), the bot sends short
+              phase headers as the debate progresses and the final
+              decision card when it lands. Three or four messages
+              total. Useful when you just want the answer.
+            </p>
+          </div>
+          <Shot
+            src="/screenshots/telegram-summary.png"
+            alt="Telegram chat in summary mode showing the bot acknowledging the NVDA request, then phase headers as analysts, researchers, trader, and risk committee complete, then the final decision card with HOLD action and 72 percent confidence."
+            caption="Summary mode · phase headers and the decision card"
+          />
+
+          <div className="container-prose mt-12">
+            <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
+              In full mode (toggle with the Full debate mode button or
+              the slash-full command), the bot forwards every agent&apos;s
+              reasoning as its own message. You read the technical
+              analyst, fundamental analyst, news analyst, sentiment
+              analyst, bull and bear researchers, research manager,
+              trader, three risk seats, and the portfolio manager in
+              real time. The same transcript a desktop user sees, just
+              on your phone.
+            </p>
+          </div>
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+            <Shot
+              src="/screenshots/telegram-full-analysts.png"
+              alt="Telegram chat in full mode showing the technical analyst, fundamental analyst, and news analyst streaming their reasoning live."
+              caption="Full mode · analyst phase streaming"
+              width="max-w-none"
+            />
+            <Shot
+              src="/screenshots/telegram-full-decision.png"
+              alt="Telegram chat in full mode showing the risk committee (conservative, neutral) and portfolio manager messages, followed by the final decision card."
+              caption="Full mode · risk committee + decision card"
+              width="max-w-none"
+            />
+          </div>
+
+          <div className="container-prose mt-12">
+            <h3 className="text-2xl">Built-in commands.</h3>
+            <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
+              Typing slash in the Telegram chat pops the autocomplete
+              menu (analyze, full, summary, mode, help, start). The
+              four most common actions live on the persistent button
+              grid below the message input so you don&apos;t have to
+              remember the syntax. Tap Help to see the full command
+              list at any time.
+            </p>
+          </div>
+          <Shot
+            src="/screenshots/telegram-help.png"
+            alt="Telegram chat showing the bot's slash-help reply with the full command list, current mode indication, and the persistent two-by-two reply keyboard below the input."
+            caption="Help · full command list with current mode"
+          />
+          <p
+            className="container-prose mt-8 text-center text-xs leading-relaxed text-[var(--color-text-muted)]"
+            style={{ fontFamily: 'var(--font-mono)' }}
+          >
+            Illustrative output from one run. Not advice. Not a
+            recommendation. Not a forecast.
+          </p>
+        </div>
+      </section>
+
       <section className="section border-t border-[var(--color-border-muted)] bg-[var(--color-bg-sunken)]">
         <div className="container-prose">
           <h2 className="text-2xl">Try it for yourself.</h2>
