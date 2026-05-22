@@ -303,6 +303,22 @@ export default function InteractiveAgentFlow() {
   // The Pause button toggles this to false, Resume flips it back.
   const [isPlaying, setIsPlaying] = useState(true);
 
+  // Mobile detection. On phones the chart is wider than the viewport
+  // even at the desktop minZoom of 0.4 (1340px chart / 375px screen =
+  // needs ~0.25 to fit). We unlock pan + pinch + double-tap zoom and
+  // lower minZoom so fitView can actually do its job. Desktop stays
+  // locked exactly as before per founder's "diagram is a visual, not
+  // a workspace" call.
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mq = window.matchMedia('(max-width: 768px)');
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
   const onSelect = useCallback((id: string) => {
     setSelectedId(id);
   }, []);
@@ -412,9 +428,12 @@ export default function InteractiveAgentFlow() {
   );
 
   const playedCount = playedIds.size + (activeId ? 1 : 0);
+  const interactionHint = isMobile
+    ? 'drag · pinch to zoom · tap to inspect'
+    : 'click any agent for details';
   const statusText = isPlaying
     ? `streaming · ${playedCount} / ${AGENTS.length} agents`
-    : `paused · ${playedCount} / ${AGENTS.length} agents · click any agent for details`;
+    : `paused · ${playedCount} / ${AGENTS.length} agents · ${interactionHint}`;
 
   return (
     <div style={{ position: 'relative' }}>
@@ -451,7 +470,7 @@ export default function InteractiveAgentFlow() {
       <div
         style={{
           position: 'relative',
-          height: 620,
+          height: isMobile ? 460 : 620,
           background: 'var(--color-bg-sunken)',
           border: '1px solid var(--color-border-muted)',
           borderRadius: 8,
@@ -459,23 +478,41 @@ export default function InteractiveAgentFlow() {
         }}
       >
         <ReactFlow
+          // `key` forces RF to remount on viewport mode change so its
+          // internal fitView recomputes against the new container size
+          // and gesture set. Without it, switching desktop -> mobile in
+          // dev tools left the camera stuck at the old zoom.
+          key={isMobile ? 'mobile' : 'desktop'}
           nodes={nodes}
           edges={edges}
           nodeTypes={nodeTypesAll}
           fitView
-          fitViewOptions={{ padding: 0.12 }}
-          minZoom={0.4}
+          // On mobile we clamp the initial fit at zoom >= 0.55 so the
+          // chart opens at readable text size and overflows the viewport
+          // sideways. Users pan right with their thumb through the
+          // phases. Fitting the whole 1340px chart into a 375px screen
+          // would render labels at ~2px — illegible. Desktop fits whole
+          // chart at 0.4-0.45 which is fine on a wide screen.
+          fitViewOptions={
+            isMobile
+              ? { padding: 0.06, minZoom: 0.55, maxZoom: 1.4 }
+              : { padding: 0.12 }
+          }
+          // Global zoom range. Mobile bottom of 0.22 lets the user pinch
+          // out to see the whole chart at once if they want overview.
+          minZoom={isMobile ? 0.22 : 0.4}
           maxZoom={1.4}
           proOptions={{ hideAttribution: true }}
-          // Lock the canvas: no pan, no zoom, no drag. The diagram is a
-          // visual not a workspace. fitView still runs once on mount to
-          // center everything, then nothing moves.
-          panOnDrag={false}
+          // Desktop: fully locked, "diagram is a visual not a workspace".
+          // Mobile: pan + pinch-zoom + double-tap zoom enabled so users
+          // can actually navigate it on a small vertical screen. Node
+          // dragging stays off everywhere (the layout is meaningful).
+          panOnDrag={isMobile}
           panOnScroll={false}
-          zoomOnScroll={false}
-          zoomOnPinch={false}
-          zoomOnDoubleClick={false}
-          preventScrolling={false}
+          zoomOnScroll={isMobile}
+          zoomOnPinch={isMobile}
+          zoomOnDoubleClick={isMobile}
+          preventScrolling={isMobile}
           nodesConnectable={false}
           nodesDraggable={false}
           elementsSelectable
