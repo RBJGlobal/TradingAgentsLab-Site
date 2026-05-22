@@ -29,6 +29,7 @@ const FAMILY_JSON_LD = {
       { '@type': 'Organization', name: 'WhisprDesk', url: 'https://whisprdesk.com/' },
       { '@type': 'Organization', name: 'Trading Agents Lab', url: 'https://tradingagentslab.ai/' },
       { '@type': 'Organization', name: 'Clawdemy', url: 'https://clawdemy.org/' },
+      { '@type': 'Organization', name: 'ClaudeLink', url: 'https://claudelink.ai/' },
     ],
   },
 };
@@ -244,6 +245,27 @@ export default function FamilyPage() {
             links={[
               { href: 'https://clawdemy.org/', label: 'Visit clawdemy.org' },
               { href: 'https://clawdemy.org/tracks/', label: 'Browse all tracks' },
+            ]}
+          />
+
+          <SiblingCard
+            name="ClaudeLink"
+            tagline="Coordinate a team of AI coding agents."
+            body={
+              <p>
+                An open-source MCP server that turns the AI coding
+                agents you already run (Claude Code, Codex, Gemini,
+                Goose) into one coordinated team across terminals.
+                Each agent picks its own model. Local-first, MIT
+                licensed, no cloud, no telemetry. Useful for a Trading
+                Agents Lab developer who wants multiple coding agents
+                collaborating on a debate-engine refactor or a new
+                channel integration.
+              </p>
+            }
+            links={[
+              { href: 'https://claudelink.ai/', label: 'Visit claudelink.ai' },
+              { href: 'https://claudelink.ai/docs/', label: 'Documentation' },
             ]}
           />
         </div>

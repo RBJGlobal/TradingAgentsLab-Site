@@ -71,3 +71,4 @@ Trading Agents Lab is an AGPL-3.0 desktop application (Electron, Vite, React fro
 - [Clawless](https://clawless.ai/): desktop AI workspace
 - [WhisprDesk](https://whisprdesk.com/): local dictation
 - [iLoveMD](https://iluvmd.com/): document converter
+- [ClaudeLink](https://claudelink.ai/): open-source MCP server that coordinates multiple AI coding agents across terminals
