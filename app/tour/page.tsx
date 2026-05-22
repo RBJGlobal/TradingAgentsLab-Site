@@ -314,7 +314,7 @@ export default function TourPage() {
         </div>
       </section>
 
-      <section className="section pt-0">
+      <section id="channels" className="section pt-0 scroll-mt-20">
         <div className="container-wide">
           <div className="container-prose">
             <span

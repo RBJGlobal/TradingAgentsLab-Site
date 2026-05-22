@@ -9,6 +9,7 @@ export default function Home() {
       <DiligenceSection />
       <CapabilitiesSection />
       <FlowSection />
+      <ChannelsSection />
       <PostureSection />
       <CTASection />
     </>
@@ -344,6 +345,71 @@ function FlowSection() {
           <Link href="/how-it-works/" className="btn-secondary">
             Deep dive: how a Diligence is built →
           </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Channels (Telegram) ──────────────────────────────────────── */
+//
+// Marketing the bidirectional Telegram bot. The differentiator vs the
+// upstream Python terminal: you trigger a Diligence on your phone, the
+// laptop runs the debate, the decision lands back in the chat. Short
+// 2-column callout; deep dive lives on /tour#channels.
+
+function ChannelsSection() {
+  return (
+    <section className="section">
+      <div className="container-wide">
+        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-20">
+          <div>
+            <span className="badge">on your phone</span>
+            <h2 className="mt-6 text-3xl md:text-4xl">
+              Run a Diligence from anywhere.
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
+              Configure once on the desktop. After that, message your
+              own Telegram bot a ticker like <code>NVDA</code> and the
+              debate runs on your laptop. The decision card lands back
+              in the chat. Useful when you&apos;re at work, on a walk,
+              or anywhere away from where you set the app up.
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
+              The bot connects outbound to Telegram, so nothing on your
+              machine is exposed to the internet. Allowlist gates who
+              can trigger a run. Per-chat daily spend cap blocks
+              token-drain abuse if your bot token ever leaks.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href="/tour/#channels" className="btn-primary">
+                <ChevronRight />
+                See the Telegram flow
+              </Link>
+              <Link href="/docs/" className="btn-secondary">
+                Documentation
+              </Link>
+            </div>
+          </div>
+          <div>
+            <div className="overflow-hidden rounded-md border border-[var(--color-border-default)] bg-[var(--color-bg-sunken)] shadow-2xl shadow-black/40">
+              {/* Plain img to match the rest of the tour page; output is
+                  Next.js export with images.unoptimized. */}
+              <img
+                src="/screenshots/telegram-ready.png"
+                alt="Telegram chat with the Trading Agents Lab bot showing the welcome message 'Trading Agents Lab is ready' and the persistent two-by-two reply keyboard with Full debate mode, Summary mode, Current mode, and Help buttons."
+                loading="lazy"
+                decoding="async"
+                className="block w-full"
+              />
+            </div>
+            <p
+              className="mt-3 text-center text-xs uppercase tracking-widest text-[var(--color-text-muted)]"
+              style={{ fontFamily: 'var(--font-mono)' }}
+            >
+              Telegram · ready with reply keyboard
+            </p>
+          </div>
         </div>
       </div>
     </section>
