@@ -341,7 +341,11 @@ function FlowSection() {
           <AgentFlow />
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+          <Link href="/flow/" className="btn-primary">
+            <ChevronRight />
+            See the flow live
+          </Link>
           <Link href="/how-it-works/" className="btn-secondary">
             Deep dive: how a Diligence is built →
           </Link>

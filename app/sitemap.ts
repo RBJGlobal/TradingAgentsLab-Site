@@ -17,6 +17,7 @@ const STATIC_ROUTES = [
   '/download/',
   '/docs/',
   '/tour/',
+  '/flow/',
 ];
 
 // Family page is listed at lower priority per family-wide rollout rule
