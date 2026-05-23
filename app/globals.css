@@ -367,3 +367,16 @@ a {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* React Flow attribution. We keep it visible (no React Flow Pro license, so
+   hiding it isn't permitted), but its default translucent-white background
+   reads as a gray box on the dark FlowStage. Make the background transparent
+   and the link faint so it blends into the corner while staying legible. */
+.react-flow__attribution {
+  background: transparent !important;
+  padding: 0 6px !important;
+}
+.react-flow__attribution a {
+  color: rgba(255, 255, 255, 0.22) !important;
+  font-size: 9px !important;
+}

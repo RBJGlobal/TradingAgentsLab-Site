@@ -19,7 +19,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   ReactFlow,
-  Background,
   type Node,
   type Edge,
   type NodeProps,
@@ -29,6 +28,7 @@ import {
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { AGENTS, PHASES, type AgentSpec, type Phase } from './agents';
+import FlowStage from './FlowStage';
 
 // ─── Layout constants ──────────────────────────────────────────────
 //
@@ -467,17 +467,9 @@ export default function InteractiveAgentFlow() {
         </button>
       </div>
 
-      <div
-        style={{
-          position: 'relative',
-          height: isMobile ? 460 : 620,
-          background: 'var(--color-bg-sunken)',
-          border: '1px solid var(--color-border-muted)',
-          borderRadius: 8,
-          overflow: 'hidden',
-        }}
-      >
+      <FlowStage mobile={isMobile} height={isMobile ? 460 : 620}>
         <ReactFlow
+          style={{ background: 'transparent' }}
           // `key` forces RF to remount on viewport mode change so its
           // internal fitView recomputes against the new container size
           // and gesture set. Without it, switching desktop -> mobile in
@@ -502,7 +494,6 @@ export default function InteractiveAgentFlow() {
           // out to see the whole chart at once if they want overview.
           minZoom={isMobile ? 0.22 : 0.4}
           maxZoom={1.4}
-          proOptions={{ hideAttribution: true }}
           // Desktop: fully locked, "diagram is a visual not a workspace".
           // Mobile: pan + pinch-zoom + double-tap zoom enabled so users
           // can actually navigate it on a small vertical screen. Node
@@ -517,13 +508,7 @@ export default function InteractiveAgentFlow() {
           nodesDraggable={false}
           elementsSelectable
           onPaneClick={() => setSelectedId(null)}
-        >
-          <Background
-            gap={28}
-            size={1}
-            color="rgba(240, 168, 48, 0.10)"
-          />
-        </ReactFlow>
+        />
 
         {selectedAgent ? (
           <AgentDetailPanel
@@ -531,7 +516,7 @@ export default function InteractiveAgentFlow() {
             onClose={() => setSelectedId(null)}
           />
         ) : null}
-      </div>
+      </FlowStage>
 
       <p
         style={{
