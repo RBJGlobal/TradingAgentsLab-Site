@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'Documentation',
   description:
     'Comprehensive documentation for Trading Agents Lab, multi-agent LLM trading research, end to end.',
+  alternates: { canonical: '/docs/' },
 };
 
 export default function DocsIndex() {

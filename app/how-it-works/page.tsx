@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'How it works',
   description:
     'A Diligence is a four-phase deliberation between twelve specialised AI agents. Here is exactly what each one does, and how their disagreement becomes a single decision.',
+  alternates: { canonical: '/how-it-works/' },
 };
 
 export default function HowItWorks() {

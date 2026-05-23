@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: 'Family',
   description:
     'Trading Agents Lab is part of a small portfolio of independent, single-purpose, privacy-first software built by RBJ Global. Meet the rest of the family.',
+  alternates: { canonical: '/family/' },
 };
 
 const FAMILY_JSON_LD = {

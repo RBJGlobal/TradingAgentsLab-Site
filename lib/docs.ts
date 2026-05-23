@@ -66,6 +66,27 @@ function deriveTitle(body: string, fallback: string): string {
   return h1 ? h1[1].trim() : fallback;
 }
 
+/**
+ * Meta description, derived when no front-matter `description` is set. KB
+ * pages open with an italic one-line summary right under the H1; use that.
+ * Falls back to the first real paragraph's opening sentence (e.g. webhooks,
+ * which has no italic summary). Keeps SEO descriptions in sync with the docs
+ * source without needing front-matter on every file.
+ */
+function deriveDescription(body: string): string | undefined {
+  const introEnd = body.search(/\r?\n(---|## )/);
+  const intro = introEnd >= 0 ? body.slice(0, introEnd) : body;
+  const italic = intro.match(/^\s*\*([^*\n][^*]*?)\*\s*$/m);
+  if (italic) return italic[1].trim();
+  for (const block of body.split(/\r?\n\r?\n/)) {
+    const t = block.replace(/\s+/g, ' ').trim();
+    if (!t || /^[#>*-]/.test(t) || t.startsWith('---')) continue;
+    const sentence = t.match(/^(.+?[.!?])(\s|$)/);
+    return (sentence ? sentence[1] : t).slice(0, 200).trim();
+  }
+  return undefined;
+}
+
 function prettifySlug(slug: string): string {
   return slug
     .split('-')
@@ -87,7 +108,7 @@ export function getAllDocs(): DocMeta[] {
       slug,
       title:
         (meta.title as string) || deriveTitle(body, prettifySlug(slug)),
-      description: (meta.description as string) || undefined,
+      description: (meta.description as string) || deriveDescription(body),
       order: (meta.order as number) ?? 999,
       category: (meta.category as string) || 'Reference',
     };
@@ -112,7 +133,7 @@ export function getDoc(slug: string): DocContent | null {
     slug,
     title:
       (meta.title as string) || deriveTitle(body, prettifySlug(slug)),
-    description: (meta.description as string) || undefined,
+    description: (meta.description as string) || deriveDescription(body),
     order: (meta.order as number) ?? 999,
     category: (meta.category as string) || 'Reference',
     markdown: body,

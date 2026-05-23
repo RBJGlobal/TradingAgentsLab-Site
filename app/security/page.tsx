@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'Security & privacy',
   description:
     'Trading Agents Lab does not collect user data. No analytics, no telemetry, no accounts. Keys are stored locally in the OS keychain.',
+  alternates: { canonical: '/security/' },
 };
 
 export default function Security() {

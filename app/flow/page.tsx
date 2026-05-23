@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: 'The flow',
   description:
     'Interactive walkthrough of the twelve-agent Diligence pipeline. Click any agent to see what it reads and what it produces, or press Play to watch the debate flow phase by phase.',
+  alternates: { canonical: '/flow/' },
 };
 
 export default function FlowPage() {

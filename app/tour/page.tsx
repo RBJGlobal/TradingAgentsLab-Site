@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'See it running',
   description:
     'Screenshots of Trading Agents Lab on a real ticker, from the analyze form through the multi-agent debate to the Portfolio Manager decision card. Illustrative output only, not investment advice.',
+  alternates: { canonical: '/tour/' },
 };
 
 // Note: the original Tauric Research framework runs as a terminal Python

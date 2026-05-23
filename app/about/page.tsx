@@ -62,6 +62,7 @@ export const metadata: Metadata = {
   title: 'About',
   description:
     'Trading Agents Lab provides a high-quality, professional-grade tool purely for educational purposes. Free, open-source, AGPL-3.0.',
+  alternates: { canonical: '/about/' },
 };
 
 export default function About() {

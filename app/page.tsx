@@ -1,10 +1,34 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import AgentFlow from '@/components/home/AgentFlow';
 import DiligenceTicker from '@/components/home/DiligenceTicker';
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/metadata';
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+};
+
+const softwareJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: SITE_NAME,
+  applicationCategory: 'EducationalApplication',
+  operatingSystem: 'macOS, Linux, Windows',
+  description: SITE_DESCRIPTION,
+  url: `${SITE_URL}/`,
+  license: 'https://www.gnu.org/licenses/agpl-3.0.html',
+  isAccessibleForFree: true,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  publisher: { '@type': 'Organization', name: 'RBJ Global LLC', url: 'https://rbjglobal.com' },
+};
 
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
+      />
       <Hero />
       <DiligenceSection />
       <CapabilitiesSection />

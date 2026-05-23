@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'Download',
   description:
     'Install Trading Agents Lab on macOS. Free, open-source, AGPL-3.0.',
+  alternates: { canonical: '/download/' },
 };
 
 export default function Download() {
