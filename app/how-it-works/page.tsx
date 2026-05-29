@@ -171,6 +171,51 @@ export default function HowItWorks() {
 
       <section className="section">
         <div className="container-prose">
+          <span className="badge">one complete run</span>
+          <h2 className="mt-6 text-3xl">One ticker, start to decision.</h2>
+          <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
+            Everything above, in a single real Diligence. This is one full
+            NVDA run, top to bottom: the analyze form, all four analysts,
+            the bull and bear researchers and their manager&apos;s
+            synthesis, the trader&apos;s proposal, the three risk seats, and
+            the decision card the portfolio manager writes at the end. Scroll
+            through to see the whole debate the way you would in the app.
+          </p>
+        </div>
+        <figure className="mx-auto mt-10 max-w-4xl px-6">
+          <div className="overflow-hidden rounded-md border border-[var(--color-border-default)] bg-[var(--color-bg-sunken)] shadow-2xl shadow-black/40">
+            <img
+              src="/screenshots/AnalyzeFull_v1.1.png"
+              alt="A complete Trading Agents Lab Diligence for NVDA on 2026-05-29: the analyze form, the four analyst write-ups, the bull and bear researchers with the research manager's synthesis, the trader's HOLD proposal, the three risk seats, and the final decision card showing HOLD at 76 percent confidence above the educational-use disclaimer."
+              loading="lazy"
+              decoding="async"
+              className="block w-full"
+            />
+          </div>
+          <figcaption
+            className="mt-3 text-center text-xs uppercase tracking-widest text-[var(--color-text-muted)]"
+            style={{ fontFamily: 'var(--font-mono)' }}
+          >
+            One complete run · NVDA · twelve agents, start to decision
+          </figcaption>
+          <div
+            className="mt-6 rounded border-l-4 border-[var(--color-accent)] bg-[var(--color-accent-tint)] px-6 py-5 text-sm leading-relaxed"
+            style={{ fontFamily: 'var(--font-mono)' }}
+          >
+            Educational and research purposes only. This is illustrative
+            output from one Diligence run on one day; the numbers, dates,
+            and decision text are not investment advice, not a
+            recommendation, and not a forecast. Past performance does not
+            indicate future results, and historical references in a
+            transcript are not predictive of future performance. Do not
+            trade on anything shown here. You are solely responsible for
+            your own decisions.
+          </div>
+        </figure>
+      </section>
+
+      <section className="section">
+        <div className="container-prose">
           <span className="badge">honest about ai</span>
           <h2 className="mt-6 text-3xl">
             What the system cannot do, by design.
