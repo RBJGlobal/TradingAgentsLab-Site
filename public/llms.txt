@@ -2,13 +2,13 @@
 
 > Free, open-source desktop research lab where multi-agent LLMs run institutional-grade diligence on any ticker. Educational and research purposes only, not investment advice.
 
-Trading Agents Lab is an AGPL-3.0 desktop application (Electron, Vite, React frontend with a Python FastAPI sidecar). It orchestrates a multi-agent LLM debate (analyst, researcher, trader, risk-manager) using LangGraph to surface multiple perspectives on a ticker and date. Forked from TauricResearch/TradingAgents (Apache 2.0 upstream preserved). Parent organization: RBJ Global LLC. The product is an analysis platform, not an execution platform: no live trading code, no order routing, no broker integration. Users connect their own LLM provider keys (OpenAI, Anthropic, OpenRouter, Gemini, or local runtimes like Ollama / LM Studio) and bring their own data adapters (Yahoo Finance default, Alpaca paper-data for power users). Zero telemetry, zero analytics, zero user accounts.
+Trading Agents Lab is an AGPL-3.0 desktop application (Electron, Vite, React frontend with a Python FastAPI sidecar). It orchestrates a multi-agent LLM debate (analyst, researcher, trader, risk-manager) using LangGraph to surface multiple perspectives on a ticker and date. Forked from TauricResearch/TradingAgents (Apache 2.0 upstream preserved). Parent organization: RBJ Global LLC. The product is an analysis platform, not an execution platform: no live trading code, no order routing, no broker integration. Users connect their own LLM provider keys (OpenAI, Anthropic, OpenRouter, Gemini, xAI Grok, MiniMax, or local runtimes like Ollama / LM Studio) and bring their own data adapters (Yahoo Finance default, Alpaca paper-data for power users). Zero telemetry, zero analytics, zero user accounts.
 
 ## Capabilities
 
 - [How the multi-agent debate works](https://tradingagentslab.ai/how-it-works/)
 - [Reading the debate output](https://tradingagentslab.ai/docs/reading-the-debate/)
-- [Configuring LLM providers (OpenAI, Anthropic, OpenRouter, Gemini, Local)](https://tradingagentslab.ai/docs/configuring-llm-providers/)
+- [Configuring LLM providers (OpenAI, Anthropic, OpenRouter, Gemini, xAI Grok, MiniMax, Local)](https://tradingagentslab.ai/docs/configuring-llm-providers/)
 - [Local LLM support (Ollama, LM Studio, llama.cpp)](https://tradingagentslab.ai/docs/local-llm/)
 - [Data providers (Yahoo Finance default, Alpaca for power users)](https://tradingagentslab.ai/docs/data-providers/)
 - [Crypto ticker support](https://tradingagentslab.ai/docs/crypto-tickers/)

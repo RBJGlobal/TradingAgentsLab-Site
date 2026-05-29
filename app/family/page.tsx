@@ -173,7 +173,8 @@ export default function FamilyPage() {
                   Trading Agents Lab is positioned as the standalone trading
                   companion for Clawless. The connection is optional. You
                   can run this app with your own OpenAI, Anthropic,
-                  OpenRouter, Gemini, or local Ollama keys and never touch
+                  OpenRouter, Gemini, xAI Grok, MiniMax, or local Ollama
+                  keys and never touch
                   Clawless. The connector is there if you want one place to
                   manage on-device AI work.
                 </p>

@@ -44,6 +44,8 @@ export const siteMetadata: Metadata = {
     'paper trading',
     'agentic AI',
     'LangGraph',
+    'xAI Grok',
+    'MiniMax',
   ],
   openGraph: {
     type: 'website',

@@ -286,7 +286,7 @@ function CapabilitiesSection() {
         <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
           <Capability
             title="Bring your own LLM"
-            mono="OpenAI · Anthropic · OpenRouter · Gemini · Ollama · LM Studio"
+            mono="OpenAI · Anthropic · OpenRouter · Gemini · xAI · MiniMax · local"
             body="Use your existing API key with the provider you trust, or run entirely on-device with Ollama. No keys are stored on our servers. There are no servers."
           />
           <Capability

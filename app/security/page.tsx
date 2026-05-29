@@ -70,7 +70,7 @@ export default function Security() {
             <div className="mt-8 space-y-4">
               <NetworkCall
                 target="Your configured LLM provider"
-                detail="OpenAI · Anthropic · OpenRouter · Google Gemini · or your local Ollama / LM Studio. API key lives in your OS keychain via Electron safeStorage. Never transits any server we control."
+                detail="OpenAI · Anthropic · OpenRouter · Google Gemini · xAI Grok · MiniMax · or your local Ollama / LM Studio. API key lives in your OS keychain via Electron safeStorage. Never transits any server we control."
               />
               <NetworkCall
                 target="Your configured data provider"

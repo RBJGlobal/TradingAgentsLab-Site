@@ -277,8 +277,8 @@ export default function TourPage() {
             <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
               The Settings surface is where the desktop app earns its
               keep. Configure LLM providers (OpenAI, Anthropic,
-              OpenRouter, Gemini, or a local runtime like Ollama or
-              LM Studio), pick your data adapter, set hard spend caps
+              OpenRouter, Gemini, xAI Grok, MiniMax, or a local runtime
+              like Ollama or LM Studio), pick your data adapter, set hard spend caps
               on the Cost Guard, and optionally wire up the Clawless
               gateway. Credentials are encrypted at rest via your OS
               keychain (Keychain on macOS, DPAPI on Windows, Secret
@@ -289,7 +289,7 @@ export default function TourPage() {
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
             <Shot
               src="/screenshots/settings-llm.png"
-              alt="Settings LLM Providers tab showing OpenAI connected, plus other configured providers."
+              alt="Settings LLM Providers tab listing the supported provider families, including the xAI Grok and MiniMax rows, with a connected provider showing a green Connected pill."
               caption="Settings · LLM Providers"
               width="max-w-none"
             />

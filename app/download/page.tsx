@@ -80,7 +80,8 @@ export default function Download() {
           <Step n="5" title="Configure a provider">
             <p className="text-[var(--color-text-secondary)]">
               Open Settings → LLM Providers. Paste a key (OpenAI,
-              Anthropic, OpenRouter, or Google Gemini), or set the
+              Anthropic, OpenRouter, Google Gemini, xAI Grok, or
+              MiniMax), or set the
               app to use a local Ollama model. Then go to Analyze, type
               a ticker like <code className="rounded bg-[var(--color-bg-sunken)] px-2 py-0.5 text-sm" style={{ fontFamily: 'var(--font-mono)' }}>NVDA</code>, and run.
             </p>
