@@ -85,8 +85,9 @@ export default function PrivacyPolicy() {
         <ul>
           <li>
             <strong>Your LLM provider.</strong> OpenAI, Anthropic,
-            OpenRouter, Google Gemini, or a local model via Ollama / LM
-            Studio. The API key lives in your operating system&apos;s
+            OpenRouter, Google Gemini, xAI Grok, MiniMax, or a local
+            model via Ollama / LM Studio. The API key lives in your
+            operating system&apos;s
             keychain (macOS Keychain, Windows DPAPI, Linux libsecret)
             via Electron&apos;s <code>safeStorage</code> API. The key
             never transits any server we control because we do not

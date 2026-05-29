@@ -57,8 +57,8 @@ export default function Disclaimer() {
         <h2>AI output may be inaccurate, biased, or hallucinated.</h2>
         <p>
           The Software relies on third-party large language models
-          (OpenAI, Anthropic, Google, OpenRouter, local Ollama, or
-          others) configured by the user. These models can produce output
+          (OpenAI, Anthropic, Google, OpenRouter, xAI Grok, MiniMax,
+          local Ollama, or others) configured by the user. These models can produce output
           that is factually wrong, internally inconsistent, biased toward
           their training data, or entirely fabricated. The Software
           structures multiple perspectives to make disagreement visible,
