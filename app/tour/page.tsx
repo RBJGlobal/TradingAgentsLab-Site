@@ -286,13 +286,15 @@ export default function TourPage() {
               ships to anywhere except the providers you chose.
             </p>
           </div>
+          {/* LLM Providers is a full-page capture (portrait), so it gets its
+              own constrained row rather than a landscape grid cell. */}
+          <Shot
+            src="/screenshots/settings-llm.png"
+            alt="Settings LLM Providers tab listing the supported provider families end to end: OpenAI (OAuth and API key), Anthropic, OpenRouter, Google Gemini, xAI Grok, MiniMax, and a local runtime, with connected providers showing green Connected pills."
+            caption="Settings · LLM Providers"
+            width="max-w-xl"
+          />
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-            <Shot
-              src="/screenshots/settings-llm.png"
-              alt="Settings LLM Providers tab listing the supported provider families, including the xAI Grok and MiniMax rows, with a connected provider showing a green Connected pill."
-              caption="Settings · LLM Providers"
-              width="max-w-none"
-            />
             <Shot
               src="/screenshots/settings-data.png"
               alt="Settings Data Providers tab with Yahoo Finance active and Alpaca paper-data configured."
