@@ -31,6 +31,7 @@ const FAMILY_JSON_LD = {
       { '@type': 'Organization', name: 'Trading Agents Lab', url: 'https://tradingagentslab.ai/' },
       { '@type': 'Organization', name: 'Clawdemy', url: 'https://clawdemy.org/' },
       { '@type': 'Organization', name: 'ClaudeLink', url: 'https://claudelink.ai/' },
+      { '@type': 'Organization', name: 'Clawddesk', url: 'https://clawddesk.ai/' },
     ],
   },
 };
@@ -268,6 +269,27 @@ export default function FamilyPage() {
             links={[
               { href: 'https://claudelink.ai/', label: 'Visit claudelink.ai' },
               { href: 'https://claudelink.ai/docs/', label: 'Documentation' },
+            ]}
+          />
+
+          <SiblingCard
+            name="Clawddesk"
+            tagline="A command desk on the Claude Agent SDK."
+            body={
+              <p>
+                An open-source, local-only command desk for AI agents, built
+                directly on Anthropic&apos;s Claude Agent SDK. It is a readable
+                example of how thin the agent layer becomes when the SDK is the
+                engine: almost every feature maps to one or two options on a
+                single query() call. For a Trading Agents Lab developer, it is a
+                compact reference for building multi-agent workflows on your own
+                machine, with the same local-first, no-telemetry posture as the
+                rest of the family. MIT licensed.
+              </p>
+            }
+            links={[
+              { href: 'https://clawddesk.ai/', label: 'Visit clawddesk.ai' },
+              { href: 'https://clawddesk.ai/docs/', label: 'Documentation' },
             ]}
           />
         </div>
