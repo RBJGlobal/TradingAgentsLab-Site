@@ -49,13 +49,21 @@ function Hero() {
         <div className="mx-auto max-w-3xl text-center">
           <span className="badge fade-up">v1 · open source · free forever</span>
           <h1
-            className="fade-up mt-8 text-4xl tracking-tight md:text-6xl"
+            className="fade-up mt-8 tracking-tight"
             style={{ animationDelay: '60ms' }}
           >
-            Multi-agent
-            <br />
-            <span className="text-[var(--color-accent)]">Diligence</span> on any
-            ticker.
+            <span
+              className="block text-base font-medium text-[var(--color-text-muted)] md:text-lg"
+              style={{ fontFamily: 'var(--font-mono)' }}
+            >
+              Trading Agents Lab
+            </span>
+            <span className="mt-3 block text-4xl md:text-6xl">
+              Multi-agent
+              <br />
+              <span className="text-[var(--color-accent)]">Diligence</span> on
+              any ticker.
+            </span>
           </h1>
           <p
             className="fade-up mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-[var(--color-text-secondary)]"
