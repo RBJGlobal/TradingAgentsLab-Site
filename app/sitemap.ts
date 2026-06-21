@@ -18,6 +18,7 @@ const STATIC_ROUTES = [
   '/docs/',
   '/tour/',
   '/flow/',
+  '/tradingagents-desktop/',
 ];
 
 // Family page is listed at lower priority per family-wide rollout rule

@@ -105,6 +105,16 @@ function Hero() {
           >
             macOS · Windows · Linux · BYO LLM key or run locally
           </p>
+          <p
+            className="fade-up mt-4 text-sm text-[var(--color-text-muted)]"
+            style={{ animationDelay: '300ms' }}
+          >
+            Coming from the open-source project?{' '}
+            <Link href="/tradingagents-desktop/" className="prose-link">
+              Run TradingAgents as a desktop app
+            </Link>
+            .
+          </p>
         </div>
 
         <div
