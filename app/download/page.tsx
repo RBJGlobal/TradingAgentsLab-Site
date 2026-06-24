@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Download',
   description:
-    'Install Trading Agents Lab on macOS. Free, open-source, AGPL-3.0.',
+    'Download Trading Agents Lab for macOS (Apple Silicon). Free, open-source, AGPL-3.0, signed and notarised. Or build from source for Intel, Linux, and Windows.',
   alternates: { canonical: '/download/' },
 };
 
@@ -24,20 +24,26 @@ export default function Download() {
             home.
           </p>
 
-          <div className="mt-12 rounded border border-[var(--color-accent-tint)] bg-[var(--color-accent-tint)] p-6">
-            <div
-              className="text-xs uppercase tracking-widest text-[var(--color-accent)]"
+          <div className="mt-12 rounded border border-[var(--color-border-default)] bg-[var(--color-bg-card)] p-6">
+            <a
+              href="https://github.com/RBJGlobal/TradingAgentsLab/releases/latest"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+            >
+              Download for macOS (Apple Silicon)
+            </a>
+            <p className="mt-4 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+              macOS on Apple Silicon (M1 or newer). Signed and notarised by
+              RBJ Global, so it opens without a Gatekeeper warning. Free,
+              AGPL-3.0, and it updates itself after the first install.
+            </p>
+            <p
+              className="mt-3 text-xs text-[var(--color-text-muted)]"
               style={{ fontFamily: 'var(--font-mono)' }}
             >
-              Heads up
-            </div>
-            <p className="mt-2 text-[var(--color-text-secondary)]">
-              Pre-built installers are not yet available. The macOS DMG
-              ships once code-signing &amp; notarisation are in place
-              (gated on Apple Developer Program registration). In the
-              meantime, you can build from source in a few minutes. It
-              runs identically on macOS, Linux, and Windows once you
-              have Node and Python on hand.
+              Apple Silicon · .dmg · for educational and research purposes
+              only, not investment advice
             </p>
           </div>
         </div>
@@ -46,7 +52,11 @@ export default function Download() {
       <section className="section border-t border-[var(--color-border-muted)] bg-[var(--color-bg-sunken)]">
         <div className="container-prose">
           <h2 className="text-3xl">Build from source</h2>
-          <p className="mt-4 text-sm text-[var(--color-text-muted)]">
+          <p className="mt-4 text-[var(--color-text-secondary)]">
+            On an Intel Mac, Linux, or Windows? Build from source. It runs
+            the same on all three.
+          </p>
+          <p className="mt-3 text-sm text-[var(--color-text-muted)]">
             Requires <strong>Node 20+</strong> and <strong>Python 3.13</strong>.
           </p>
 
@@ -94,9 +104,9 @@ export default function Download() {
 
       <section className="section">
         <div className="container-prose">
-          <h2 className="text-3xl">When the DMG ships</h2>
+          <h2 className="text-3xl">Releases and source</h2>
           <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            Subscribe to{' '}
+            Every build, with release notes and checksums, lives on{' '}
             <a
               href="https://github.com/RBJGlobal/TradingAgentsLab/releases"
               target="_blank"
@@ -104,10 +114,9 @@ export default function Download() {
               className="prose-link"
             >
               GitHub releases
-            </a>{' '}
-            on the main repository. That&apos;s where signed installers
-            for macOS will be published the moment they&apos;re ready.
-            We&apos;ll also link them directly from this page.
+            </a>
+            . The full source is open under AGPL-3.0, so you can read exactly
+            what runs on your machine before you install it.
           </p>
         </div>
       </section>
