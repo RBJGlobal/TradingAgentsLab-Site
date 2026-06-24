@@ -68,7 +68,9 @@ export default async function Download() {
             </a>
             <p className="mt-4 text-sm leading-relaxed text-[var(--color-text-secondary)]">
               macOS on Apple Silicon (M1 or newer). Signed and notarised by
-              RBJ Global, so it opens without a Gatekeeper warning. Free,
+              RBJ Global, so macOS does not flag it as from an unidentified
+              developer. On first launch macOS asks you to confirm an app
+              downloaded from the internet; click Open and it remembers. Free,
               AGPL-3.0, and it updates itself after the first install.
             </p>
             <p
