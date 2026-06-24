@@ -8,7 +8,45 @@ export const metadata: Metadata = {
   alternates: { canonical: '/download/' },
 };
 
-export default function Download() {
+// Static export: resolved once at build time and baked into the page.
+export const dynamic = 'force-static';
+
+const RELEASES_PAGE =
+  'https://github.com/RBJGlobal/TradingAgentsLab/releases/latest';
+
+// Resolve the direct .dmg asset URL at build time so the Download button is a
+// pure download (the file, not the GitHub release chooser). The asset name is
+// version-pinned, so we fetch the latest release's arm64 .dmg rather than
+// hardcoding a URL that goes stale next release. Falls back to the releases
+// page if the API is unreachable at build time, so the button is never broken.
+async function getDmgUrl(): Promise<string> {
+  try {
+    const res = await fetch(
+      'https://api.github.com/repos/RBJGlobal/TradingAgentsLab/releases/latest',
+      {
+        headers: {
+          Accept: 'application/vnd.github+json',
+          'User-Agent': 'tradingagentslab-site',
+        },
+        cache: 'force-cache',
+      },
+    );
+    if (!res.ok) return RELEASES_PAGE;
+    const data = (await res.json()) as {
+      assets?: { name?: string; browser_download_url?: string }[];
+    };
+    const dmg = data.assets?.find(
+      (a) => a.name?.endsWith('.dmg') && a.name?.includes('arm64'),
+    );
+    return dmg?.browser_download_url ?? RELEASES_PAGE;
+  } catch {
+    return RELEASES_PAGE;
+  }
+}
+
+export default async function Download() {
+  const dmgUrl = await getDmgUrl();
+
   return (
     <article>
       <section className="section">
@@ -25,12 +63,7 @@ export default function Download() {
           </p>
 
           <div className="mt-12 rounded border border-[var(--color-border-default)] bg-[var(--color-bg-card)] p-6">
-            <a
-              href="https://github.com/RBJGlobal/TradingAgentsLab/releases/latest"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
+            <a href={dmgUrl} className="btn-primary">
               Download for macOS (Apple Silicon)
             </a>
             <p className="mt-4 text-sm leading-relaxed text-[var(--color-text-secondary)]">
@@ -44,6 +77,16 @@ export default function Download() {
             >
               Apple Silicon · .dmg · for educational and research purposes
               only, not investment advice
+            </p>
+            <p className="mt-4 text-sm text-[var(--color-text-muted)]">
+              <a
+                href={RELEASES_PAGE}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="prose-link"
+              >
+                Other builds, checksums, and source on GitHub
+              </a>
             </p>
           </div>
         </div>
