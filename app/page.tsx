@@ -5,6 +5,11 @@ import DiligenceTicker from '@/components/home/DiligenceTicker';
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/metadata';
 
 export const metadata: Metadata = {
+  // Home-only meta description, kept near ~155 chars so it does not truncate in
+  // search results. The richer site-wide SITE_DESCRIPTION still feeds the OG /
+  // Twitter card (no length limit there), so only the SERP snippet is trimmed.
+  description:
+    'Free, open-source desktop research lab where multi-agent LLMs run institutional-grade diligence on any ticker. Educational use only, not investment advice.',
   alternates: { canonical: '/' },
 };
 

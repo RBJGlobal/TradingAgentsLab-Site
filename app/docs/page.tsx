@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getAllDocs } from '@/lib/docs';
+import { SITE_NAME, SITE_URL } from '@/lib/metadata';
 
 export const metadata: Metadata = {
   title: 'Documentation',
@@ -64,8 +65,41 @@ export default function DocsIndex() {
       : []),
   ];
 
+  // The /docs index is a listing, not an article, so CollectionPage (not
+  // TechArticle) is the right type here; pair it with a BreadcrumbList so the
+  // hub itself carries schema (it previously had none).
+  const docsUrl = `${SITE_URL}/docs/`;
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        name: 'Documentation',
+        description:
+          'Comprehensive documentation for Trading Agents Lab, multi-agent LLM trading research, end to end.',
+        url: docsUrl,
+        isPartOf: {
+          '@type': 'WebSite',
+          name: SITE_NAME,
+          url: `${SITE_URL}/`,
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: 'Documentation', item: docsUrl },
+        ],
+      },
+    ],
+  };
+
   return (
     <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <span className="badge">documentation</span>
       <h1 className="mt-4 text-4xl">Read the source.</h1>
       <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--color-text-secondary)]">
