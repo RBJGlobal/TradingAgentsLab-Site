@@ -15,16 +15,39 @@ export const metadata: Metadata = {
 
 const softwareJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: SITE_NAME,
-  applicationCategory: 'EducationalApplication',
-  operatingSystem: 'macOS, Linux, Windows',
-  description: SITE_DESCRIPTION,
-  url: `${SITE_URL}/`,
-  license: 'https://www.gnu.org/licenses/agpl-3.0.html',
-  isAccessibleForFree: true,
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-  publisher: { '@type': 'Organization', name: 'RBJ Global LLC', url: 'https://rbjglobal.com' },
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: SITE_NAME,
+      applicationCategory: 'EducationalApplication',
+      operatingSystem: 'macOS, Linux, Windows',
+      description: SITE_DESCRIPTION,
+      url: `${SITE_URL}/`,
+      license: 'https://www.gnu.org/licenses/agpl-3.0.html',
+      isAccessibleForFree: true,
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      // Publisher stays the parent company, referenced by its canonical @id so it
+      // resolves into the family parent graph (matches whisprdesk-website). The full
+      // RBJ Global node is defined as parentOrganization on the TAL Organization below.
+      publisher: { '@id': 'https://rbjglobal.com/#organization' },
+    },
+    {
+      '@type': 'Organization',
+      '@id': 'https://tradingagentslab.ai/#organization',
+      name: 'Trading Agents Lab',
+      url: 'https://tradingagentslab.ai/',
+      parentOrganization: {
+        '@type': 'Organization',
+        '@id': 'https://rbjglobal.com/#organization',
+        name: 'RBJ Global LLC',
+        url: 'https://rbjglobal.com/',
+      },
+      sameAs: [
+        'https://www.linkedin.com/company/117584287',
+        'https://github.com/RBJGlobal/TradingAgentsLab',
+      ],
+    },
+  ],
 };
 
 export default function Home() {
