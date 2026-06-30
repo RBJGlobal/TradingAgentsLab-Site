@@ -41,6 +41,11 @@ const softwareJsonLd = {
         '@id': 'https://rbjglobal.com/#organization',
         name: 'RBJ Global LLC',
         url: 'https://rbjglobal.com/',
+        // Parent's Wikidata item (Q140383605, live 2026-06-30). Carried inline on
+        // every product page per family precedent (iLoveMD) so each TAL page has a
+        // direct parent -> Wikidata resolution link while rbjglobal.com's own
+        // canonical node is not yet pushed with the QID.
+        sameAs: ['https://www.wikidata.org/wiki/Q140383605'],
       },
       sameAs: [
         'https://www.linkedin.com/company/117584287',
