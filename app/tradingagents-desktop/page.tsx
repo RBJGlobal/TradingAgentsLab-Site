@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Run TradingAgents as a desktop app',
   description:
-    'Open-source desktop app built on the TradingAgents multi-agent framework. Run the full agent debate on any ticker on Mac, Windows, or Linux, no Python setup. Educational use only, not investment advice.',
+    'Open-source desktop app for the TradingAgents multi-agent framework. Run the full agent debate on any ticker on Mac, Windows, or Linux, no Python setup.',
   alternates: { canonical: '/tradingagents-desktop/' },
 };
 

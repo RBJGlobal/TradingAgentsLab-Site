@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getAllDocSlugs, getAllDocs, getDoc } from '@/lib/docs';
+import { getAllDocSlugs, getAllDocs, getDoc, extractFaqEntries } from '@/lib/docs';
 import { SITE_URL } from '@/lib/metadata';
 import MarkdownRenderer from '@/components/docs/MarkdownRenderer';
 
@@ -35,34 +35,55 @@ export default async function DocPage({ params }: Props) {
   const prev = idx > 0 ? all[idx - 1] : null;
   const next = idx >= 0 && idx < all.length - 1 ? all[idx + 1] : null;
 
-  // TechArticle + BreadcrumbList in one @graph. TechArticle marks each doc as
-  // technical documentation (these pages are the site's ranking asset), and
+  // Primary node + BreadcrumbList in one @graph. Most docs are technical
+  // documentation, so the primary node is TechArticle (these pages are the
+  // site's ranking asset). The FAQ page is different: it is literally Q&A
+  // content, so its primary node is FAQPage, machine-readable question/answer
+  // pairs for AI answer engines (an emerging citation signal, not a SERP
+  // ranking claim; advisor-reconciled 2026-07-03). FAQPage is confined to docs
+  // that actually parse into Q&A entries; every other doc stays TechArticle.
   // BreadcrumbList is the one structured-data type Google still renders in the
   // SERP: Home › Docs › <this doc>. We inline the Organization for
   // author/publisher rather than referencing an @id, because this site has no
-  // global Organization node to point at. Author is the org (RBJ Global LLC)
-  // per the family SEO spec. No dateModified: the docs are synced from the
-  // product repo, so there is no reliable per-page content-modified date, and
-  // a churning sync date is an SEO anti-pattern.
+  // global Organization node to point at. Author/publisher is the org (RBJ
+  // Global LLC) per the family SEO spec. No dateModified: the docs are synced
+  // from the product repo, so there is no reliable per-page content-modified
+  // date, and a churning sync date is an SEO anti-pattern.
   const docUrl = `${SITE_URL}/docs/${slug}/`;
   const organization = {
     '@type': 'Organization',
     name: 'RBJ Global LLC',
     url: SITE_URL,
   };
+  const faqEntries = slug === 'faq' ? extractFaqEntries(doc.markdown) : [];
+  const primaryNode =
+    faqEntries.length > 0
+      ? {
+          '@type': 'FAQPage',
+          url: docUrl,
+          mainEntityOfPage: docUrl,
+          inLanguage: 'en-US',
+          publisher: organization,
+          mainEntity: faqEntries.map((e) => ({
+            '@type': 'Question',
+            name: e.question,
+            acceptedAnswer: { '@type': 'Answer', text: e.answer },
+          })),
+        }
+      : {
+          '@type': 'TechArticle',
+          headline: doc.title,
+          ...(doc.description ? { description: doc.description } : {}),
+          url: docUrl,
+          mainEntityOfPage: docUrl,
+          inLanguage: 'en-US',
+          author: organization,
+          publisher: organization,
+        };
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
-      {
-        '@type': 'TechArticle',
-        headline: doc.title,
-        ...(doc.description ? { description: doc.description } : {}),
-        url: docUrl,
-        mainEntityOfPage: docUrl,
-        inLanguage: 'en-US',
-        author: organization,
-        publisher: organization,
-      },
+      primaryNode,
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
