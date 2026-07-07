@@ -17,7 +17,7 @@ export default function Terms() {
         className="mt-3 text-xs text-[var(--color-text-muted)]"
         style={{ fontFamily: 'var(--font-mono)' }}
       >
-        Last updated: 2026-05-16
+        Last updated: 2026-07-01
       </p>
 
       <div className="docs-prose mt-10">
@@ -133,7 +133,7 @@ export default function Terms() {
           These Terms are governed by the laws of the State of Texas,
           United States, without regard to its conflict-of-laws
           provisions. You agree to the exclusive jurisdiction of the
-          state and federal courts located in Travis County, Texas, for
+          state and federal courts located in Dallas County, Texas, for
           any dispute arising out of or relating to these Terms or your
           use of the Site or Software.
         </p>
@@ -160,6 +160,13 @@ export default function Terms() {
             any public distribution build of the Software is signed and
             shipped.
           </em>
+        </p>
+
+        <p className="text-sm text-[var(--color-text-muted)]">
+          Changelog: <strong>2026-07-01.</strong> Exclusive venue
+          corrected from Travis County, Texas to Dallas County, Texas,
+          to track our operating base. Governing law unchanged (State
+          of Texas).
         </p>
       </div>
     </article>
