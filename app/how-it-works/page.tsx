@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import AgentFlow from '@/components/home/AgentFlow';
+import TranscriptEmbed from '@/components/home/TranscriptEmbed';
 
 export const metadata: Metadata = {
   title: 'How it works',
   description:
-    'A Diligence is a four-phase deliberation between twelve specialised AI agents. Here is exactly what each one does, and how their disagreement becomes a single decision.',
+    'A Diligence is a four-phase deliberation between twelve specialised AI agents. Here is exactly what each one does, and how their disagreement becomes a committee assessment.',
   alternates: { canonical: '/how-it-works/' },
 };
 
@@ -103,7 +104,7 @@ export default function HowItWorks() {
               {
                 role: 'trader',
                 what:
-                  'Takes the research synthesis and writes a concrete proposal: action (BUY/SELL/HOLD), conviction, target sizing as a percentage of a hypothetical portfolio, and an entry plan. This is the only phase that proposes a number.',
+                  'Takes the research synthesis and writes a concrete trade plan: entry, sizing as a percentage of a hypothetical portfolio, and a stop. This is the only phase that proposes a number.',
               },
             ]}
           />
@@ -131,7 +132,7 @@ export default function HowItWorks() {
               {
                 role: 'portfolio_manager',
                 what:
-                  'Reads all three risk seats plus the trader proposal and makes the final call. The decision card the user sees comes from this agent and carries a confidence score (0.0, 1.0).',
+                  'Reads all three risk seats plus the trader plan and writes the committee assessment the user sees: an analytical stance (Bullish through Bearish), a conviction score, bull and bear thesis strengths, and a risk level.',
               },
             ]}
           />
@@ -149,14 +150,15 @@ export default function HowItWorks() {
             cost meter shows token spend tick up.
           </p>
           <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            When the portfolio manager writes the final call, a decision
-            card materialises beneath the transcript with the action, the
-            confidence, and a one-paragraph rationale. You can copy the
+            When the portfolio manager finishes, a committee assessment
+            materialises beneath the transcript with the stance, the
+            conviction, the thesis strengths, and a one-paragraph
+            rationale. You can copy the
             entire transcript as Markdown, or replay it later from the
             History page.
           </p>
           <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            If you&apos;ve configured webhooks, the decision is also
+            If you&apos;ve configured webhooks, the assessment is also
             pushed to your endpoint of choice (Telegram, Slack, Discord,
             or your own JSON receiver with HMAC verification) the moment
             it lands.
@@ -172,31 +174,39 @@ export default function HowItWorks() {
       <section className="section">
         <div className="container-prose">
           <span className="badge">one complete run</span>
-          <h2 className="mt-6 text-3xl">One ticker, start to decision.</h2>
+          <h2 className="mt-6 text-3xl">One ticker, start to finish.</h2>
           <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            Everything above, in a single real Diligence. This is one full
-            NVDA run, top to bottom: the analyze form, all four analysts,
-            the bull and bear researchers and their manager&apos;s
-            synthesis, the trader&apos;s proposal, the three risk seats, and
-            the decision card the portfolio manager writes at the end. Scroll
-            through to see the whole debate the way you would in the app.
+            Everything above, in a single real Diligence, exported straight
+            from the app as a self-contained document. This is one full
+            NVDA run, top to bottom: the data summary and headlines, all
+            four analysts, the bull and bear researchers and their
+            manager&apos;s synthesis, the trader&apos;s plan, the three
+            risk seats, and the committee assessment the portfolio manager
+            writes at the end. The text is selectable, so read it the way
+            you would in the app, or{' '}
+            <a
+              href="/transcripts/sample-diligence.html"
+              target="_blank"
+              rel="noopener"
+              className="prose-link"
+            >
+              open the transcript in its own tab
+            </a>
+            .
           </p>
         </div>
         <figure className="mx-auto mt-10 max-w-4xl px-6">
           <div className="overflow-hidden rounded-md border border-[var(--color-border-default)] bg-[var(--color-bg-sunken)] shadow-2xl shadow-black/40">
-            <img
-              src="/screenshots/AnalyzeFull_v1.1.png"
-              alt="A complete Trading Agents Lab Diligence for NVDA on 2026-05-29: the analyze form, the four analyst write-ups, the bull and bear researchers with the research manager's synthesis, the trader's HOLD proposal, the three risk seats, and the final decision card showing HOLD at 76 percent confidence above the educational-use disclaimer."
-              loading="lazy"
-              decoding="async"
-              className="block w-full"
+            <TranscriptEmbed
+              src="/transcripts/sample-diligence.html"
+              title="A complete Trading Agents Lab Diligence transcript for NVDA on 2026-07-08, ending in a Committee Assessment of Moderately bearish at 68 percent conviction, with disclaimers throughout"
             />
           </div>
           <figcaption
             className="mt-3 text-center text-xs uppercase tracking-widest text-[var(--color-text-muted)]"
             style={{ fontFamily: 'var(--font-mono)' }}
           >
-            One complete run · NVDA · twelve agents, start to decision
+            One complete run · NVDA · twelve agents, start to finish
           </figcaption>
           <div
             className="mt-6 rounded border-l-4 border-[var(--color-accent)] bg-[var(--color-accent-tint)] px-6 py-5 text-sm leading-relaxed"
@@ -204,7 +214,7 @@ export default function HowItWorks() {
           >
             Educational and research purposes only. This is illustrative
             output from one Diligence run on one day; the numbers, dates,
-            and decision text are not investment advice, not a
+            and assessment text are not investment advice, not a
             recommendation, and not a forecast. Past performance does not
             indicate future results, and historical references in a
             transcript are not predictive of future performance. Do not

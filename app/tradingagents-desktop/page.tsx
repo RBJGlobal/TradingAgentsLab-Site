@@ -58,7 +58,7 @@ export default function TradingAgentsDesktop() {
               The agent architecture is the same idea you came for: specialised
               analysts and researchers study a stock, a trader and risk seats
               debate from opposing angles, and the run converges on a
-              recommendation you can read in full. The desktop app layers a
+              committee assessment you can read in full. The desktop app layers a
               usable experience on top.
             </p>
             <ul className="mt-8 space-y-4">
@@ -99,6 +99,15 @@ export default function TradingAgentsDesktop() {
                 .
               </Add>
             </ul>
+            <p className="mt-8 text-sm text-[var(--color-text-muted)]">
+              Looking for the full research-grade pipeline the upstream project
+              describes?{' '}
+              <Link href="/docs/pro/" className="prose-link">
+                See what Trading Agents Lab Pro adds
+              </Link>
+              . It is a separate desktop app, free and open source; the
+              source is public now and a signed download is coming.
+            </p>
           </div>
         </div>
       </section>

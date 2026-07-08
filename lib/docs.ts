@@ -139,6 +139,7 @@ function flattenMarkdown(md: string): string {
     .replace(/\*\*([^*]+)\*\*/g, '$1') // bold
     .replace(/\*([^*]+)\*/g, '$1') // italic
     .replace(/`([^`]+)`/g, '$1') // inline code
+    .replace(/^(?:\s*>)+\s?/gm, '') // blockquote markers, incl. nested (Pro callout)
     .replace(/^\s*[-*]\s+/gm, '') // list bullets
     .replace(/\s+/g, ' ')
     .trim();

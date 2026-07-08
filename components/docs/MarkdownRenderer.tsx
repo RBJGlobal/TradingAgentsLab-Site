@@ -36,6 +36,69 @@ function rewriteHref(href: string | undefined): string | undefined {
   return `/docs/${slug}/${anchor}`;
 }
 
+/**
+ * Minimal hast node shape for the Pro-callout transform. We type only what we
+ * touch rather than pulling in `@types/hast`.
+ */
+interface HastNode {
+  type: string;
+  tagName?: string;
+  value?: string;
+  properties?: Record<string, unknown>;
+  children?: HastNode[];
+}
+
+function hastText(node: HastNode): string {
+  if (node.type === 'text') return node.value ?? '';
+  return (node.children ?? []).map(hastText).join('');
+}
+
+/**
+ * Style the KB-wide "Pro" convention as a visual callout.
+ *
+ * The product knowledge base marks Pro-only content with a blockquote whose
+ * first line is a bold "Pro" lead: `> **Pro** ...`. This plugin finds those
+ * blockquotes (first paragraph begins with a <strong> reading exactly "Pro"),
+ * tags the blockquote `.pro-callout`, and turns the "Pro" lead into a
+ * `.pro-badge` pill. The match is exact, so ordinary blockquotes, including
+ * pro.md's italic disclaimer, still render as plain quotes. AST surgery keeps
+ * this out of rendered-children juggling and out of `dangerouslySetInnerHTML`.
+ */
+function rehypeProCallout() {
+  const walk = (node: HastNode) => {
+    if (node.tagName === 'blockquote' && node.children) {
+      const para = node.children.find((c) => c.type === 'element');
+      // The "Pro" lead must be the first *meaningful* child of the paragraph,
+      // not merely the first <strong> anywhere in it. Skip leading whitespace
+      // text nodes only, so `> **Pro** ...` matches but `> Upgrade to **Pro**`
+      // (a plausible future mid-sentence bold) does not.
+      const lead = para?.children?.find(
+        (c) => !(c.type === 'text' && (c.value ?? '').trim() === ''),
+      );
+      if (
+        para?.tagName === 'p' &&
+        lead?.tagName === 'strong' &&
+        hastText(lead).trim() === 'Pro'
+      ) {
+        const prev = node.properties?.className;
+        const classes = Array.isArray(prev)
+          ? prev
+          : typeof prev === 'string'
+            ? prev.split(/\s+/)
+            : [];
+        node.properties = {
+          ...node.properties,
+          className: [...classes, 'pro-callout'],
+        };
+        lead.tagName = 'span';
+        lead.properties = { ...lead.properties, className: ['pro-badge'] };
+      }
+    }
+    node.children?.forEach(walk);
+  };
+  return (tree: unknown) => walk(tree as HastNode);
+}
+
 function MdAnchor(props: AnchorHTMLAttributes<HTMLAnchorElement>) {
   const href = rewriteHref(props.href);
   const isExternal =
@@ -64,6 +127,7 @@ export default function MarkdownRenderer({ markdown }: { markdown: string }) {
               content: { type: 'text', value: '#' },
             },
           ],
+          rehypeProCallout,
         ]}
         components={{ a: MdAnchor }}
       >

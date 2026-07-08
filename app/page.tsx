@@ -105,7 +105,8 @@ function Hero() {
             Trading Agents Lab is a free, open-source desktop research lab.
             Twelve specialised AI agents (analysts, researchers, a trader,
             risk seats) independently study a stock, debate from opposing
-            angles, and converge on a recommendation you can read end to end.
+            angles, and converge on a committee assessment you can read end
+            to end.
           </p>
           <div
             className="fade-up mt-10 flex flex-wrap items-center justify-center gap-4"
@@ -266,20 +267,20 @@ function DiligenceSection() {
                   className="text-xs uppercase tracking-widest text-[var(--color-text-muted)]"
                   style={{ fontFamily: 'var(--font-mono)' }}
                 >
-                  portfolio_manager · decision
+                  portfolio_manager · committee assessment
                 </span>
                 <span
                   className="text-xs text-[var(--color-text-muted)]"
                   style={{ fontFamily: 'var(--font-mono)' }}
                 >
-                  conf 0.62
+                  conviction 0.62
                 </span>
               </div>
               <p
                 className="mt-2 text-lg font-semibold text-[var(--color-hold)]"
                 style={{ fontFamily: 'var(--font-mono)' }}
               >
-                HOLD · 0.5% partial · revisit post-earnings
+                Neutral · bull 54 / bear 46 · moderate risk
               </p>
             </div>
           </div>
@@ -358,7 +359,7 @@ function CapabilitiesSection() {
           <Capability
             title="Outbound webhooks"
             mono="telegram · slack · discord · generic JSON + HMAC"
-            body="When a debate finishes, push the decision to Telegram, Slack, Discord, or your own endpoint. Wire that endpoint to your broker on your terms. We never see the trade."
+            body="When a debate finishes, push the assessment to Telegram, Slack, Discord, or your own endpoint. Wire that endpoint however you like, on your terms. We never see what you do with it."
           />
           <Capability
             title="Zero telemetry"
@@ -434,7 +435,7 @@ function FlowSection() {
 //
 // Marketing the bidirectional Telegram bot. The differentiator vs the
 // upstream Python terminal: you trigger a Diligence on your phone, the
-// laptop runs the debate, the decision lands back in the chat. Short
+// laptop runs the debate, the assessment lands back in the chat. Short
 // 2-column callout; deep dive lives on /tour#channels.
 
 function ChannelsSection() {
@@ -450,8 +451,8 @@ function ChannelsSection() {
             <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
               Configure once on the desktop. After that, message your
               own Telegram bot a ticker like <code>NVDA</code> and the
-              debate runs on your laptop. The decision card lands back
-              in the chat. Useful when you&apos;re at work, on a walk,
+              debate runs on your laptop. The committee assessment lands
+              back in the chat. Useful when you&apos;re at work, on a walk,
               or anywhere away from where you set the app up.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">

@@ -37,12 +37,12 @@ export const PHASES: { id: Phase; n: string; name: string; tagline: string }[] =
     id: 'trader',
     n: '03',
     name: 'Trader',
-    tagline: 'Concrete plan or HOLD.',
+    tagline: 'Concrete plan: entry, size, stop.',
   },
   {
     id: 'risk',
     n: '04',
-    name: 'Risk + Decision',
+    name: 'Risk + Assessment',
     tagline: 'Three risk seats weigh in. PM closes.',
   },
 ];
@@ -135,11 +135,11 @@ export const AGENTS: AgentSpec[] = [
     name: 'Trader',
     role: 'trader',
     phase: 'trader',
-    focus: 'Concrete plan or HOLD',
+    focus: 'Concrete plan: entry, size, stop',
     detail:
-      'Reads everything above. Produces a concrete trade plan in 3 to 5 sentences: enter or not, size posture (small / standard / sized up), and a defined-risk stop level if entering. If not entering, says HOLD and explains why.',
+      'Reads everything above. Produces a concrete trade plan in 3 to 5 sentences: enter or not, size posture (small / standard / sized up), and a defined-risk stop level if entering. If not entering, explains why staying out is the better-argued course.',
     reads: 'Full analyst + researcher transcript',
-    produces: 'Trade plan or HOLD with rationale',
+    produces: 'Trade plan with rationale',
   },
 
   // ── Phase 04 — Risk committee + Portfolio Manager ──────────────────
@@ -172,7 +172,7 @@ export const AGENTS: AgentSpec[] = [
     phase: 'risk',
     focus: 'The middle path. What is the lowest-regret action?',
     detail:
-      'The neutral risk seat. In 2 to 3 sentences, names the lowest-regret action given both risk arguments. Often the source of HOLD recommendations.',
+      'The neutral risk seat. In 2 to 3 sentences, names the lowest-regret course given both risk arguments. Often the pull toward a neutral stance.',
     reads: 'Aggressive + conservative arguments',
     produces: 'Middle-path framing',
   },
@@ -181,10 +181,10 @@ export const AGENTS: AgentSpec[] = [
     name: 'Portfolio Manager',
     role: 'portfolio_manager',
     phase: 'risk',
-    focus: 'Final decision: action, confidence, reasoning',
+    focus: 'Committee assessment: stance, conviction, thesis strengths',
     detail:
-      'Hears the full transcript and the three risk seats. Produces the final decision card: action (BUY / HOLD / SELL), confidence as a percentage, and a one-paragraph reasoning that ties the inputs together. This is what the user sees in the app and on Telegram.',
+      'Hears the full transcript and the three risk seats. Produces the committee assessment: an analytical stance (Bullish through Bearish), a conviction score, bull and bear thesis strengths, a risk level, and a one-paragraph reasoning that ties the inputs together. This is what the user sees in the app and on Telegram.',
     reads: 'Everything above',
-    produces: 'Decision card with action, confidence, reasoning',
+    produces: 'Committee assessment with stance, conviction, thesis strengths, risk level',
   },
 ];

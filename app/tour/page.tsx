@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'See it running',
   description:
-    'Screenshots of Trading Agents Lab on a real ticker, from the analyze form through the multi-agent debate to the Portfolio Manager decision card. Illustrative output only, not investment advice.',
+    'Screenshots of Trading Agents Lab on a real ticker, from the analyze form through the multi-agent debate to the Committee Assessment. Illustrative output only, not investment advice.',
   alternates: { canonical: '/tour/' },
 };
 
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 // surface. This page exists to show that wrapper visually because a
 // screenshot communicates the gap better than a paragraph can.
 
-// Every screenshot below was captured on the running app against the
-// NVDA ticker. The decision text shown in those frames is a single
-// illustrative run; not a recommendation, not advice, not a forecast.
+// Every screenshot below was captured on the running app against real
+// tickers. The assessment text shown in those frames is illustrative
+// output; not a recommendation, not advice, not a forecast.
 // When the desktop app gains a noticeable UI feature, these images get
 // refreshed; the source set lives at assets/screenshots/ in the engine
 // repo and the canonical filenames are kept stable so swaps are mechanical.
@@ -75,10 +75,10 @@ export default function TourPage() {
             without a debugger open.
           </p>
           <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            The screenshots on this page show a single Diligence run on
-            NVDA. The numbers, dates, and decision text are illustrative
-            output from one run on one day. They are not investment
-            advice, not a recommendation, not a forecast.
+            The screenshots on this page show real Diligence runs. The
+            numbers, dates, and assessment text are illustrative output
+            from individual runs on individual days. They are not
+            investment advice, not a recommendation, not a forecast.
           </p>
           <div
             className="mt-8 rounded border-l-4 border-[var(--color-accent)] bg-[var(--color-accent-tint)] px-6 py-5 text-sm leading-relaxed"
@@ -183,22 +183,22 @@ export default function TourPage() {
             >
               04 · risk committee + portfolio manager
             </span>
-            <h2 className="mt-2 text-3xl">A decision lands, with the math in view.</h2>
+            <h2 className="mt-2 text-3xl">An assessment lands, with the math in view.</h2>
             <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
               A three-seat risk committee (conservative, neutral,
               aggressive) reviews the debate and weighs the trade-offs.
               The Portfolio Manager reads everything and produces the
-              final decision card: action, confidence, and the
-              one-paragraph reasoning that ties the inputs together.
+              Committee Assessment: an analytical stance, a conviction
+              score, bull and bear thesis strengths, a risk level, and
+              the one-paragraph reasoning that ties the inputs together.
               The inline disclaimer ships on the same card as the
-              recommendation because the recommendation cannot live
-              without it.
+              assessment because the assessment cannot live without it.
             </p>
           </div>
           <Shot
             src="/screenshots/analyze-decision.png"
-            alt="Decision card from the NVDA Diligence run, showing HOLD action with 76% confidence and the Portfolio Manager reasoning, with a not-financial-advice disclaimer printed inline."
-            caption="Decision · HOLD · 76% confidence · inline disclaimer"
+            alt="Committee Assessment card from a live Diligence run, showing a Neutral stance at 52% conviction, bull thesis 62 and bear thesis 65 out of 100, an elevated risk chip, the Portfolio Manager reasoning, and a not-a-recommendation disclaimer printed inline."
+            caption="Committee Assessment · Neutral · 52% conviction · inline disclaimer"
           />
           <p
             className="mt-6 text-center text-xs leading-relaxed text-[var(--color-text-muted)]"
@@ -251,14 +251,14 @@ export default function TourPage() {
               History persists every Diligence run to a local SQLite
               database in the app&apos;s user-data directory. Sort by
               date, ticker, or cost. Click into a row to re-read the
-              full debate transcript and decision card. Nothing is
+              full debate transcript and committee assessment. Nothing is
               uploaded, nothing is synced to a server, nothing leaves
               the laptop.
             </p>
           </div>
           <Shot
             src="/screenshots/history.png"
-            alt="History page listing past Diligence runs with timestamps, tickers, and a sessions count card."
+            alt="History page listing past Diligence runs with timestamps, tickers, stance pills such as Neutral and Moderately bearish with conviction percentages, and a sessions count card."
             caption="History · local SQLite · nothing leaves the laptop"
           />
         </div>

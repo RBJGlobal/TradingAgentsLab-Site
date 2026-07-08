@@ -306,6 +306,39 @@ a {
   color: var(--color-text-muted);
   font-style: italic;
 }
+/* Pro callout — the KB marks Pro-only content with `> **Pro** ...`, which
+   rehypeProCallout (see MarkdownRenderer) tags. Distinct from a plain quote:
+   boxed, accent-tinted, upright, led by a mono "Pro" pill. */
+.docs-prose .pro-callout {
+  border-left: 3px solid var(--color-accent);
+  background-color: var(--color-accent-tint);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  margin: 24px 0;
+  color: var(--color-text-secondary);
+  font-style: normal;
+}
+.docs-prose .pro-callout p:first-child {
+  margin-top: 0;
+}
+.docs-prose .pro-callout p:last-child {
+  margin-bottom: 0;
+}
+.docs-prose .pro-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  margin-right: 8px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-accent);
+  color: #fff;
+  vertical-align: baseline;
+}
 .docs-prose hr {
   border: none;
   border-top: 1px solid var(--color-border-muted);
