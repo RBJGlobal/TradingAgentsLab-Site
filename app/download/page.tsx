@@ -79,7 +79,7 @@ export default async function Download() {
 
         <div className="container-wide mt-12">
           <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2">
-            {/* Light app */}
+            {/* Lite app */}
             <div className="flex flex-col rounded border border-[var(--color-border-default)] bg-[var(--color-bg-card)] p-6">
               <div className="flex items-center gap-4">
                 <img
@@ -182,7 +182,7 @@ export default async function Download() {
               first launch macOS asks you to confirm an app downloaded
               from the internet; click Open and it remembers. Both update
               themselves after the first install. Not sure which to
-              start with? Take the light app first; Pro is a separate
+              start with? Take the Lite app first; Pro is a separate
               install and the two live side by side.{' '}
               <Link href="/docs/pro/" className="prose-link">
                 What Pro adds →
@@ -203,7 +203,7 @@ export default async function Download() {
         <div className="container-prose">
           <h2 className="text-3xl">Build from source</h2>
           <p className="mt-4 text-[var(--color-text-secondary)]">
-            On an Intel Mac, Linux, or Windows? Build the light app from
+            On an Intel Mac, Linux, or Windows? Build the Lite app from
             source; it runs the same on all three. Pro builds from source
             too; its repository README has the steps.
           </p>
