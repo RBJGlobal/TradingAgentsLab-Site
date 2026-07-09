@@ -175,10 +175,30 @@ export default function About() {
               className="prose-link"
             >
               Clawdemy.org
-            </a>{' '}
-           , a free, open AI-education platform. Students can read the
+            </a>
+            , a free, open AI-education platform. Students can read the
             source to learn how to design real multi-agent LLM systems
             that ship.
+          </p>
+          <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
+            That case study is now a full course. Clawdemy&apos;s Track
+            25,{' '}
+            <a
+              href="https://clawdemy.org/tracks/ai-agent-teams/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="prose-link"
+            >
+              Anatomy of an AI Agent Team
+            </a>
+            , is dedicated to the TradingAgents framework this app is
+            built on. Eight lessons walk the system role by role: why
+            one AI becomes many, how an analyst fetches its own data,
+            the bull and the bear, the trader, the risk gate,
+            orchestration, and memory. The capstone puts you inside a
+            real run in Trading Agents Lab itself. If you want to
+            understand what happens under the hood before or after you
+            download, start there.
           </p>
           <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
             We optimise for readable code over clever code. Decisions
