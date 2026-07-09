@@ -4,91 +4,196 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Download',
   description:
-    'Download Trading Agents Lab for macOS (Apple Silicon). Free, open-source, AGPL-3.0, signed and notarised. Or build from source for Intel, Linux, and Windows.',
+    'Download Trading Agents Lab for quick analysis or Trading Agents Lab Pro for full-depth diligence. Both free, open source, AGPL-3.0, for macOS (Apple Silicon).',
   alternates: { canonical: '/download/' },
 };
 
 // Static export: resolved once at build time and baked into the page.
 export const dynamic = 'force-static';
 
-const RELEASES_PAGE =
+const LIGHT_RELEASES_PAGE =
   'https://github.com/RBJGlobal/TradingAgentsLab/releases/latest';
+const PRO_RELEASES_PAGE =
+  'https://github.com/RBJGlobal/TradingAgentsLab-Pro/releases/latest';
 
-// Resolve the direct .dmg asset URL at build time so the Download button is a
-// pure download (the file, not the GitHub release chooser). The asset name is
+// Resolve the direct .dmg asset URL at build time so each Download button is a
+// pure download (the file, not the GitHub release chooser). Asset names are
 // version-pinned, so we fetch the latest release's arm64 .dmg rather than
 // hardcoding a URL that goes stale next release. Falls back to the releases
-// page if the API is unreachable at build time, so the button is never broken.
-async function getDmgUrl(): Promise<string> {
+// page if the API is unreachable or the repo has no release yet, so the
+// button is never broken. no-store: Next persists force-cache fetches in
+// .next/cache across builds, which would pin the button to whichever release
+// was latest the first time the page ever built.
+async function getDmgUrl(repo: string, fallback: string): Promise<string> {
   try {
     const res = await fetch(
-      'https://api.github.com/repos/RBJGlobal/TradingAgentsLab/releases/latest',
+      `https://api.github.com/repos/${repo}/releases/latest`,
       {
         headers: {
           Accept: 'application/vnd.github+json',
           'User-Agent': 'tradingagentslab-site',
         },
-        cache: 'force-cache',
+        cache: 'no-store',
       },
     );
-    if (!res.ok) return RELEASES_PAGE;
+    if (!res.ok) return fallback;
     const data = (await res.json()) as {
       assets?: { name?: string; browser_download_url?: string }[];
     };
     const dmg = data.assets?.find(
       (a) => a.name?.endsWith('.dmg') && a.name?.includes('arm64'),
     );
-    return dmg?.browser_download_url ?? RELEASES_PAGE;
+    return dmg?.browser_download_url ?? fallback;
   } catch {
-    return RELEASES_PAGE;
+    return fallback;
   }
 }
 
 export default async function Download() {
-  const dmgUrl = await getDmgUrl();
+  const [lightDmgUrl, proDmgUrl] = await Promise.all([
+    getDmgUrl('RBJGlobal/TradingAgentsLab', LIGHT_RELEASES_PAGE),
+    getDmgUrl('RBJGlobal/TradingAgentsLab-Pro', PRO_RELEASES_PAGE),
+  ]);
 
   return (
     <article>
       <section className="section">
         <div className="container-prose">
           <span className="badge">download</span>
-          <h1 className="mt-6 text-4xl md:text-5xl">
-            Run a Diligence in two minutes.
-          </h1>
+          <h1 className="mt-6 text-4xl md:text-5xl">Two apps. Both free.</h1>
           <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            Trading Agents Lab is a desktop application. It runs the AI
-            agents on your machine (with your keys, or against your local
-            Ollama), it stores everything locally, and it never phones
-            home.
+            Trading Agents Lab is for quick analysis: a full agent debate
+            in about a minute. Trading Agents Lab Pro is for full-depth
+            diligence: the upstream project&apos;s complete research
+            pipeline, with live tool calls and multi-round debates, in 8
+            to 15 minutes. Both are free and open source under AGPL-3.0.
+            The difference is depth, time, and what a run consumes, never
+            price.
           </p>
+          <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
+            Both are desktop applications. They run the AI agents on your
+            machine (with your keys, or against your local Ollama), they
+            store everything locally, and they never phone home.
+          </p>
+        </div>
 
-          <div className="mt-12 rounded border border-[var(--color-border-default)] bg-[var(--color-bg-card)] p-6">
-            <a href={dmgUrl} className="btn-primary">
-              Download for macOS (Apple Silicon)
-            </a>
-            <p className="mt-4 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-              macOS on Apple Silicon (M1 or newer). Signed and notarised by
-              RBJ Global, so macOS does not flag it as from an unidentified
-              developer. On first launch macOS asks you to confirm an app
-              downloaded from the internet; click Open and it remembers. Free,
-              AGPL-3.0, and it updates itself after the first install.
+        <div className="container-wide mt-12">
+          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2">
+            {/* Light app */}
+            <div className="flex flex-col rounded border border-[var(--color-border-default)] bg-[var(--color-bg-card)] p-6">
+              <div className="flex items-center gap-4">
+                <img
+                  src="/icons/tal-icon.png"
+                  alt=""
+                  width={56}
+                  height={56}
+                  className="rounded-xl"
+                />
+                <div>
+                  <span
+                    className="text-xs uppercase tracking-widest text-[var(--color-text-muted)]"
+                    style={{ fontFamily: 'var(--font-mono)' }}
+                  >
+                    quick analysis
+                  </span>
+                  <h2 className="mt-1 text-2xl">Trading Agents Lab</h2>
+                </div>
+              </div>
+              <ul className="mt-4 flex-1 space-y-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                <li>A full agent debate on any ticker in about a minute.</li>
+                <li>Small download, light on your machine.</li>
+                <li>
+                  Gentle on API cost: a typical run stays well under a
+                  dollar, market data comes from free yfinance, and a
+                  local model via Ollama or LM Studio brings a run to
+                  zero cost.
+                </li>
+              </ul>
+              <div className="mt-6">
+                <a href={lightDmgUrl} className="btn-primary">
+                  Download for macOS
+                </a>
+              </div>
+              <p
+                className="mt-4 text-xs text-[var(--color-text-muted)]"
+                style={{ fontFamily: 'var(--font-mono)' }}
+              >
+                free · open source · AGPL-3.0 · macOS 12+ · Apple Silicon ·
+                165 MB .dmg
+              </p>
+            </div>
+
+            {/* Pro app */}
+            <div className="flex flex-col rounded border border-[var(--color-border-default)] bg-[var(--color-bg-card)] p-6">
+              <div className="flex items-center gap-4">
+                <img
+                  src="/icons/tal-pro-icon.png"
+                  alt=""
+                  width={56}
+                  height={56}
+                  className="rounded-xl"
+                />
+                <div>
+                  <span
+                    className="text-xs uppercase tracking-widest text-[var(--color-text-muted)]"
+                    style={{ fontFamily: 'var(--font-mono)' }}
+                  >
+                    full-depth diligence
+                  </span>
+                  <h2 className="mt-1 text-2xl">Trading Agents Lab Pro</h2>
+                </div>
+              </div>
+              <ul className="mt-4 flex-1 space-y-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                <li>
+                  The upstream project&apos;s full research pipeline: live
+                  tool calls, multi-round debates, deeper reports. A run
+                  takes 8 to 15 minutes.
+                </li>
+                <li>
+                  Larger download; it bundles the complete research
+                  engine.
+                </li>
+                <li>
+                  A run makes dozens of model calls with your own key, so
+                  a full run on a frontier model can cost a few dollars
+                  in API usage. ChatGPT-subscription sign-in that brings
+                  runs to zero cost is in development.
+                </li>
+              </ul>
+              <div className="mt-6">
+                <a href={proDmgUrl} className="btn-primary">
+                  Download Pro for macOS
+                </a>
+              </div>
+              <p
+                className="mt-4 text-xs text-[var(--color-text-muted)]"
+                style={{ fontFamily: 'var(--font-mono)' }}
+              >
+                free · open source · AGPL-3.0 · macOS 12+ · Apple Silicon ·
+                183 MB .dmg
+              </p>
+            </div>
+          </div>
+
+          <div className="mx-auto mt-6 max-w-5xl">
+            <p className="text-sm leading-relaxed text-[var(--color-text-secondary)]">
+              Both builds are signed and notarised by RBJ Global, so macOS
+              does not flag them as from an unidentified developer. On
+              first launch macOS asks you to confirm an app downloaded
+              from the internet; click Open and it remembers. Both update
+              themselves after the first install. Not sure which to
+              start with? Take the light app first; Pro is a separate
+              install and the two live side by side.{' '}
+              <Link href="/docs/pro/" className="prose-link">
+                What Pro adds →
+              </Link>
             </p>
             <p
               className="mt-3 text-xs text-[var(--color-text-muted)]"
               style={{ fontFamily: 'var(--font-mono)' }}
             >
-              Apple Silicon · .dmg · for educational and research purposes
-              only, not investment advice
-            </p>
-            <p className="mt-4 text-sm text-[var(--color-text-muted)]">
-              <a
-                href={RELEASES_PAGE}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="prose-link"
-              >
-                Other builds, checksums, and source on GitHub
-              </a>
+              for educational and research purposes only, not investment
+              advice
             </p>
           </div>
         </div>
@@ -98,8 +203,9 @@ export default async function Download() {
         <div className="container-prose">
           <h2 className="text-3xl">Build from source</h2>
           <p className="mt-4 text-[var(--color-text-secondary)]">
-            On an Intel Mac, Linux, or Windows? Build from source. It runs
-            the same on all three.
+            On an Intel Mac, Linux, or Windows? Build the light app from
+            source; it runs the same on all three. Pro builds from source
+            too; its repository README has the steps.
           </p>
           <p className="mt-3 text-sm text-[var(--color-text-muted)]">
             Requires <strong>Node 20+</strong> and <strong>Python 3.13</strong>.
@@ -151,17 +257,27 @@ export default async function Download() {
         <div className="container-prose">
           <h2 className="text-3xl">Releases and source</h2>
           <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            Every build, with release notes and checksums, lives on{' '}
+            Every build, with release notes and checksums, lives on GitHub
+            releases:{' '}
             <a
               href="https://github.com/RBJGlobal/TradingAgentsLab/releases"
               target="_blank"
               rel="noopener noreferrer"
               className="prose-link"
             >
-              GitHub releases
+              Trading Agents Lab
+            </a>{' '}
+            and{' '}
+            <a
+              href="https://github.com/RBJGlobal/TradingAgentsLab-Pro/releases"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="prose-link"
+            >
+              Trading Agents Lab Pro
             </a>
-            . The full source is open under AGPL-3.0, so you can read exactly
-            what runs on your machine before you install it.
+            . The full source of both is open under AGPL-3.0, so you can
+            read exactly what runs on your machine before you install it.
           </p>
         </div>
       </section>

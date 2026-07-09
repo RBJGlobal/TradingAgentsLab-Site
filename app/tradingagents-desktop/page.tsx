@@ -105,8 +105,12 @@ export default function TradingAgentsDesktop() {
               <Link href="/docs/pro/" className="prose-link">
                 See what Trading Agents Lab Pro adds
               </Link>
-              . It is a separate desktop app, free and open source; the
-              source is public now and a signed download is coming.
+              . It is a separate desktop app, free and open source, with a
+              signed macOS download on the{' '}
+              <Link href="/download/" className="prose-link">
+                download page
+              </Link>
+              .
             </p>
           </div>
         </div>
