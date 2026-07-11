@@ -1,0 +1,14 @@
+{
+  "34934d30d63fdbcef51da1408b0f2cac651aa54e9d3fae947716180d32fc3b7f": {
+    "src": "/diagrams/how-it-works-1-34934d30d6.svg",
+    "alt": "Diagram: The pipeline (rendered from the mermaid source in how-it-works.md)",
+    "width": 1152,
+    "height": 1399
+  },
+  "520cef30aab3740e758d1b43ca3498085f208f9132bcb36e3a03b54d7272681b": {
+    "src": "/diagrams/how-it-works-2-520cef30aa.svg",
+    "alt": "Diagram: Data flow on the wire (rendered from the mermaid source in how-it-works.md)",
+    "width": 1166,
+    "height": 715
+  }
+}

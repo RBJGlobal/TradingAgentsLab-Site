@@ -3,6 +3,8 @@ import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import type { AnchorHTMLAttributes } from 'react';
+import { createHash } from 'node:crypto';
+import mermaidManifest from '@/lib/mermaid-manifest.json';
 
 /**
  * Server-rendered markdown for docs pages.
@@ -99,6 +101,61 @@ function rehypeProCallout() {
   return (tree: unknown) => walk(tree as HastNode);
 }
 
+/**
+ * Swap ```mermaid fences for their pre-rendered SVGs.
+ *
+ * GitHub renders mermaid fences in the app-repo KB natively; here they
+ * would fall through as raw code blocks. scripts/render-mermaid.mjs
+ * pre-renders each fence to a site-themed SVG under public/diagrams/ and
+ * writes lib/mermaid-manifest.json keyed by a sha256 of the fence source.
+ * This plugin replaces a matching <pre><code class="language-mermaid">
+ * with an <img> for that SVG. No manifest hit (an upstream diagram edit
+ * arrived via docs re-sync before the script re-ran) means the fence
+ * stays a code block, degraded but never broken.
+ */
+const MERMAID_MANIFEST: Record<
+  string,
+  { src: string; alt: string; width?: number; height?: number }
+> = mermaidManifest;
+
+function rehypeMermaidDiagram() {
+  const walk = (node: HastNode) => {
+    node.children?.forEach((child, i) => {
+      if (child.tagName === 'pre') {
+        const code = child.children?.find((c) => c.tagName === 'code');
+        const classes = code?.properties?.className;
+        const isMermaid =
+          Array.isArray(classes) && classes.includes('language-mermaid');
+        if (code && isMermaid) {
+          const hash = createHash('sha256')
+            .update(hastText(code).trim())
+            .digest('hex');
+          const entry = MERMAID_MANIFEST[hash];
+          if (entry && node.children) {
+            node.children[i] = {
+              type: 'element',
+              tagName: 'img',
+              properties: {
+                src: entry.src,
+                alt: entry.alt,
+                ...(entry.width && entry.height
+                  ? { width: entry.width, height: entry.height }
+                  : {}),
+                loading: 'lazy',
+                className: ['mermaid-diagram'],
+              },
+              children: [],
+            };
+          }
+        }
+        return; // nothing to recurse into under a <pre>
+      }
+      walk(child);
+    });
+  };
+  return (tree: unknown) => walk(tree as HastNode);
+}
+
 function MdAnchor(props: AnchorHTMLAttributes<HTMLAnchorElement>) {
   const href = rewriteHref(props.href);
   const isExternal =
@@ -128,6 +185,7 @@ export default function MarkdownRenderer({ markdown }: { markdown: string }) {
             },
           ],
           rehypeProCallout,
+          rehypeMermaidDiagram,
         ]}
         components={{ a: MdAnchor }}
       >

@@ -299,6 +299,18 @@ a {
   color: var(--color-text-secondary);
   font-size: inherit;
 }
+/* Pre-rendered mermaid SVGs (scripts/render-mermaid.mjs), framed like
+   code blocks so diagrams and code read as one family. */
+.docs-prose .mermaid-diagram {
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: var(--color-bg-sunken);
+  border: 1px solid var(--color-border-muted);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin: 20px 0;
+}
 .docs-prose blockquote {
   border-left: 3px solid var(--color-accent);
   padding-left: 16px;
