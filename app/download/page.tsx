@@ -154,10 +154,11 @@ export default async function Download() {
                   engine.
                 </li>
                 <li>
-                  A run makes dozens of model calls with your own key, so
-                  a full run on a frontier model can cost a few dollars
-                  in API usage. ChatGPT-subscription sign-in that brings
-                  runs to zero cost is in development.
+                  Sign in with your ChatGPT plan and full-depth runs come
+                  at no per-token cost, within your plan&apos;s rate
+                  limits. With an API key instead, a run makes dozens of
+                  model calls and can cost a few dollars on a frontier
+                  model.
                 </li>
               </ul>
               <div className="mt-6">
