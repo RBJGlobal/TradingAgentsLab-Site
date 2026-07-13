@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Security & privacy',
   description:
-    'Trading Agents Lab does not collect user data. No analytics, no telemetry, no accounts. Keys are stored locally in the OS keychain.',
+    'Trading Agents Lab collects no personal data. The site uses a privacy-first, cookieless visit counter; the desktop app has no telemetry and no accounts, and keys are stored locally in the OS keychain.',
   alternates: { canonical: '/security/' },
 };
 
@@ -15,14 +15,14 @@ export default function Security() {
         <div className="container-prose">
           <span className="badge">security & privacy</span>
           <h1 className="mt-6 text-4xl md:text-5xl">
-            We don&apos;t know you&apos;re here.
+            We don&apos;t know who you are.
           </h1>
           <p className="mt-8 text-lg leading-relaxed text-[var(--color-text-secondary)]">
             Trading Agents Lab is built around a single privacy assumption:
             if we don&apos;t need the data, we don&apos;t collect it.
             Because the product has no business model that requires user
             data, we have built no machinery to capture, store, or
-            transmit it.
+            transmit personal data about you.
           </p>
         </div>
       </section>
@@ -33,23 +33,25 @@ export default function Security() {
             <h2 className="text-3xl">What we don&apos;t do.</h2>
             <ul className="mt-6 space-y-3">
               <Row no>
-                No analytics SDKs (no Google Analytics, no Plausible, no
-                Fathom, no Cloudflare Web Analytics, even though we host
-                on Cloudflare Pages)
+                No Google Analytics, Plausible, Fathom, or advertising and
+                behavioral SDKs (our only analytics is Cloudflare Web
+                Analytics, our host&apos;s cookieless, privacy-first counter,
+                which sets no cookies and identifies no one)
               </Row>
-              <Row no>No telemetry beacons or remote error reporting</Row>
+              <Row no>The desktop app sends no telemetry and no remote error reports</Row>
               <Row no>
                 No accounts, no email collection, no sign-up flow at all
               </Row>
-              <Row no>No install ping, no update ping, no usage tracking</Row>
+              <Row no>No install ping, no update ping, no in-app usage tracking</Row>
               <Row no>
                 No cookies (the marketing site uses zero; the desktop app
                 uses local storage on disk for preferences only)
               </Row>
               <Row no>
-                No third-party scripts on this marketing site (only Google
-                Fonts, served via Next.js&apos;s self-hosted font pipeline
-                so the request stays on this domain)
+                No advertising or behavioral tracking scripts on this
+                marketing site. The only third-party script is our cookieless
+                visit counter (Cloudflare Web Analytics); Google Fonts is
+                self-hosted so those requests stay on this domain.
               </Row>
             </ul>
           </div>

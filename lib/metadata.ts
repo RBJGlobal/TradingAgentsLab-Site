@@ -12,6 +12,11 @@ export const SITE_URL = 'https://tradingagentslab.ai';
 export const SITE_NAME = 'Trading Agents Lab';
 export const SITE_TAGLINE = 'AI-driven Diligence on any ticker.';
 
+// Cloudflare Web Analytics: the cookieless, aggregate visit counter disclosed
+// in the privacy + security pages. This token is PUBLIC by design (it ships in
+// the page HTML); it is NOT a secret. An empty string disables the beacon.
+export const CF_BEACON_TOKEN = 'd1366d7fbfcc45f08757fd80c98db88a';
+
 export const SITE_DESCRIPTION =
   'Trading Agents Lab is a free, open-source desktop research lab where multi-agent LLMs run institutional-grade diligence on any ticker. Educational and research purposes only, not investment advice.';
 

@@ -231,10 +231,11 @@ export default function About() {
             premium tier, no enterprise upsell.
           </p>
           <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            We don&apos;t collect user data because we don&apos;t have a
-            business that requires it. There are no analytics SDKs, no
-            telemetry beacons, no error-reporting services, no install
-            pings, no accounts, no email collection.{' '}
+            We collect no personal data because we don&apos;t have a
+            business that requires it. The marketing site uses one cookieless
+            visit counter and nothing else; the desktop app has no telemetry,
+            no error-reporting services, no install pings, no accounts, and no
+            email collection.{' '}
             <Link href="/security/" className="prose-link">
               Read the security posture →
             </Link>

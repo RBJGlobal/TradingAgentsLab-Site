@@ -143,7 +143,7 @@ export default function Footer() {
                 className="text-xs text-[var(--color-text-muted)]"
                 style={{ fontFamily: 'var(--font-mono)' }}
               >
-                No analytics · No tracking · No accounts
+                No tracking · No accounts · No ads
               </p>
             </div>
           </div>

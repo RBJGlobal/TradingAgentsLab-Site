@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Privacy policy',
   description:
-    'Trading Agents Lab collects zero user data. No analytics, no telemetry, no accounts. This page explains the full posture.',
+    'Trading Agents Lab collects no personal data. The site uses a privacy-first, cookieless visit counter; the app has no telemetry and no accounts. This page explains the full posture.',
   // Legal pages excluded from search-engine ranking so they do not
   // compete with product pages. Internal links from the footer still
   // make them discoverable.
@@ -20,18 +20,19 @@ export default function PrivacyPolicy() {
         className="mt-3 text-xs text-[var(--color-text-muted)]"
         style={{ fontFamily: 'var(--font-mono)' }}
       >
-        Last updated: 2026-05-16
+        Last updated: 2026-07-12
       </p>
 
       <div className="docs-prose mt-10">
         <h2>The short version.</h2>
         <p>
-          Trading Agents Lab does not collect, store, or transmit any
-          personal data. We have no servers that you talk to. We have
-          no accounts, no email collection, no analytics, no telemetry,
-          and no install pings. When you use the desktop application,
-          the only outbound network calls go directly from your machine
-          to the providers <em>you</em> configure.
+          Trading Agents Lab collects no personal data. We run no backend
+          of our own that you talk to, no accounts, and no email collection.
+          The marketing site uses one privacy-first, cookieless visit counter
+          (Cloudflare Web Analytics) to count visits; the desktop app has no
+          telemetry and no install pings. When you use the desktop application,
+          the only outbound network calls go directly from your machine to the
+          providers <em>you</em> configure.
         </p>
 
         <h2>What this policy covers.</h2>
@@ -56,20 +57,24 @@ export default function PrivacyPolicy() {
         </p>
         <ul>
           <li>
-            <strong>No analytics.</strong> No Google Analytics, no
-            Plausible, no Fathom, no Cloudflare Web Analytics. (Cloudflare
-            edge-level request logs may exist on Cloudflare&apos;s side
-            per their standard infrastructure. We do not access them and
-            we have not enabled any analytics product on top of them.)
+            <strong>Analytics: one, cookieless.</strong> We use Cloudflare
+            Web Analytics, our host&apos;s privacy-first, cookieless counter,
+            to see how many people visit and which pages are read; it sets no
+            cookies and does not identify you. We run no Google Analytics,
+            Plausible, Fathom, or any advertising or behavioral analytics.
+            (Cloudflare edge-level request logs may also exist per their
+            standard infrastructure; we do not access them to profile
+            visitors.)
           </li>
           <li>
             <strong>No cookies.</strong> The site sets zero cookies.
           </li>
           <li>
-            <strong>No third-party scripts.</strong> The only external
-            asset is Google Fonts, which Next.js serves via its
-            self-hosted font pipeline so the request stays on this domain
-            at build time.
+            <strong>Third-party scripts, minimal.</strong> Our cookieless
+            visit counter (Cloudflare Web Analytics) is the only third-party
+            script. Google Fonts is self-hosted via Next.js so those requests
+            stay on this domain. Nothing for advertising or behavioral
+            tracking.
           </li>
           <li>
             <strong>No forms.</strong> There is nothing to fill in. There

@@ -3,7 +3,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import DisclaimerBar from '@/components/layout/DisclaimerBar';
-import { siteMetadata } from '@/lib/metadata';
+import { siteMetadata, CF_BEACON_TOKEN } from '@/lib/metadata';
 import './globals.css';
 
 const inter = Inter({
@@ -37,6 +37,16 @@ export default function RootLayout({
         <Navbar />
         <main id="main">{children}</main>
         <Footer />
+        {/* Cloudflare Web Analytics: cookieless, aggregate visit counter,
+            disclosed in the privacy + security pages. Renders only when the
+            public beacon token is set. */}
+        {CF_BEACON_TOKEN && (
+          <script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={JSON.stringify({ token: CF_BEACON_TOKEN })}
+          />
+        )}
       </body>
     </html>
   );

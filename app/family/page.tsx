@@ -118,9 +118,8 @@ export default function FamilyPage() {
             software studio. The same operator ships a small portfolio of
             single-purpose tools, each on its own domain, each with its own
             roadmap. What ties them together is a single posture: the
-            user&apos;s data stays on the user&apos;s device. No analytics
-            beacons, no cloud transcripts of your prompts, no telemetry
-            phoning home. If that posture matters to you on a research
+            user&apos;s data stays on the user&apos;s device, with no cloud
+            transcripts of your prompts and no telemetry phoning home. If that posture matters to you on a research
             framework, it probably matters to you on a dictation app, a
             document converter, or an AI literacy library too.
           </p>

@@ -362,9 +362,9 @@ function CapabilitiesSection() {
             body="When a debate finishes, push the assessment to Telegram, Slack, Discord, or your own endpoint. Wire that endpoint however you like, on your terms. We never see what you do with it."
           />
           <Capability
-            title="Zero telemetry"
-            mono="no analytics · no accounts · no install ping"
-            body="The desktop app makes no network calls beyond the providers you configure. The marketing site you're reading right now has no analytics either. We don't know you're here."
+            title="Zero app telemetry"
+            mono="no telemetry · no accounts · no install ping"
+            body="The desktop app makes no network calls beyond the providers you configure. The marketing site you're reading uses one privacy-first, cookieless counter to see how many people visit; it sets no cookies and does not identify you."
           />
         </div>
       </div>
@@ -539,7 +539,7 @@ function PostureSection() {
             <PostureRow>No live-trading code, ever</PostureRow>
             <PostureRow>No broker integrations shipped</PostureRow>
             <PostureRow>No subscription, no premium tier</PostureRow>
-            <PostureRow>No analytics, no telemetry, no tracking</PostureRow>
+            <PostureRow>No telemetry, no tracking, no ads</PostureRow>
           </div>
         </div>
       </div>
