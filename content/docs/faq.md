@@ -1,6 +1,6 @@
 # Frequently Asked Questions
 
-*Posture, license, what Trading Agents Lab is and is not, and the relationships with upstream and Clawless.*
+*Posture, license, what Trading Agents Lab is and is not, and the relationships with upstream and Clawless Computer.*
 
 ---
 
@@ -31,7 +31,7 @@ No. The agent debate produces a committee assessment: an analytical stance on ho
 
 - **Not a brokerage.** It does not execute trades on its own.
 - **Not a registered investment advisor.** Nothing it produces is investment advice.
-- **Not a Clawless extension, plugin, add-on, or integration.** It is a standalone product that can optionally connect to a Clawless gateway, the same way it can optionally connect to Alpaca or Yahoo Finance.
+- **Not a Clawless Computer extension, plugin, add-on, or integration.** It is a standalone product that can optionally connect to a Clawless Computer gateway, the same way it can optionally connect to Alpaca or Yahoo Finance.
 - **Not a live trading platform.** Paper trading is the intended use case.
 
 ---
@@ -72,7 +72,7 @@ Yes. The Lite app remains AGPL-3.0 and free, with no feature removals and no tel
 
 Trading Agents Lab is forked from [Tauric Research's TradingAgents](https://github.com/TauricResearch/TradingAgents), a multi-agent LLM trading research framework. The upstream project implements a full LangGraph-based pipeline with analyst, researcher, trader, and risk-manager agents.
 
-Trading Agents Lab wraps this core in a desktop UI and a FastAPI sidecar, adds key management, data provider integrations, and the Clawless connector option.
+Trading Agents Lab wraps this core in a desktop UI and a FastAPI sidecar, adds key management, data provider integrations, and the Clawless Computer connector option.
 
 ### Are changes being contributed back upstream?
 
@@ -80,19 +80,19 @@ Not at this time. Trading Agents Lab is an independent fork under AGPL-3.0 for i
 
 ---
 
-## Clawless relationship
+## Clawless Computer relationship
 
-### What is the relationship between Trading Agents Lab and Clawless?
+### What is the relationship between Trading Agents Lab and Clawless Computer?
 
-Trading Agents Lab is a **standalone trading companion for Clawless**. It is an independent product with its own codebase, license, and UI.
+Trading Agents Lab is a **standalone trading companion for Clawless Computer**. It is an independent product with its own codebase, license, and UI.
 
-Clawless is one of several optional connectors in Trading Agents Lab, alongside Alpaca, Yahoo Finance, and direct LLM provider keys. Connecting the two is optional. Trading Agents Lab works fully without a running Clawless instance.
+Clawless Computer is one of several optional connectors in Trading Agents Lab, alongside Alpaca, Yahoo Finance, and direct LLM provider keys. Connecting the two is optional. Trading Agents Lab works fully without a running Clawless Computer instance.
 
 No code is shared between the two products. Brand-level coherence (compatible dark palette, compatible font choices) is achieved through independent design decisions, not code reuse.
 
-### Does Trading Agents Lab require Clawless?
+### Does Trading Agents Lab require Clawless Computer?
 
-No. You can run Trading Agents Lab entirely without Clawless. The Clawless connector (Phase 6) adds an optional gateway routing path for LLM calls.
+No. You can run Trading Agents Lab entirely without Clawless Computer. The Clawless Computer connector (Phase 6) adds an optional gateway routing path for LLM calls.
 
 ---
 

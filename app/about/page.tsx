@@ -304,7 +304,7 @@ export default function About() {
               hereLabel
             />
             <ProductCard
-              name="Clawless"
+              name="Clawless Computer"
               href="https://clawless.ai"
               tagline="An operating system for AI."
               description="The host platform that Trading Agents Lab optionally connects to as the standalone trading companion."

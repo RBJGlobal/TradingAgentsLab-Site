@@ -37,7 +37,7 @@ const CLUSTERS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: 'Connect & automate',
     blurb:
-      'Push results to webhooks, connect the Clawless desktop agent, and move faster with shortcuts.',
+      'Push results to webhooks, connect the Clawless Computer desktop agent, and move faster with shortcuts.',
     slugs: ['webhooks', 'clawless-connector', 'keyboard-shortcuts'],
   },
   {

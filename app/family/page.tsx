@@ -157,7 +157,7 @@ export default function FamilyPage() {
           />
 
           <SiblingCard
-            name="Clawless"
+            name="Clawless Computer"
             tagline="Desktop AI workspace, optional connector for this app."
             body={
               <>
@@ -165,17 +165,17 @@ export default function FamilyPage() {
                   An on-device workspace for working with LLMs, models, and
                   agents on macOS or Ubuntu. Trading Agents Lab can route
                   its analyst, researcher, trader, and risk-manager calls
-                  through Clawless when present, which means the same
+                  through Clawless Computer when present, which means the same
                   LLM-provider credentials and the same OS-keychain
                   discipline carry over between the two surfaces.
                 </p>
                 <p className="mt-3">
                   Trading Agents Lab is positioned as the standalone trading
-                  companion for Clawless. The connection is optional. You
+                  companion for Clawless Computer. The connection is optional. You
                   can run this app with your own OpenAI, Anthropic,
                   OpenRouter, Gemini, xAI Grok, MiniMax, or local Ollama
                   keys and never touch
-                  Clawless. The connector is there if you want one place to
+                  Clawless Computer. The connector is there if you want one place to
                   manage on-device AI work.
                 </p>
               </>
