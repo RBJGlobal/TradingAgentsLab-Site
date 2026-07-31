@@ -244,7 +244,7 @@ export default async function Download() {
               Open Settings → LLM Providers. Paste a key (OpenAI,
               Anthropic, OpenRouter, Google Gemini, xAI Grok, or
               MiniMax), or set the
-              app to use a local Ollama model. Then go to Analyze, type
+              app to use a local Ollama or LM Studio model. Then go to Analyze, type
               a ticker like <code className="rounded bg-[var(--color-bg-sunken)] px-2 py-0.5 text-sm" style={{ fontFamily: 'var(--font-mono)' }}>NVDA</code>, and run.
             </p>
             <Link href="/docs/getting-started/" className="mt-4 inline-block prose-link">
