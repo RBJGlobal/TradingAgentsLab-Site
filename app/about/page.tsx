@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { pageGraphJsonLd } from '@/lib/metadata';
 
 interface ProductCardProps {
   name: string;
@@ -66,8 +67,18 @@ export const metadata: Metadata = {
 };
 
 export default function About() {
+  const jsonLd = pageGraphJsonLd({
+    path: '/about/',
+    name: 'About',
+    description: String(metadata.description), pageType: 'AboutPage',
+  });
+
   return (
     <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="section">
         <div className="container-prose">
           <span className="badge">about</span>

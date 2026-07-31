@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { pageGraphJsonLd } from '@/lib/metadata';
 
 export const metadata: Metadata = {
   title: 'Security & privacy',
@@ -9,8 +10,18 @@ export const metadata: Metadata = {
 };
 
 export default function Security() {
+  const jsonLd = pageGraphJsonLd({
+    path: '/security/',
+    name: 'Security & privacy',
+    description: String(metadata.description),
+  });
+
   return (
     <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="section">
         <div className="container-prose">
           <span className="badge">security & privacy</span>

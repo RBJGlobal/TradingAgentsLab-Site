@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { pageGraphJsonLd } from '@/lib/metadata';
 
 export const metadata: Metadata = {
   title: 'See it running',
@@ -58,8 +59,18 @@ function Shot({ src, alt, caption, width = 'max-w-4xl' }: ShotProps) {
 }
 
 export default function TourPage() {
+  const jsonLd = pageGraphJsonLd({
+    path: '/tour/',
+    name: 'See it running',
+    description: String(metadata.description),
+  });
+
   return (
     <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="section">
         <div className="container-prose">
           <span className="badge">see it running</span>
@@ -140,7 +151,7 @@ export default function TourPage() {
             </p>
           </div>
           <Shot
-            src="/screenshots/analyze-analysts.png"
+            src="/screenshots/analyze-analysts.webp"
             alt="Analyst phase mid-stream, with technical, fundamental, and news analyst messages each tagged with their role and printing reasoning live."
             caption="Analysts · technical · fundamental · news"
           />
@@ -167,7 +178,7 @@ export default function TourPage() {
             </p>
           </div>
           <Shot
-            src="/screenshots/analyze-researchers.png"
+            src="/screenshots/analyze-researchers.webp"
             alt="Researcher phase showing the bull and bear researchers exchanging arguments, with the research manager pushing the debate forward."
             caption="Researchers · bull · bear · research manager"
           />
@@ -196,7 +207,7 @@ export default function TourPage() {
             </p>
           </div>
           <Shot
-            src="/screenshots/analyze-decision.png"
+            src="/screenshots/analyze-decision.webp"
             alt="Committee Assessment card from a live Diligence run, showing a Neutral stance at 52% conviction, bull thesis 62 and bear thesis 65 out of 100, an elevated risk chip, the Portfolio Manager reasoning, and a not-a-recommendation disclaimer printed inline."
             caption="Committee Assessment · Neutral · 52% conviction · inline disclaimer"
           />
@@ -257,7 +268,7 @@ export default function TourPage() {
             </p>
           </div>
           <Shot
-            src="/screenshots/history.png"
+            src="/screenshots/history.webp"
             alt="History page listing past Diligence runs with timestamps, tickers, stance pills such as Neutral and Moderately bearish with conviction percentages, and a sessions count card."
             caption="History · local SQLite · nothing leaves the laptop"
           />
@@ -289,26 +300,26 @@ export default function TourPage() {
           {/* LLM Providers is a full-page capture (portrait), so it gets its
               own constrained row rather than a landscape grid cell. */}
           <Shot
-            src="/screenshots/settings-llm.png"
+            src="/screenshots/settings-llm.webp"
             alt="Settings LLM Providers tab listing the supported provider families end to end: OpenAI (OAuth and API key), Anthropic, OpenRouter, Google Gemini, xAI Grok, MiniMax, and a local runtime, with connected providers showing green Connected pills."
             caption="Settings · LLM Providers"
             width="max-w-xl"
           />
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
             <Shot
-              src="/screenshots/settings-data.png"
+              src="/screenshots/settings-data.webp"
               alt="Settings Data Providers tab with Yahoo Finance active and Alpaca paper-data configured."
               caption="Settings · Data Providers"
               width="max-w-none"
             />
             <Shot
-              src="/screenshots/settings-costguard.png"
+              src="/screenshots/settings-costguard.webp"
               alt="Settings Cost Guard tab with daily and per-session spend caps and the current-period spend visualization."
               caption="Settings · Cost Guard"
               width="max-w-none"
             />
             <Shot
-              src="/screenshots/settings-clawless.png"
+              src="/screenshots/settings-clawless.webp"
               alt="Settings Clawless Computer tab showing the optional gateway URL and token connected status."
               caption="Settings · Clawless Computer (optional)"
               width="max-w-none"
@@ -346,7 +357,7 @@ export default function TourPage() {
             </p>
           </div>
           <Shot
-            src="/screenshots/telegram-channels-tab.png"
+            src="/screenshots/telegram-channels-tab.webp"
             alt="Settings Channels tab showing the Telegram Bot panel with bot token, LLM provider dropdown, allowlist, daily cap, Stop bot button, and POLLING status pill."
             caption="Channels · Telegram bot · configure once on the desktop"
           />
@@ -367,7 +378,7 @@ export default function TourPage() {
             </p>
           </div>
           <Shot
-            src="/screenshots/telegram-ready.png"
+            src="/screenshots/telegram-ready.webp"
             alt="Telegram chat showing the bot replying 'Trading Agents Lab is ready' with the current mode, plus a persistent two-by-two reply keyboard with Full debate mode, Summary mode, Current mode, and Help buttons."
             caption="Telegram · ready state with the persistent button grid"
           />
@@ -382,7 +393,7 @@ export default function TourPage() {
             </p>
           </div>
           <Shot
-            src="/screenshots/telegram-summary.png"
+            src="/screenshots/telegram-summary.webp"
             alt="Telegram chat in summary mode showing the bot acknowledging the NVDA request, then phase headers as analysts, researchers, trader, and risk committee complete, then the final decision card with HOLD action and 72 percent confidence."
             caption="Summary mode · phase headers and the decision card"
           />
@@ -401,13 +412,13 @@ export default function TourPage() {
           </div>
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
             <Shot
-              src="/screenshots/telegram-full-analysts.png"
+              src="/screenshots/telegram-full-analysts.webp"
               alt="Telegram chat in full mode showing the technical analyst, fundamental analyst, and news analyst streaming their reasoning live."
               caption="Full mode · analyst phase streaming"
               width="max-w-none"
             />
             <Shot
-              src="/screenshots/telegram-full-decision.png"
+              src="/screenshots/telegram-full-decision.webp"
               alt="Telegram chat in full mode showing the risk committee (conservative, neutral) and portfolio manager messages, followed by the final decision card."
               caption="Full mode · risk committee + decision card"
               width="max-w-none"
@@ -426,7 +437,7 @@ export default function TourPage() {
             </p>
           </div>
           <Shot
-            src="/screenshots/telegram-help.png"
+            src="/screenshots/telegram-help.webp"
             alt="Telegram chat showing the bot's slash-help reply with the full command list, current mode indication, and the persistent two-by-two reply keyboard below the input."
             caption="Help · full command list with current mode"
           />

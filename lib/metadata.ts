@@ -70,5 +70,40 @@ export const siteMetadata: Metadata = {
   robots: { index: true, follow: true },
   icons: {
     icon: '/icon.svg',
+    apple: '/apple-icon.png',
   },
 };
+
+/**
+ * WebPage + BreadcrumbList graph for content pages that carry no richer node
+ * of their own. Gives every page an explicit machine-readable identity and a
+ * Home > Page trail (docs pages already emit their own BreadcrumbList).
+ * pageType: 'WebPage' default; 'AboutPage' for /about.
+ */
+export function pageGraphJsonLd(opts: {
+  path: string;
+  name: string;
+  description: string;
+  pageType?: 'WebPage' | 'AboutPage';
+}) {
+  const url = `${SITE_URL}${opts.path}`;
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': opts.pageType ?? 'WebPage',
+        url,
+        name: opts.name,
+        description: opts.description,
+        isPartOf: { '@type': 'WebSite', url: `${SITE_URL}/`, name: SITE_NAME },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: opts.name, item: url },
+        ],
+      },
+    ],
+  };
+}

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { SITE_URL, SITE_NAME } from '@/lib/metadata';
 
 export const metadata: Metadata = {
   title: 'Download',
@@ -55,8 +56,38 @@ export default async function Download() {
     getDmgUrl('RBJGlobal/TradingAgentsLab-Pro', PRO_RELEASES_PAGE),
   ]);
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'SoftwareApplication',
+        name: SITE_NAME,
+        applicationCategory: 'EducationalApplication',
+        operatingSystem: 'macOS',
+        description: String(metadata.description),
+        url: `${SITE_URL}/download/`,
+        license: 'https://www.gnu.org/licenses/agpl-3.0.html',
+        isAccessibleForFree: true,
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        downloadUrl: [LIGHT_RELEASES_PAGE, PRO_RELEASES_PAGE],
+        publisher: { '@id': 'https://rbjglobal.com/#organization' },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: 'Download', item: `${SITE_URL}/download/` },
+        ],
+      },
+    ],
+  };
+
   return (
     <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="section">
         <div className="container-prose">
           <span className="badge">download</span>

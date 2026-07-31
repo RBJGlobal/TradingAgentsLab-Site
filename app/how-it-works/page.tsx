@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { pageGraphJsonLd } from '@/lib/metadata';
 import AgentFlow from '@/components/home/AgentFlow';
 import TranscriptEmbed from '@/components/home/TranscriptEmbed';
 
@@ -11,8 +12,18 @@ export const metadata: Metadata = {
 };
 
 export default function HowItWorks() {
+  const jsonLd = pageGraphJsonLd({
+    path: '/how-it-works/',
+    name: 'How it works',
+    description: String(metadata.description),
+  });
+
   return (
     <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="section">
         <div className="container-prose">
           <span className="badge">how it works</span>
@@ -185,7 +196,7 @@ export default function HowItWorks() {
             writes at the end. The text is selectable, so read it the way
             you would in the app, or{' '}
             <a
-              href="/transcripts/sample-diligence.html"
+              href="/transcripts/sample-diligence"
               target="_blank"
               rel="noopener"
               className="prose-link"

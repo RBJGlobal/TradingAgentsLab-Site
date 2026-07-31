@@ -30,8 +30,17 @@ import mermaidManifest from '@/lib/mermaid-manifest.json';
  */
 const DOC_LINK_RE = /^\.?\/?([a-z0-9-]+)\.md(#.*)?$/i;
 
+// Parent-relative links (`../api.md`) point at repo docs that live OUTSIDE
+// the KB set synced to this site, so there is no /docs/<slug>/ page for them.
+// Send those to the source of truth on GitHub instead of a 404.
+const REPO_DOC_LINK_RE = /^\.\.\/([a-z0-9-]+\.md)(#.*)?$/i;
+const REPO_DOCS_BASE =
+  'https://github.com/RBJGlobal/TradingAgentsLab/blob/main/docs/';
+
 function rewriteHref(href: string | undefined): string | undefined {
   if (!href) return href;
+  const repo = href.match(REPO_DOC_LINK_RE);
+  if (repo) return `${REPO_DOCS_BASE}${repo[1]}${repo[2] ?? ''}`;
   const m = href.match(DOC_LINK_RE);
   if (!m) return href;
   const [, slug, anchor = ''] = m;

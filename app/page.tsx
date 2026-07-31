@@ -476,7 +476,7 @@ function ChannelsSection() {
               {/* Plain img to match the rest of the tour page; output is
                   Next.js export with images.unoptimized. */}
               <img
-                src="/screenshots/telegram-ready.png"
+                src="/screenshots/telegram-ready.webp"
                 alt="Telegram chat with the Trading Agents Lab bot showing the welcome message 'Trading Agents Lab is ready' and the persistent two-by-two reply keyboard with Full debate mode, Summary mode, Current mode, and Help buttons."
                 loading="lazy"
                 decoding="async"

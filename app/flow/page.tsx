@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageGraphJsonLd } from '@/lib/metadata';
 import InteractiveAgentFlow from '@/components/flow/InteractiveAgentFlow';
 
 // The component itself carries `'use client'`; Next.js draws the
@@ -13,8 +14,18 @@ export const metadata: Metadata = {
 };
 
 export default function FlowPage() {
+  const jsonLd = pageGraphJsonLd({
+    path: '/flow/',
+    name: 'The flow',
+    description: String(metadata.description),
+  });
+
   return (
     <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="section">
         <div className="container-wide">
           <div className="mx-auto max-w-3xl text-center">
