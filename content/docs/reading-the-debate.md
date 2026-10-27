@@ -10,7 +10,7 @@ The Analyze page has these sections, top to bottom:
 
 1. **Page header**, title and one-line description
 2. **Input card**, ticker, date, Analyze/Stop button
-3. **Status grid**, four status cards (Engine, Data, LLM, Clawless Computer)
+3. **Status grid**, three status cards (Engine, Data, LLM)
 4. **Debate stream**, session header, data summary strip, news card, phase cards, committee assessment
 5. **Disclaimer footer**
 
@@ -77,9 +77,6 @@ Shows the active data provider. Flips from "Pending…" to "yfinance · live" on
 
 Shows the LLM configuration state. Currently always shows "Not configured" because the renderer-to-engine key injection is in progress (Phase 2.1). The hint line points you to Settings → LLM Providers.
 
-### Clawless Computer card
-
-Shows the Clawless Computer gateway connection state. Currently always shows "Disconnected", the gateway connector is Phase 6. See [clawless-connector.md](clawless-connector.md).
 
 ---
 
@@ -105,7 +102,7 @@ If yfinance could not fetch data (offline, unknown ticker, future date), the sum
 
 ### News card
 
-Appears after the `news.headlines` event arrives. Shows up to 5 recent Yahoo Finance headlines for the ticker. Each headline is a clickable link to the original article, with the publisher name and a relative timestamp. If no headlines were found, the card is absent.
+Appears after the `news.headlines` event arrives. Shows up to 5 recent headlines for the ticker, from Yahoo Finance by default or from Alpaca (Benzinga) when Alpaca is connected. The card names its source. Each headline is a clickable link to the original article, with the publisher name and a relative timestamp. If no headlines were found, the card is absent.
 
 ### Phase cards
 
