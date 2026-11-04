@@ -539,7 +539,7 @@ function PostureSection() {
             <PostureRow>No live-trading code, ever</PostureRow>
             <PostureRow>No broker integrations shipped</PostureRow>
             <PostureRow>No subscription, no premium tier</PostureRow>
-            <PostureRow>No telemetry, no tracking, no ads</PostureRow>
+            <PostureRow>No telemetry in the app, no ads, no cookies</PostureRow>
           </div>
         </div>
       </div>
