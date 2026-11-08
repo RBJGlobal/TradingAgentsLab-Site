@@ -324,7 +324,7 @@ export default function About() {
               name="WhisprDesk"
               href="https://whisprdesk.com"
               tagline="Privacy-first Mac dictation."
-              description="No cloud, no transcripts leaving the device."
+              description="Choose a local engine and your voice stays on your Mac, or use a cloud provider with your own key."
             />
             <ProductCard
               name="Clawdemy"
