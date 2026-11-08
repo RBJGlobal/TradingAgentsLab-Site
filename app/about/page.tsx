@@ -2,67 +2,10 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { pageGraphJsonLd } from '@/lib/metadata';
 
-interface ProductCardProps {
-  name: string;
-  href?: string;
-  tagline: string;
-  description: string;
-  /** Marks the current product so visitors get a "you are here" cue. */
-  hereLabel?: boolean;
-}
-
-function ProductCard({
-  name,
-  href,
-  tagline,
-  description,
-  hereLabel,
-}: ProductCardProps) {
-  const content = (
-    <>
-      <div className="flex items-start justify-between gap-3">
-        <h4 className="text-lg text-[var(--color-text-primary)]">{name}</h4>
-        {hereLabel ? (
-          <span
-            className="shrink-0 rounded border border-[var(--color-accent)] px-2 py-0.5 text-[10px] uppercase tracking-widest text-[var(--color-accent)]"
-            style={{ fontFamily: 'var(--font-mono)' }}
-          >
-            you are here
-          </span>
-        ) : null}
-      </div>
-      <p
-        className="mt-1 text-xs text-[var(--color-accent)]"
-        style={{ fontFamily: 'var(--font-mono)' }}
-      >
-        {tagline}
-      </p>
-      <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-        {description}
-      </p>
-    </>
-  );
-
-  if (href) {
-    return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="card block"
-      >
-        {content}
-      </a>
-    );
-  }
-
-  return <div className="card">{content}</div>;
-}
-
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Trading Agents Lab provides a high-quality, professional-grade tool purely for educational purposes. Free, open-source, AGPL-3.0.',
+    'Trading Agents Lab is a carefully built analysis tool, made purely for educational purposes. Free, open-source, AGPL-3.0.',
   alternates: { canonical: '/about/' },
 };
 
@@ -84,22 +27,12 @@ export default function About() {
           <span className="badge">about</span>
           <h1 className="mt-6 text-4xl md:text-5xl">Why this exists.</h1>
           <p className="mt-8 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            Trading Agents Lab provides a high-quality, professional-grade
-            tool purely for educational purposes. We do not force user
+            Trading Agents Lab is a carefully built analysis tool, made
+            purely for educational purposes. We do not force user
             adoption and we do not provide trading tools. We provide a
             free resource for analysis and learning.
           </p>
           <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            It is built and maintained by{' '}
-            <a
-              href="https://rbjglobal.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="prose-link"
-            >
-              RBJ Global
-            </a>
-            , an independent software studio building practical AI tools.
             The codebase is a fork of{' '}
             <a
               href="https://github.com/TauricResearch/TradingAgents"
@@ -119,7 +52,7 @@ export default function About() {
         <div className="container-prose">
           <h2 className="text-3xl">Positioning, analysis, not execution.</h2>
           <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            This is the most important sentence on this page:
+            If you read one sentence on this page, make it this one:
           </p>
           <p
             className="mt-4 rounded border-l-4 border-[var(--color-accent)] bg-[var(--color-accent-tint)] px-6 py-5 text-lg"
@@ -264,75 +197,56 @@ export default function About() {
         <div className="container-prose">
           <h2 className="text-3xl">Family.</h2>
           <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            Trading Agents Lab is part of a small portfolio of
-            independent, single-purpose, privacy-first software built by
-            RBJ Global.
+            Trading Agents Lab has sibling products from the same
+            company. See them all on the{' '}
+            <Link href="/family/" className="prose-link">
+              family page
+            </Link>
+            .
           </p>
+        </div>
+      </section>
 
-          {/* Parent company callout, visually emphasised with the
-              accent tint to mark hierarchy at a glance. */}
-          <div className="mt-10 rounded border border-[var(--color-accent-tint)] bg-[var(--color-accent-tint)] p-6">
-            <span
-              className="text-xs uppercase tracking-widest text-[var(--color-accent)]"
-              style={{ fontFamily: 'var(--font-mono)' }}
+      <section className="section border-t border-[var(--color-border-muted)] bg-[var(--color-bg-sunken)]">
+        <div className="container-prose">
+          <h2 className="text-3xl">The company behind it.</h2>
+          <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
+            RBJ Global LLC builds a family of independent products, and
+            much of the work is for awareness and education. Trading
+            Agents Lab is part of that: a working multi-agent system that
+            anyone can download, read and learn from.
+          </p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container-prose">
+          <h2 className="text-3xl">From the founder.</h2>
+          <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
+            I learn by examining working systems, and Trading Agents Lab
+            gives others that opportunity. Its agents provide a concrete
+            way to study how multiple AI roles approach research and
+            analysis. Readers can inspect the methods, question the
+            outputs and make their own judgments.
+          </p>
+          <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
+            AI is changing many kinds of work. I want people to have open
+            examples that help them understand its strengths and limits.
+            Trading Agents Lab is one way to explore those ideas in a
+            market-research setting. Start small, study what happens, and
+            keep learning.
+          </p>
+          <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
+            Junaid (Jay) Siddiqi, Founder, RBJ Global LLC &middot;{' '}
+            <a
+              href="https://www.linkedin.com/in/junaidsiddiqi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="prose-link"
             >
-              parent company
-            </span>
-            <h3 className="mt-2 text-2xl">
-              <a
-                href="https://rbjglobal.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[var(--color-text-primary)] hover:text-[var(--color-accent)]"
-              >
-                RBJ Global
-              </a>
-            </h3>
-            <p className="mt-3 text-[var(--color-text-secondary)]">
-              An independent software studio building practical AI tools
-              that respect your time, your money, and your privacy.
-            </p>
-          </div>
-
-          {/* Visual connector between parent and products, short
-              vertical line with a "products" chip at the midpoint. */}
-          <div className="mt-2 flex flex-col items-center" aria-hidden="true">
-            <div className="h-6 w-px bg-[var(--color-border-strong)]" />
-            <span
-              className="my-1 rounded border border-[var(--color-border-default)] bg-[var(--color-bg-card)] px-2 py-0.5 text-[10px] uppercase tracking-widest text-[var(--color-text-muted)]"
-              style={{ fontFamily: 'var(--font-mono)' }}
-            >
-              products
-            </span>
-            <div className="h-6 w-px bg-[var(--color-border-strong)]" />
-          </div>
-
-          <div className="mt-2 grid grid-cols-1 gap-4 md:grid-cols-2">
-            <ProductCard
-              name="Trading Agents Lab"
-              tagline="AI-driven Diligence on any ticker."
-              description="Multi-agent LLM research lab. Free, open-source, AGPL-3.0."
-              hereLabel
-            />
-            <ProductCard
-              name="Clawless Computer"
-              href="https://clawless.ai"
-              tagline="An operating system for AI."
-              description="The host platform that Trading Agents Lab optionally connects to as the standalone trading companion."
-            />
-            <ProductCard
-              name="WhisprDesk"
-              href="https://whisprdesk.com"
-              tagline="Privacy-first Mac dictation."
-              description="Choose a local engine and your voice stays on your Mac, or use a cloud provider with your own key."
-            />
-            <ProductCard
-              name="Clawdemy"
-              href="https://clawdemy.org"
-              tagline="Free AI literacy for the worried generalist."
-              description="AI education built for people who fear being left behind, not the curious developer."
-            />
-          </div>
+              LinkedIn
+            </a>
+          </p>
         </div>
       </section>
     </article>
