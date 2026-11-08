@@ -210,16 +210,15 @@ export default function FamilyPage() {
 
           <SiblingCard
             name="WhisprDesk"
-            tagline="Local-only dictation for macOS."
+            tagline="Private AI dictation for Mac."
             body={
               <p>
-                Speech-to-text for Mac using Whisper and Parakeet models
-                that run on the laptop, never in a vendor cloud. Sold
-                once instead of rented, same family posture as the rest.
+                Speech-to-text for Mac. Choose a local Whisper or Parakeet
+                model and your voice stays on your Mac, or use a cloud
+                provider with your own key. Sold once instead of rented.
                 Useful around Trading Agents Lab when you want to capture
                 a voice note on a Diligence run, dictate a watchlist
-                update, or talk through a research thesis without typing
-                or trusting a transcription vendor with the audio.
+                update, or talk through a research thesis without typing.
               </p>
             }
             links={[
