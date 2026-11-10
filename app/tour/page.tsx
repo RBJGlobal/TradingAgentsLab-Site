@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 // application that requires Python plus a stack of dependencies and a
 // command-line workflow. Trading Agents Lab keeps that engine intact and
 // wraps it in a desktop app with watchlist, history, cost guard, settings
-// UI, optional Clawless connector, webhooks, and a multi-LLM Settings
+// UI, webhooks, and a multi-LLM Settings
 // surface. This page exists to show that wrapper visually because a
 // screenshot communicates the gap better than a paragraph can.
 
@@ -81,15 +81,7 @@ export default function TourPage() {
             open source and runs as a Python terminal program. The desktop
             app keeps that engine intact and adds a watchlist, persistent
             history, cost guard, settings UI for multiple LLM providers,
-            optional{' '}
-            <a
-              href="https://clawless.ai/"
-              target="_blank"
-              rel="noopener"
-              className="prose-link"
-            >
-              Clawless Computer
-            </a> connector, outbound webhooks, and the kind
+            outbound webhooks, and the kind
             of moment-by-moment streaming output you can actually watch
             without a debugger open.
           </p>
@@ -125,16 +117,7 @@ export default function TourPage() {
               The Analyze page is the entry point. Type a ticker, pick the
               as-of date, choose your LLM provider, and the engine wires
               up a fresh debate. The header status strip shows which engine
-              is configured, which data adapter is live, which LLM is on,
-              and whether the optional{' '}
-              <a
-                href="https://clawless.ai/"
-                target="_blank"
-                rel="noopener"
-                className="prose-link"
-              >
-                Clawless Computer
-              </a> connector is reachable.
+              is configured, which data adapter is live, and which LLM is on.
               The session card below the form prints the latest close,
               the period change, range, and average volume, sourced from
               the data adapter you configured.
@@ -305,17 +288,8 @@ export default function TourPage() {
               The Settings surface is where the desktop app earns its
               keep. Configure LLM providers (OpenAI, Anthropic,
               OpenRouter, Gemini, xAI Grok, MiniMax, or a local runtime
-              like Ollama or LM Studio), pick your data adapter, set hard spend caps
-              on the Cost Guard, and optionally wire up the{' '}
-              <a
-                href="https://clawless.ai/"
-                target="_blank"
-                rel="noopener"
-                className="prose-link"
-              >
-                Clawless Computer
-              </a>
-              gateway. Credentials are encrypted at rest via your OS
+              like Ollama or LM Studio), pick your data adapter, and set hard spend caps
+              on the Cost Guard. Credentials are encrypted at rest via your OS
               keychain (Keychain on macOS, DPAPI on Windows, Secret
               Service on Linux). Nothing ships to RBJ Global. Nothing
               ships to anywhere except the providers you chose.
@@ -340,12 +314,6 @@ export default function TourPage() {
               src="/screenshots/settings-costguard.webp"
               alt="Settings Cost Guard tab with daily and per-session spend caps and the current-period spend visualization."
               caption="Settings · Cost Guard"
-              width="max-w-none"
-            />
-            <Shot
-              src="/screenshots/settings-clawless.webp"
-              alt="Settings Clawless Computer tab showing the optional gateway URL and token connected status."
-              caption="Settings · Clawless Computer (optional)"
               width="max-w-none"
             />
           </div>

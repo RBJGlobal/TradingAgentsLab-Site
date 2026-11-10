@@ -39,7 +39,7 @@ Trading Agents Lab is an AGPL-3.0 desktop application (Electron, Vite, React fro
 ## Roadmap signals
 
 - Shipped: Phase 1 desktop closeout (debate engine, history, watchlist, batch runner, CostGuard, webhooks, navigate-away survival, settings UX)
-- Queued: Phase 6 Clawless Computer gateway connector (LLM RPC tap), Phase 8c bidirectional Telegram bot, paid licensing tier
+- Queued: Phase 8c bidirectional Telegram bot, paid licensing tier
 - Not on roadmap, ever: live trading execution, broker order routing, real-money trade placement
 
 ## Disclaimers

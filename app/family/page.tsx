@@ -166,14 +166,15 @@ export default function FamilyPage() {
 
           <SiblingCard
             name="Clawless Computer"
-            tagline="Desktop AI workspace, optional connector for this app."
+            tagline="Desktop AI workspace from the same maker."
             body={
               <>
                 <p>
                   An on-device workspace for working with LLMs, models, and
-                  agents on macOS or Ubuntu. Trading Agents Lab can route
-                  its analyst, researcher, trader, and risk-manager calls
-                  through{' '}
+                  agents on macOS or Ubuntu.
+                </p>
+                <p className="mt-3">
+                  Trading Agents Lab is a standalone trading companion for{' '}
                   <a
                     href="https://clawless.ai/"
                     target="_blank"
@@ -181,18 +182,11 @@ export default function FamilyPage() {
                     className="prose-link"
                   >
                     Clawless Computer
-                  </a> when present, which means the same
-                  LLM-provider credentials and the same OS-keychain
-                  discipline carry over between the two surfaces.
-                </p>
-                <p className="mt-3">
-                  Trading Agents Lab is positioned as the standalone trading
-                  companion for Clawless Computer. The connection is optional. You
-                  can run this app with your own OpenAI, Anthropic,
-                  OpenRouter, Gemini, xAI Grok, MiniMax, or local Ollama
-                  keys and never touch
-                  Clawless Computer. The connector is there if you want one place to
-                  manage on-device AI work.
+                  </a>
+                  . The two are independent products: separate codebases, no
+                  shared code, and no connection between them. Trading Agents
+                  Lab works fully on its own with your own OpenAI, Anthropic,
+                  OpenRouter, Gemini, xAI Grok, MiniMax, or local Ollama keys.
                 </p>
               </>
             }
