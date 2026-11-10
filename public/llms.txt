@@ -17,7 +17,6 @@ Trading Agents Lab is an AGPL-3.0 desktop application (Electron, Vite, React fro
 - [Webhooks (outbound JSON push on session.complete)](https://tradingagentslab.ai/docs/webhooks/)
 - [OAuth flows (OpenAI only; Anthropic OAuth is banned by Anthropic TOS)](https://tradingagentslab.ai/docs/oauth/)
 - [Security and storage (OS keychain encryption, 127.0.0.1 only)](https://tradingagentslab.ai/docs/security-and-storage/)
-- [Optional Clawless Computer desktop connector](https://tradingagentslab.ai/docs/clawless-connector/)
 
 ## Stack and openness
 

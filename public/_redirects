@@ -10,3 +10,7 @@
 # Catch the canonical .com → .ai mirror once we own both domains.
 # Uncomment after DNS lands:
 # https://tradingagentslab.ai/*  https://tradingagentslab.com/:splat   301
+
+# Removed doc: the Clawless Computer connector was removed from the app.
+/docs/clawless-connector   /docs/faq/   301
+/docs/clawless-connector/  /docs/faq/   301

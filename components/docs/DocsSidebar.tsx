@@ -32,7 +32,6 @@ const GROUPS: Array<{ name: string; slugs: string[] }> = [
       'data-providers',
       'cost-guard',
       'webhooks',
-      'clawless-connector',
     ],
   },
   {
