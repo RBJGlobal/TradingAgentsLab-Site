@@ -81,7 +81,15 @@ export default function TourPage() {
             open source and runs as a Python terminal program. The desktop
             app keeps that engine intact and adds a watchlist, persistent
             history, cost guard, settings UI for multiple LLM providers,
-            optional Clawless Computer connector, outbound webhooks, and the kind
+            optional{' '}
+            <a
+              href="https://clawless.ai/"
+              target="_blank"
+              rel="noopener"
+              className="prose-link"
+            >
+              Clawless Computer
+            </a> connector, outbound webhooks, and the kind
             of moment-by-moment streaming output you can actually watch
             without a debugger open.
           </p>
@@ -118,7 +126,15 @@ export default function TourPage() {
               as-of date, choose your LLM provider, and the engine wires
               up a fresh debate. The header status strip shows which engine
               is configured, which data adapter is live, which LLM is on,
-              and whether the optional Clawless Computer connector is reachable.
+              and whether the optional{' '}
+              <a
+                href="https://clawless.ai/"
+                target="_blank"
+                rel="noopener"
+                className="prose-link"
+              >
+                Clawless Computer
+              </a> connector is reachable.
               The session card below the form prints the latest close,
               the period change, range, and average volume, sourced from
               the data adapter you configured.
@@ -290,7 +306,15 @@ export default function TourPage() {
               keep. Configure LLM providers (OpenAI, Anthropic,
               OpenRouter, Gemini, xAI Grok, MiniMax, or a local runtime
               like Ollama or LM Studio), pick your data adapter, set hard spend caps
-              on the Cost Guard, and optionally wire up the Clawless Computer
+              on the Cost Guard, and optionally wire up the{' '}
+              <a
+                href="https://clawless.ai/"
+                target="_blank"
+                rel="noopener"
+                className="prose-link"
+              >
+                Clawless Computer
+              </a>
               gateway. Credentials are encrypted at rest via your OS
               keychain (Keychain on macOS, DPAPI on Windows, Secret
               Service on Linux). Nothing ships to RBJ Global. Nothing

@@ -211,7 +211,14 @@ export default function About() {
         <div className="container-prose">
           <h2 className="text-3xl">The company behind it.</h2>
           <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            RBJ Global LLC builds a family of independent products, and
+            <a
+              href="https://rbjglobal.com/"
+              target="_blank"
+              rel="noopener"
+              className="prose-link"
+            >
+              RBJ Global LLC
+            </a> builds a family of independent products, and
             much of the work is for awareness and education. Trading
             Agents Lab is part of that: a working multi-agent system that
             anyone can download, read and learn from.

@@ -25,7 +25,7 @@ const FAMILY_JSON_LD = {
     name: 'RBJ Global LLC',
     url: 'https://rbjglobal.com/',
     subOrganization: [
-      { '@type': 'Organization', name: 'Clawless', url: 'https://clawless.ai/' },
+      { '@type': 'Organization', name: 'Clawless Computer', url: 'https://clawless.ai/' },
       { '@type': 'Organization', name: 'iLoveMD', url: 'https://iluvmd.com/' },
       { '@type': 'Organization', name: 'WhisprDesk', url: 'https://whisprdesk.com/' },
       { '@type': 'Organization', name: 'Trading Agents Lab', url: 'https://tradingagentslab.ai/' },
@@ -114,7 +114,15 @@ export default function FamilyPage() {
             Trading Agents Lab is one of several.
           </p>
           <p className="mt-8 text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            Trading Agents Lab is published by RBJ Global, an independent
+            Trading Agents Lab is published by{' '}
+            <a
+              href="https://rbjglobal.com/"
+              target="_blank"
+              rel="noopener"
+              className="prose-link"
+            >
+              RBJ Global
+            </a>, an independent
             software studio. The same operator ships a small portfolio of
             single-purpose tools, each on its own domain, each with its own
             roadmap. What ties them together is a single posture: the
@@ -165,7 +173,15 @@ export default function FamilyPage() {
                   An on-device workspace for working with LLMs, models, and
                   agents on macOS or Ubuntu. Trading Agents Lab can route
                   its analyst, researcher, trader, and risk-manager calls
-                  through Clawless Computer when present, which means the same
+                  through{' '}
+                  <a
+                    href="https://clawless.ai/"
+                    target="_blank"
+                    rel="noopener"
+                    className="prose-link"
+                  >
+                    Clawless Computer
+                  </a> when present, which means the same
                   LLM-provider credentials and the same OS-keychain
                   discipline carry over between the two surfaces.
                 </p>
@@ -182,7 +198,7 @@ export default function FamilyPage() {
             }
             links={[
               { href: 'https://clawless.ai/', label: 'Visit clawless.ai' },
-              { href: 'https://clawless.ai/download', label: 'Download Clawless' },
+              { href: 'https://clawless.ai/download', label: 'Download Clawless Computer' },
               { href: 'https://clawless.ai/pricing', label: 'Pricing' },
             ]}
           />
@@ -195,7 +211,15 @@ export default function FamilyPage() {
                 A static, browser-only converter for Markdown, PDF, DOCX,
                 and the formats around them. Conversion runs in the tab,
                 nothing is sent to a server. For a Trading Agents Lab
-                user, iLoveMD is useful upstream of the debate: cleaning
+                user,{' '}
+                <a
+                  href="https://iluvmd.com/"
+                  target="_blank"
+                  rel="noopener"
+                  className="prose-link"
+                >
+                  iLoveMD
+                </a> is useful upstream of the debate: cleaning
                 a research note, an analyst PDF, or a 10-K excerpt into
                 plain text you can paste into a prompt or save into a
                 local knowledge folder, without involving any service
@@ -236,8 +260,15 @@ export default function FamilyPage() {
               <p>
                 A free, public learning library that explains how AI
                 actually works, written for people who don&apos;t code.
-                Trading Agents Lab doubles as a practical case study for
-                Clawdemy: students who want to see a real multi-agent
+                Trading Agents Lab doubles as a practical case study for{' '}
+                <a
+                  href="https://clawdemy.org/"
+                  target="_blank"
+                  rel="noopener"
+                  className="prose-link"
+                >
+                  Clawdemy
+                </a>: students who want to see a real multi-agent
                 LLM system can read this codebase alongside the lessons.
                 The tracks on agents and on local-first AI map cleanly
                 onto why this framework is structured the way it is.
