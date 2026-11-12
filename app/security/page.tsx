@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description:
     'Trading Agents Lab collects no personal data. The site uses a privacy-first, cookieless visit counter; the desktop app has no telemetry and no accounts, and keys are stored locally in the OS keychain.',
   alternates: { canonical: '/security/' },
+  // Hidden from search like the legal pages (founder 2026-11-12); still linked in nav and footer.
+  robots: { index: false, follow: true },
 };
 
 export default function Security() {
