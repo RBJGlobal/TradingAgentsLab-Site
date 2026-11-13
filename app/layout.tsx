@@ -1,21 +1,24 @@
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import DisclaimerBar from '@/components/layout/DisclaimerBar';
 import { siteMetadata, CF_BEACON_TOKEN } from '@/lib/metadata';
 import './globals.css';
 
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+// Self-hosted copies of the Google Fonts files (latin subset, variable weight), see app/fonts/README.md.
+// next/font/google fetched them from Google at build time, and that fetch broke on Cloudflare's
+// build machines on 2026-11-13 (Google returned file URLs next/font could not parse).
+const inter = localFont({
+  src: './fonts/inter-latin-var.woff2',
+  weight: '400 700',
   display: 'swap',
   variable: '--font-inter',
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
+const jetbrainsMono = localFont({
+  src: './fonts/jetbrains-mono-latin-var.woff2',
+  weight: '400 600',
   display: 'swap',
   variable: '--font-jetbrains-mono',
 });
