@@ -1,6 +1,6 @@
 # Cost Guard
 
-*Stacked daily / weekly / monthly USD caps and an optional sessions-per-day rate cap. Optional. Off by default. Override per-run.*
+*Stacked daily / weekly / monthly USD caps and an optional sessions-per-day rate cap. On by default ($2.00 a day, $5.00 a week, $15.00 a month for new installs). Override per-run.*
 
 > **For educational research and paper trading. This is not investment advice.**
 
@@ -50,7 +50,8 @@ The engine computes a per-session cost using a static **cost rate table** (`engi
 | API-key on any per-token-billed provider | Real token usage × rate table. Logged on `session.complete`. |
 | **OpenAI OAuth** (ChatGPT subscription) | **$0**. Subscription billing happens outside our app; we record 0 so the cost ledger only reflects per-token API spend. |
 | **Local LLM** (Ollama / LM Studio) | **$0**. Local sessions cost nothing in real dollars. |
-| **OpenRouter** | Recorded as `0.0` since model rates vary by underlying model and we don't track them. The rate cap (sessions-per-day) is what you'd use to discipline OpenRouter usage. |
+| **OpenRouter** | Priced at the rate OpenRouter publishes for that model, read when the model list loads. Before the list has loaded (for example right after the app starts), the model is priced from our own rate for the same vendor model, or from a deliberately high estimate if we have none. |
+| **A model newer than your copy of the app** | Priced from its model family at a deliberately high estimate (for example, $15 / $75 per million input / output tokens for an unknown Claude Opus class model). Never `0.0`: an unpriced model can make Cost Guard stop sooner, never later. A dated model name (such as `claude-haiku-4-5-20251001`) uses the rate of its plain name. |
 
 OAuth and Local sessions **skip** the three USD caps but **do count** against the sessions-per-day rate cap, even free runs benefit from quota discipline on runaway debate counts.
 
@@ -60,8 +61,8 @@ OAuth and Local sessions **skip** the three USD caps but **do count** against th
 
 Before a live debate kicks off, the renderer:
 
-1. **Estimates worst-case cost** for the session (assumes every agent maxes out its output budget, transcript grows triangularly across agents).
-2. **POSTs `/cost-guard/reserve`** with `{model, auth_kind, max_tokens}`.
+1. **Estimates worst-case cost** for the session (assumes every agent maxes out its output budget, transcript grows triangularly across agents). For a **reasoning model** the output budget per agent includes its thinking allowance (1,200 extra tokens on top of the answer budget), because thinking is billed as output. The growing transcript is budgeted at the same full size: the provider does not split that room between thinking and answer, so a model that thinks briefly can write a longer answer, and every later agent reads it.
+2. **POSTs `/cost-guard/reserve`** with `{model, auth_kind, max_tokens, provider}` (`provider` is optional; the engine works it out from the model name when it is missing).
 3. If the reservation succeeds → the debate proceeds with a `reservation_id` threaded on the WebSocket start frame.
 4. If the reservation fails with `CostGuardBlocked` → the **Cost Guard modal** opens.
 
@@ -129,7 +130,7 @@ Spend totals are **rolling windows**, not user-resettable values. They automatic
 - Weekly totals shed entries older than 7 days each midnight.
 - Monthly totals shed entries older than 30 days each midnight.
 
-There is **no manual reset**, by design, so spend history can't be wiped to dodge a cap. If you need to forget historical data entirely, you can delete `<userData>/data/sessions.db` (or specifically the `sessions` table). This is destructive and not recommended; debate history is the same DB.
+There is **no manual reset**, by design, so spend history can't be wiped to dodge a cap. If you need to forget historical data entirely, you can quit the app and delete `sessions.db` (plus any `sessions.db-wal` and `sessions.db-shm` beside it). The installed app keeps it at `~/Library/Application Support/Trading Agents Lab/sessions.db`; running from source, it is `<repo>/data/sessions.db`. See [security-and-storage.md](security-and-storage.md). This is destructive and not recommended; debate history is the same DB.
 
 ---
 
