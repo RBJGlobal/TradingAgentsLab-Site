@@ -55,7 +55,7 @@ export default function Security() {
               <Row no>
                 No accounts, no email collection, no sign-up flow at all
               </Row>
-              <Row no>No install ping, no update ping, no in-app usage tracking</Row>
+              <Row no>No install ping, no in-app usage tracking</Row>
               <Row no>
                 No cookies (the marketing site uses zero; the desktop app
                 uses local storage on disk for preferences only)
@@ -77,7 +77,8 @@ export default function Security() {
             <h2 className="text-3xl">What we do, and where it stays.</h2>
             <p className="mt-6 text-lg leading-relaxed text-[var(--color-text-secondary)]">
               The desktop app makes outbound network calls, but only to
-              providers you have explicitly configured. Every call goes
+              providers you have explicitly configured, and an optional
+              update check to GitHub. Every call goes
               directly from your machine to the provider; we have no
               servers in between, because we have no servers at all.
             </p>

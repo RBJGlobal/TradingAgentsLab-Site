@@ -20,7 +20,7 @@ export default function PrivacyPolicy() {
         className="mt-3 text-xs text-[var(--color-text-muted)]"
         style={{ fontFamily: 'var(--font-mono)' }}
       >
-        Last updated: 2026-07-12
+        Last updated: 2026-11-17
       </p>
 
       <div className="docs-prose mt-10">
@@ -32,7 +32,8 @@ export default function PrivacyPolicy() {
           (Cloudflare Web Analytics) to count visits; the desktop app has no
           telemetry and no install pings. When you use the desktop application,
           the only outbound network calls go directly from your machine to the
-          providers <em>you</em> configure.
+          providers <em>you</em> configure, and an optional update check to
+          GitHub.
         </p>
 
         <h2>What this policy covers.</h2>
@@ -85,7 +86,8 @@ export default function PrivacyPolicy() {
         <h2>The desktop application.</h2>
         <p>
           The application runs on your machine. Outbound network calls
-          are limited to providers you explicitly configure:
+          are limited to providers you explicitly configure, and an
+          optional update check to GitHub:
         </p>
         <ul>
           <li>
@@ -117,6 +119,18 @@ export default function PrivacyPolicy() {
             so OpenRouter can attribute traffic. This is their telemetry,
             our courtesy. Disabling it is a one-line code change in your
             fork.
+          </li>
+          <li>
+            <strong>Update checks.</strong> Trading Agents Lab asks GitHub
+            whether a newer version exists. Like any web request it reaches
+            GitHub from your IP address and carries your system language.
+            In Lite up to 1.1.5 and Pro up to 1.1.8 the request also carries
+            a random ID made for your install by the update library; we do
+            not use it. From Lite 1.1.6 and Pro 1.1.9 the request carries no
+            ID for you or your install, and it does not send the version you
+            have. When an update is downloaded, the download can name the
+            version you have now. You can turn the automatic check off in
+            Settings, About (in Trading Agents Lab Pro: Settings, Updates).
           </li>
         </ul>
 
