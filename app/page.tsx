@@ -50,6 +50,7 @@ const softwareJsonLd = {
       sameAs: [
         'https://www.linkedin.com/company/117584287',
         'https://github.com/RBJGlobal/TradingAgentsLab',
+        'https://x.com/tradingagentlab',
       ],
     },
   ],

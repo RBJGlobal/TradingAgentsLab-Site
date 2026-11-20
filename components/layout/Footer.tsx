@@ -3,6 +3,9 @@ import Link from 'next/link';
 // TradingAgentsLab-specific LinkedIn company page.
 const LINKEDIN_URL = 'https://www.linkedin.com/company/117584287/';
 
+// Trading Agents Lab X profile (handle is singular: tradingagentlab).
+const X_URL = 'https://x.com/tradingagentlab';
+
 const COLUMNS = [
   {
     title: 'Product',
@@ -139,6 +142,18 @@ export default function Footer() {
                 <LinkedInMark />
                 <span>LinkedIn</span>
               </a>
+              <a
+                href={X_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow on X. Opens X in a new tab."
+                data-testid="footer-x-link"
+                className="inline-flex items-center gap-1.5 text-xs text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-accent)]"
+                style={{ fontFamily: 'var(--font-mono)' }}
+              >
+                <XMark />
+                <span>X</span>
+              </a>
               <p
                 className="text-xs text-[var(--color-text-muted)]"
                 style={{ fontFamily: 'var(--font-mono)' }}
@@ -163,6 +178,20 @@ function LinkedInMark() {
       aria-hidden="true"
     >
       <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" />
+    </svg>
+  );
+}
+
+function XMark() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
     </svg>
   );
 }
