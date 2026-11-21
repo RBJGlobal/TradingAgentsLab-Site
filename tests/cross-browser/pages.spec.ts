@@ -1,4 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
+import releases from '../../lib/releases.json';
 
 // Pages checked in every engine. Each check loads the page, fails on
 // console errors or failed same-origin requests, checks the single h1
@@ -77,14 +78,15 @@ for (const p of PAGES) {
   });
 }
 
-test('download page links both apps to GitHub releases', async ({ page }) => {
+test('download page links both pinned release files', async ({ page }) => {
   await isolate(page);
   await page.goto('/download/');
   const hrefs = await page.locator('a[href*="github.com/RBJGlobal/"]').evaluateAll((as) =>
     as.map((a) => (a as HTMLAnchorElement).href),
   );
-  expect(hrefs.some((h) => h.includes('/TradingAgentsLab/releases/'))).toBe(true);
-  expect(hrefs.some((h) => h.includes('/TradingAgentsLab-Pro/releases/'))).toBe(true);
+  // The buttons must link exactly the pinned release files.
+  expect(hrefs).toContain(releases.lite.url);
+  expect(hrefs).toContain(releases.pro.url);
 });
 
 test('mobile menu opens and closes', async ({ page, isMobile }, testInfo) => {

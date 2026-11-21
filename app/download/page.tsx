@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { SITE_URL, SITE_NAME } from '@/lib/metadata';
+import releases from '@/lib/releases.json';
 
 export const metadata: Metadata = {
   title: 'Download',
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
   alternates: { canonical: '/download/' },
 };
 
-// Static export: resolved once at build time and baked into the page.
+// Static export. The download buttons link the exact release files pinned in
+// lib/releases.json (refreshed by scripts/pin-releases.mjs when a release is
+// promoted), so building the same commit twice gives the same page.
 export const dynamic = 'force-static';
 
 const LIGHT_RELEASES_PAGE =
@@ -17,44 +20,9 @@ const LIGHT_RELEASES_PAGE =
 const PRO_RELEASES_PAGE =
   'https://github.com/RBJGlobal/TradingAgentsLab-Pro/releases/latest';
 
-// Resolve the direct .dmg asset URL at build time so each Download button is a
-// pure download (the file, not the GitHub release chooser). Asset names are
-// version-pinned, so we fetch the latest release's arm64 .dmg rather than
-// hardcoding a URL that goes stale next release. Falls back to the releases
-// page if the API is unreachable or the repo has no release yet, so the
-// button is never broken. no-store: Next persists force-cache fetches in
-// .next/cache across builds, which would pin the button to whichever release
-// was latest the first time the page ever built.
-async function getDmgUrl(repo: string, fallback: string): Promise<string> {
-  try {
-    const res = await fetch(
-      `https://api.github.com/repos/${repo}/releases/latest`,
-      {
-        headers: {
-          Accept: 'application/vnd.github+json',
-          'User-Agent': 'tradingagentslab-site',
-        },
-        cache: 'no-store',
-      },
-    );
-    if (!res.ok) return fallback;
-    const data = (await res.json()) as {
-      assets?: { name?: string; browser_download_url?: string }[];
-    };
-    const dmg = data.assets?.find(
-      (a) => a.name?.endsWith('.dmg') && a.name?.includes('arm64'),
-    );
-    return dmg?.browser_download_url ?? fallback;
-  } catch {
-    return fallback;
-  }
-}
-
-export default async function Download() {
-  const [lightDmgUrl, proDmgUrl] = await Promise.all([
-    getDmgUrl('RBJGlobal/TradingAgentsLab', LIGHT_RELEASES_PAGE),
-    getDmgUrl('RBJGlobal/TradingAgentsLab-Pro', PRO_RELEASES_PAGE),
-  ]);
+export default function Download() {
+  const lightDmgUrl = releases.lite.url;
+  const proDmgUrl = releases.pro.url;
 
   const jsonLd = {
     '@context': 'https://schema.org',
