@@ -1,0 +1,38 @@
+name: Cross-browser checks
+
+# Runs on pushes to check/* branches and by hand. Builds the static site,
+# serves it inside the runner and checks key pages in Chromium, Firefox,
+# WebKit and two emulated phone profiles. Does not deploy anything.
+on:
+  push:
+    branches: ['check/**']
+    paths-ignore: ['README.md', 'LICENSE', '.gitignore']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cross-browser-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  linux:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npx playwright test
+      - if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: cross-browser-report-${{ github.sha }}
+          path: playwright-report/
+          retention-days: 14
