@@ -98,7 +98,7 @@ test('docs switch goes to the same page in the other set', async ({ page }) => {
   await page.goto('/docs/pro/getting-started/');
   const sw = page.getByTestId('docs-set-switch');
   await expect(sw.locator('a[href="/docs/lite/getting-started/"]')).toHaveCount(1);
-  await expect(sw.locator('a[aria-current="true"]')).toHaveAttribute('href', '/docs/pro/getting-started/');
+  await expect(sw.locator('a[aria-current="page"]')).toHaveAttribute('href', '/docs/pro/getting-started/');
 
   // A Lite-only page (pro) has no Pro twin, so the switch goes to the Pro index.
   await page.goto('/docs/lite/pro/');

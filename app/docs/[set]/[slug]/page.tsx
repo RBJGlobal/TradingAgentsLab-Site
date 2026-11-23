@@ -29,11 +29,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { set, slug } = await params;
   const doc = isDocSet(set) ? getDoc(set, slug) : null;
   if (!doc || !isDocSet(set)) return { title: 'Not found' };
-  // The two sets share slugs and often H1s ("Getting Started"), so Pro pages
-  // carry a suffix to keep every page title unique.
+  // The two sets share slugs and often H1s ("Getting Started") and lead lines,
+  // so Pro pages carry a marker to keep every title and description unique.
+  const isPro = set === 'pro';
   return {
-    title: set === 'pro' ? `${doc.title} (Pro)` : doc.title,
-    description: doc.description,
+    title: isPro ? `${doc.title} (Pro)` : doc.title,
+    description:
+      isPro && doc.description
+        ? `Trading Agents Lab Pro: ${doc.description}`
+        : doc.description,
     alternates: { canonical: `/docs/${set}/${slug}/` },
   };
 }

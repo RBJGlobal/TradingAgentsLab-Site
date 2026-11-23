@@ -108,7 +108,7 @@ export default function DocsSidebar({ docsBySet }: Props) {
             <Link
               key={target}
               href={switchHref(target)}
-              aria-current={isActive ? 'true' : undefined}
+              aria-current={isActive ? 'page' : undefined}
               className={`rounded px-2 py-1.5 text-center transition-colors ${
                 isActive
                   ? 'bg-[var(--color-accent-tint)] text-[var(--color-accent)]'
@@ -120,7 +120,8 @@ export default function DocsSidebar({ docsBySet }: Props) {
           );
         })}
       </div>
-      {groups.map((group) => (
+      {/* On the /docs/ landing no set is chosen yet, so only the switch shows. */}
+      {pathSet && groups.map((group) => (
         <div key={group.name}>
           <h3
             className="mb-3 text-xs uppercase tracking-widest text-[var(--color-text-muted)]"

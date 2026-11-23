@@ -44,7 +44,7 @@ const REPO_DOCS_BASE: Record<DocSet, string> = {
   pro: 'https://github.com/RBJGlobal/TradingAgentsLab-Pro/blob/main/docs/',
 };
 
-const SAME_SITE_RE = /^https:\/\/tradingagentslab\.ai(\/[^\s]*)$/i;
+const SAME_SITE_RE = /^https:\/\/tradingagentslab\.ai(\/[^\s]*)?$/i;
 
 function rewriteHref(
   href: string | undefined,
@@ -52,7 +52,7 @@ function rewriteHref(
 ): string | undefined {
   if (!href) return href;
   const site = href.match(SAME_SITE_RE);
-  if (site) return site[1];
+  if (site) return site[1] || '/';
   const repo = href.match(REPO_DOC_LINK_RE);
   if (repo) return `${REPO_DOCS_BASE[set]}${repo[1]}${repo[2] ?? ''}`;
   const m = href.match(DOC_LINK_RE);
