@@ -75,7 +75,16 @@ for (const p of PAGES) {
     });
     await page.waitForTimeout(300);
 
-    const shot = await page.screenshot({ fullPage: true });
+    // Browsers cap a screenshot at 32767 pixels; long docs pages on a phone
+    // profile pass that, so the shot is cut at the cap.
+    const { width, height } = await page.evaluate(() => ({
+      width: document.documentElement.scrollWidth,
+      height: document.documentElement.scrollHeight,
+    }));
+    const maxCss = Math.floor(32000 / (testInfo.project.use.deviceScaleFactor ?? 1));
+    const shot = await page.screenshot(
+      height > maxCss ? { fullPage: true, clip: { x: 0, y: 0, width, height: maxCss } } : { fullPage: true },
+    );
     await testInfo.attach(`${p.name}-${testInfo.project.name}.png`, { body: shot, contentType: 'image/png' });
 
     expect(problems, problems.join('\n')).toEqual([]);
