@@ -40,7 +40,7 @@ export default function HowItWorks() {
             The result is a transcript you can read, audit, and learn
             from, not a black-box score. Below is the full pipeline as it
             ships in{' '}
-            <Link href="/docs/how-it-works/" className="prose-link">
+            <Link href="/docs/lite/how-it-works/" className="prose-link">
               the codebase today
             </Link>
             .
@@ -175,7 +175,7 @@ export default function HowItWorks() {
             it lands.
           </p>
           <div className="mt-8">
-            <Link href="/docs/reading-the-debate/" className="btn-secondary">
+            <Link href="/docs/lite/reading-the-debate/" className="btn-secondary">
               How to read a transcript →
             </Link>
           </div>

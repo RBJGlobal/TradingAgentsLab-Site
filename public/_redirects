@@ -12,5 +12,43 @@
 # https://tradingagentslab.ai/*  https://tradingagentslab.com/:splat   301
 
 # Removed doc: the Clawless Computer connector was removed from the app.
-/docs/clawless-connector   /docs/faq/   301
-/docs/clawless-connector/  /docs/faq/   301
+/docs/clawless-connector   /docs/lite/faq/   301
+/docs/clawless-connector/  /docs/lite/faq/   301
+
+# Docs split into two sets (Lite app, Pro app). Old single-set doc URLs go
+# to the same page in the Lite set. /docs/pro/ itself is now the Pro set's
+# index; the Lite page about Pro lives at /docs/lite/pro/.
+/docs/configuring-llm-providers    /docs/lite/configuring-llm-providers/   301
+/docs/configuring-llm-providers/   /docs/lite/configuring-llm-providers/   301
+/docs/cost-guard                   /docs/lite/cost-guard/   301
+/docs/cost-guard/                  /docs/lite/cost-guard/   301
+/docs/crypto-tickers               /docs/lite/crypto-tickers/   301
+/docs/crypto-tickers/              /docs/lite/crypto-tickers/   301
+/docs/data-providers               /docs/lite/data-providers/   301
+/docs/data-providers/              /docs/lite/data-providers/   301
+/docs/faq                          /docs/lite/faq/   301
+/docs/faq/                         /docs/lite/faq/   301
+/docs/getting-started              /docs/lite/getting-started/   301
+/docs/getting-started/             /docs/lite/getting-started/   301
+/docs/how-it-works                 /docs/lite/how-it-works/   301
+/docs/how-it-works/                /docs/lite/how-it-works/   301
+/docs/keyboard-shortcuts           /docs/lite/keyboard-shortcuts/   301
+/docs/keyboard-shortcuts/          /docs/lite/keyboard-shortcuts/   301
+/docs/local-llm                    /docs/lite/local-llm/   301
+/docs/local-llm/                   /docs/lite/local-llm/   301
+/docs/oauth                        /docs/lite/oauth/   301
+/docs/oauth/                       /docs/lite/oauth/   301
+/docs/reading-the-debate           /docs/lite/reading-the-debate/   301
+/docs/reading-the-debate/          /docs/lite/reading-the-debate/   301
+/docs/security-and-storage         /docs/lite/security-and-storage/   301
+/docs/security-and-storage/        /docs/lite/security-and-storage/   301
+/docs/sentiment                    /docs/lite/sentiment/   301
+/docs/sentiment/                   /docs/lite/sentiment/   301
+/docs/troubleshooting              /docs/lite/troubleshooting/   301
+/docs/troubleshooting/             /docs/lite/troubleshooting/   301
+/docs/webhooks                     /docs/lite/webhooks/   301
+/docs/webhooks/                    /docs/lite/webhooks/   301
+
+# Diagram files were renamed per docs set.
+/diagrams/how-it-works-1-34934d30d6.svg  /diagrams/lite-how-it-works-1-34934d30d6.svg  301
+/diagrams/how-it-works-2-520cef30aa.svg  /diagrams/lite-how-it-works-2-520cef30aa.svg  301

@@ -7,16 +7,16 @@ Trading Agents Lab is an AGPL-3.0 desktop application (Electron, Vite, React fro
 ## Capabilities
 
 - [How the multi-agent debate works](https://tradingagentslab.ai/how-it-works/)
-- [Reading the debate output](https://tradingagentslab.ai/docs/reading-the-debate/)
-- [Configuring LLM providers (OpenAI, Anthropic, OpenRouter, Gemini, xAI Grok, MiniMax, Local)](https://tradingagentslab.ai/docs/configuring-llm-providers/)
-- [Local LLM support (Ollama, LM Studio, llama.cpp)](https://tradingagentslab.ai/docs/local-llm/)
-- [Data providers (Yahoo Finance default, Alpaca for power users)](https://tradingagentslab.ai/docs/data-providers/)
-- [Crypto ticker support](https://tradingagentslab.ai/docs/crypto-tickers/)
-- [Sentiment analysis inputs](https://tradingagentslab.ai/docs/sentiment/)
-- [CostGuard (per-session and daily spend caps)](https://tradingagentslab.ai/docs/cost-guard/)
-- [Webhooks (outbound JSON push on session.complete)](https://tradingagentslab.ai/docs/webhooks/)
-- [OAuth flows (OpenAI only; Anthropic OAuth is banned by Anthropic TOS)](https://tradingagentslab.ai/docs/oauth/)
-- [Security and storage (OS keychain encryption, 127.0.0.1 only)](https://tradingagentslab.ai/docs/security-and-storage/)
+- [Reading the debate output](https://tradingagentslab.ai/docs/lite/reading-the-debate/)
+- [Configuring LLM providers (OpenAI, Anthropic, OpenRouter, Gemini, xAI Grok, MiniMax, Local)](https://tradingagentslab.ai/docs/lite/configuring-llm-providers/)
+- [Local LLM support (Ollama, LM Studio, llama.cpp)](https://tradingagentslab.ai/docs/lite/local-llm/)
+- [Data providers (Yahoo Finance default, Alpaca for power users)](https://tradingagentslab.ai/docs/lite/data-providers/)
+- [Crypto ticker support](https://tradingagentslab.ai/docs/lite/crypto-tickers/)
+- [Sentiment analysis inputs](https://tradingagentslab.ai/docs/lite/sentiment/)
+- [CostGuard (per-session and daily spend caps)](https://tradingagentslab.ai/docs/lite/cost-guard/)
+- [Webhooks (outbound JSON push on session.complete)](https://tradingagentslab.ai/docs/lite/webhooks/)
+- [OAuth flows (OpenAI only; Anthropic OAuth is banned by Anthropic TOS)](https://tradingagentslab.ai/docs/lite/oauth/)
+- [Security and storage (OS keychain encryption, 127.0.0.1 only)](https://tradingagentslab.ai/docs/lite/security-and-storage/)
 
 ## Stack and openness
 
@@ -59,6 +59,8 @@ Trading Agents Lab is an AGPL-3.0 desktop application (Electron, Vite, React fro
 - [Security](https://tradingagentslab.ai/security/)
 - [Download](https://tradingagentslab.ai/download/)
 - [Documentation index](https://tradingagentslab.ai/docs/)
+- [Lite app documentation](https://tradingagentslab.ai/docs/lite/)
+- [Pro app documentation](https://tradingagentslab.ai/docs/pro/)
 - [Privacy Policy](https://tradingagentslab.ai/legal/privacy/)
 - [Terms of Use](https://tradingagentslab.ai/legal/terms/)
 - [Disclaimer (locked SEC-aware copy)](https://tradingagentslab.ai/legal/disclaimer/)

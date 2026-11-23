@@ -6,12 +6,12 @@ export default function DocsLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const docs = getAllDocs();
+  const docsBySet = { lite: getAllDocs('lite'), pro: getAllDocs('pro') };
 
   return (
     <div className="container-wide grid grid-cols-1 gap-12 py-16 md:grid-cols-[240px_1fr] md:gap-16">
       <aside className="md:sticky md:top-24 md:self-start">
-        <DocsSidebar docs={docs} />
+        <DocsSidebar docsBySet={docsBySet} />
       </aside>
       <div className="min-w-0">{children}</div>
     </div>

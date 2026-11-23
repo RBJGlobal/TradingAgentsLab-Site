@@ -1,73 +1,40 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { getAllDocs } from '@/lib/docs';
 import { SITE_NAME, SITE_URL } from '@/lib/metadata';
+
+const DESCRIPTION =
+  'Documentation for Trading Agents Lab and Trading Agents Lab Pro, multi-agent LLM trading research, end to end.';
 
 export const metadata: Metadata = {
   title: 'Documentation',
-  description:
-    'Comprehensive documentation for Trading Agents Lab, multi-agent LLM trading research, end to end.',
+  description: DESCRIPTION,
   alternates: { canonical: '/docs/' },
 };
 
-// Topic clusters group the knowledge base into reading paths and give each
-// high-traffic doc descriptive, contextual links from a single hub. Slugs are
-// the source of truth from `content/docs/` (synced from the product repo); any
-// doc not listed here still appears under "More guides", so new synced docs are
-// never dropped.
-const CLUSTERS: { title: string; blurb: string; slugs: string[] }[] = [
+// The docs come in two sets, one per desktop app. This landing page points
+// to each set's index; the sets themselves live at /docs/lite/ and /docs/pro/.
+const SETS = [
   {
-    title: 'Start here',
+    href: '/docs/lite/',
+    title: 'Lite app docs',
+    app: 'Trading Agents Lab',
     blurb:
-      'Install the desktop app, run your first diligence, and learn to read what the agents produce.',
-    slugs: ['getting-started', 'how-it-works', 'reading-the-debate'],
+      'For quick analysis: a full agent debate in about a minute. Install, configure, and learn to read the debate.',
+    start: '/docs/lite/getting-started/',
   },
   {
-    title: 'Models & providers',
+    href: '/docs/pro/',
+    title: 'Pro app docs',
+    app: 'Trading Agents Lab Pro',
     blurb:
-      'Pick a model, run local with Ollama or LM Studio, use a ChatGPT plan via OAuth, and keep token cost in check.',
-    slugs: ['configuring-llm-providers', 'local-llm', 'oauth', 'cost-guard'],
-  },
-  {
-    title: 'Data & markets',
-    blurb:
-      'Wire up market data, run any ticker including crypto, and fold sentiment into the debate.',
-    slugs: ['data-providers', 'crypto-tickers', 'sentiment'],
-  },
-  {
-    title: 'Connect & automate',
-    blurb:
-      'Push results to webhooks and move faster with keyboard shortcuts.',
-    slugs: ['webhooks', 'keyboard-shortcuts'],
-  },
-  {
-    title: 'Operate',
-    blurb:
-      'Where your keys and runs live, how to fix common issues, and answers to frequent questions.',
-    slugs: ['security-and-storage', 'troubleshooting', 'faq'],
+      'For full-depth diligence: the upstream project’s complete research pipeline, with live tool calls and multi-round debates. Written for the signed macOS download.',
+    start: '/docs/pro/getting-started/',
   },
 ];
 
 export default function DocsIndex() {
-  const docs = getAllDocs();
-  const bySlug = new Map(docs.map((d) => [d.slug, d]));
-  const claimed = new Set(CLUSTERS.flatMap((c) => c.slugs));
-  const leftovers = docs.filter((d) => !claimed.has(d.slug));
-
-  const sections = [
-    ...CLUSTERS.map((c) => ({
-      title: c.title,
-      blurb: c.blurb,
-      docs: c.slugs.map((s) => bySlug.get(s)).filter(Boolean),
-    })),
-    ...(leftovers.length
-      ? [{ title: 'More guides', blurb: '', docs: leftovers }]
-      : []),
-  ];
-
-  // The /docs index is a listing, not an article, so CollectionPage (not
-  // TechArticle) is the right type here; pair it with a BreadcrumbList so the
-  // hub itself carries schema (it previously had none).
+  // The /docs landing is a listing, not an article, so CollectionPage (not
+  // TechArticle) is the right type here, paired with a BreadcrumbList.
   const docsUrl = `${SITE_URL}/docs/`;
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -75,8 +42,7 @@ export default function DocsIndex() {
       {
         '@type': 'CollectionPage',
         name: 'Documentation',
-        description:
-          'Comprehensive documentation for Trading Agents Lab, multi-agent LLM trading research, end to end.',
+        description: DESCRIPTION,
         url: docsUrl,
         isPartOf: {
           '@type': 'WebSite',
@@ -103,10 +69,51 @@ export default function DocsIndex() {
       <span className="badge">documentation</span>
       <h1 className="mt-4 text-4xl">Read the source.</h1>
       <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--color-text-secondary)]">
-        Everything you need to install, configure, and reason about Trading
-        Agents Lab. The same documentation that ships inside the desktop
-        app&apos;s Help menu, published here so anyone can learn from it,
-        not just users.
+        Trading Agents Lab comes as two desktop apps, and each has its own
+        documentation. Both apps are free and open source under AGPL-3.0;
+        the difference is depth, time, and what a run consumes. The docs are
+        published here so anyone can learn from them, not just users.
+      </p>
+
+      <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+        {SETS.map((s) => (
+          <div key={s.href} className="card flex flex-col">
+            <span
+              className="text-xs text-[var(--color-text-muted)]"
+              style={{ fontFamily: 'var(--font-mono)' }}
+            >
+              {s.app}
+            </span>
+            <h2 className="mt-1 text-2xl">
+              <Link href={s.href} className="hover:text-[var(--color-accent)]">
+                {s.title}
+              </Link>
+            </h2>
+            <p className="mt-2 text-sm text-[var(--color-text-secondary)]">
+              {s.blurb}
+            </p>
+            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+              <Link href={s.href} className="prose-link">
+                All {s.title.replace(' docs', '')} docs
+              </Link>
+              <Link href={s.start} className="prose-link">
+                Getting started
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p className="mt-10 max-w-2xl text-sm text-[var(--color-text-muted)]">
+        Not sure which app you have, or which to start with? See{' '}
+        <Link href="/docs/lite/pro/" className="prose-link">
+          what the Pro app adds
+        </Link>{' '}
+        or compare both on the{' '}
+        <Link href="/download/" className="prose-link">
+          download page
+        </Link>
+        .
       </p>
 
       <p className="mt-4 max-w-2xl text-sm text-[var(--color-text-muted)]">
@@ -125,51 +132,15 @@ export default function DocsIndex() {
         </a>{' '}
         and other AI-education programs. If you&apos;re here to understand
         agentic systems, start with{' '}
-        <Link href="/docs/how-it-works/" className="prose-link">
+        <Link href="/docs/lite/how-it-works/" className="prose-link">
           How it works
         </Link>{' '}
         and{' '}
-        <Link href="/docs/reading-the-debate/" className="prose-link">
+        <Link href="/docs/lite/reading-the-debate/" className="prose-link">
           Reading the debate
         </Link>
         .
       </p>
-
-      <div className="mt-12 space-y-12">
-        {sections.map((section) => (
-          <section key={section.title}>
-            <h2 className="text-2xl">{section.title}</h2>
-            {section.blurb ? (
-              <p className="mt-2 max-w-2xl text-sm text-[var(--color-text-secondary)]">
-                {section.blurb}
-              </p>
-            ) : null}
-            <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
-              {section.docs.map((doc) => (
-                <Link
-                  key={doc!.slug}
-                  href={`/docs/${doc!.slug}/`}
-                  className="card flex flex-col"
-                >
-                  <h3 className="text-lg">{doc!.title}</h3>
-                  {doc!.description ? (
-                    <p className="mt-2 text-sm text-[var(--color-text-secondary)]">
-                      {doc!.description}
-                    </p>
-                  ) : (
-                    <p
-                      className="mt-2 text-xs text-[var(--color-text-muted)]"
-                      style={{ fontFamily: 'var(--font-mono)' }}
-                    >
-                      /docs/{doc!.slug}
-                    </p>
-                  )}
-                </Link>
-              ))}
-            </div>
-          </section>
-        ))}
-      </div>
     </article>
   );
 }

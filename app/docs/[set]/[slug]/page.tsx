@@ -1,36 +1,51 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getAllDocSlugs, getAllDocs, getDoc, extractFaqEntries } from '@/lib/docs';
+import {
+  DOC_SETS,
+  DOC_SET_LABELS,
+  getAllDocSlugs,
+  getAllDocs,
+  getDoc,
+  extractFaqEntries,
+  isDocSet,
+} from '@/lib/docs';
 import { SITE_URL } from '@/lib/metadata';
 import MarkdownRenderer from '@/components/docs/MarkdownRenderer';
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ set: string; slug: string }>;
 }
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
-  return getAllDocSlugs().map((slug) => ({ slug }));
+  return DOC_SETS.flatMap((set) =>
+    getAllDocSlugs(set).map((slug) => ({ set, slug })),
+  );
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const doc = getDoc(slug);
-  if (!doc) return { title: 'Not found' };
+  const { set, slug } = await params;
+  const doc = isDocSet(set) ? getDoc(set, slug) : null;
+  if (!doc || !isDocSet(set)) return { title: 'Not found' };
+  // The two sets share slugs and often H1s ("Getting Started"), so Pro pages
+  // carry a suffix to keep every page title unique.
   return {
-    title: doc.title,
+    title: set === 'pro' ? `${doc.title} (Pro)` : doc.title,
     description: doc.description,
-    alternates: { canonical: `/docs/${slug}/` },
+    alternates: { canonical: `/docs/${set}/${slug}/` },
   };
 }
 
 export default async function DocPage({ params }: Props) {
-  const { slug } = await params;
-  const doc = getDoc(slug);
+  const { set, slug } = await params;
+  if (!isDocSet(set)) notFound();
+  const doc = getDoc(set, slug);
   if (!doc) notFound();
 
-  // Build prev/next nav from the global ordering.
-  const all = getAllDocs();
+  // Build prev/next nav from this set's ordering.
+  const all = getAllDocs(set);
   const idx = all.findIndex((d) => d.slug === slug);
   const prev = idx > 0 ? all[idx - 1] : null;
   const next = idx >= 0 && idx < all.length - 1 ? all[idx + 1] : null;
@@ -49,7 +64,7 @@ export default async function DocPage({ params }: Props) {
   // Global LLC) per the family SEO spec. No dateModified: the docs are synced
   // from the product repo, so there is no reliable per-page content-modified
   // date, and a churning sync date is an SEO anti-pattern.
-  const docUrl = `${SITE_URL}/docs/${slug}/`;
+  const docUrl = `${SITE_URL}/docs/${set}/${slug}/`;
   const organization = {
     '@type': 'Organization',
     name: 'RBJ Global LLC',
@@ -97,6 +112,12 @@ export default async function DocPage({ params }: Props) {
           {
             '@type': 'ListItem',
             position: 3,
+            name: `${DOC_SET_LABELS[set]} docs`,
+            item: `${SITE_URL}/docs/${set}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 4,
             name: doc.title,
             item: docUrl,
           },
@@ -113,15 +134,15 @@ export default async function DocPage({ params }: Props) {
       />
       <div className="mb-6">
         <Link
-          href="/docs/"
+          href={`/docs/${set}/`}
           className="text-xs text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-accent)]"
           style={{ fontFamily: 'var(--font-mono)' }}
         >
-          ← all docs
+          ← all {DOC_SET_LABELS[set]} docs
         </Link>
       </div>
 
-      <MarkdownRenderer markdown={doc.markdown} />
+      <MarkdownRenderer markdown={doc.markdown} set={set} />
 
       <hr className="my-12 border-[var(--color-border-muted)]" />
 
@@ -131,7 +152,7 @@ export default async function DocPage({ params }: Props) {
       >
         {prev ? (
           <Link
-            href={`/docs/${prev.slug}/`}
+            href={`/docs/${set}/${prev.slug}/`}
             className="card flex flex-col text-left"
           >
             <span
@@ -149,7 +170,7 @@ export default async function DocPage({ params }: Props) {
         )}
         {next ? (
           <Link
-            href={`/docs/${next.slug}/`}
+            href={`/docs/${set}/${next.slug}/`}
             className="card flex flex-col text-right"
           >
             <span

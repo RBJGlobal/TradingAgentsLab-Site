@@ -5,6 +5,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import type { AnchorHTMLAttributes } from 'react';
 import { createHash } from 'node:crypto';
 import mermaidManifest from '@/lib/mermaid-manifest.json';
+import type { DocSet } from '@/lib/docs';
 
 /**
  * Server-rendered markdown for docs pages.
@@ -15,7 +16,8 @@ import mermaidManifest from '@/lib/mermaid-manifest.json';
  */
 
 /**
- * Rewrite intra-KB markdown links so they resolve to our /docs/<slug>/ route.
+ * Rewrite intra-KB markdown links so they resolve to our /docs/<set>/<slug>/
+ * route, where <set> is the set (lite or pro) of the page being rendered.
  *
  * The KB markdown sources live in the desktop product repo, where authors
  * cross-link like `[Reading the debate](reading-the-debate.md)` so the
@@ -26,7 +28,10 @@ import mermaidManifest from '@/lib/mermaid-manifest.json';
  *   - `slug.md`
  *   - `./slug.md`
  *   - `slug.md#anchor`
- *   - leaves http(s):, mailto:, tel:, and existing /-rooted links alone
+ *   - full https://tradingagentslab.ai/... URLs (used for links that cross
+ *     from one set to the other) become same-site paths, so they open in
+ *     the same tab like any other docs link
+ *   - leaves other http(s):, mailto:, tel:, and existing /-rooted links alone
  */
 const DOC_LINK_RE = /^\.?\/?([a-z0-9-]+)\.md(#.*)?$/i;
 
@@ -34,17 +39,26 @@ const DOC_LINK_RE = /^\.?\/?([a-z0-9-]+)\.md(#.*)?$/i;
 // the KB set synced to this site, so there is no /docs/<slug>/ page for them.
 // Send those to the source of truth on GitHub instead of a 404.
 const REPO_DOC_LINK_RE = /^\.\.\/([a-z0-9-]+\.md)(#.*)?$/i;
-const REPO_DOCS_BASE =
-  'https://github.com/RBJGlobal/TradingAgentsLab/blob/main/docs/';
+const REPO_DOCS_BASE: Record<DocSet, string> = {
+  lite: 'https://github.com/RBJGlobal/TradingAgentsLab/blob/main/docs/',
+  pro: 'https://github.com/RBJGlobal/TradingAgentsLab-Pro/blob/main/docs/',
+};
 
-function rewriteHref(href: string | undefined): string | undefined {
+const SAME_SITE_RE = /^https:\/\/tradingagentslab\.ai(\/[^\s]*)$/i;
+
+function rewriteHref(
+  href: string | undefined,
+  set: DocSet,
+): string | undefined {
   if (!href) return href;
+  const site = href.match(SAME_SITE_RE);
+  if (site) return site[1];
   const repo = href.match(REPO_DOC_LINK_RE);
-  if (repo) return `${REPO_DOCS_BASE}${repo[1]}${repo[2] ?? ''}`;
+  if (repo) return `${REPO_DOCS_BASE[set]}${repo[1]}${repo[2] ?? ''}`;
   const m = href.match(DOC_LINK_RE);
   if (!m) return href;
   const [, slug, anchor = ''] = m;
-  return `/docs/${slug}/${anchor}`;
+  return `/docs/${set}/${slug}/${anchor}`;
 }
 
 /**
@@ -165,8 +179,11 @@ function rehypeMermaidDiagram() {
   return (tree: unknown) => walk(tree as HastNode);
 }
 
-function MdAnchor(props: AnchorHTMLAttributes<HTMLAnchorElement>) {
-  const href = rewriteHref(props.href);
+function MdAnchor({
+  set,
+  ...props
+}: AnchorHTMLAttributes<HTMLAnchorElement> & { set: DocSet }) {
+  const href = rewriteHref(props.href, set);
   const isExternal =
     typeof href === 'string' && /^https?:\/\//i.test(href);
 
@@ -178,7 +195,13 @@ function MdAnchor(props: AnchorHTMLAttributes<HTMLAnchorElement>) {
   return <a {...props} href={href} />;
 }
 
-export default function MarkdownRenderer({ markdown }: { markdown: string }) {
+export default function MarkdownRenderer({
+  markdown,
+  set,
+}: {
+  markdown: string;
+  set: DocSet;
+}) {
   return (
     <div className="docs-prose">
       <ReactMarkdown
@@ -196,7 +219,10 @@ export default function MarkdownRenderer({ markdown }: { markdown: string }) {
           rehypeProCallout,
           rehypeMermaidDiagram,
         ]}
-        components={{ a: MdAnchor }}
+        components={{
+          // react-markdown passes `node` too; keep it off the DOM element.
+          a: ({ node: _node, ...props }) => <MdAnchor {...props} set={set} />,
+        }}
       >
         {markdown}
       </ReactMarkdown>

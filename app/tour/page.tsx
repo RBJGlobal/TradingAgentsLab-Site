@@ -459,7 +459,7 @@ export default function TourPage() {
             <Link href="/how-it-works/" className="btn-secondary">
               How the debate works
             </Link>
-            <Link href="/docs/getting-started/" className="btn-secondary">
+            <Link href="/docs/lite/getting-started/" className="btn-secondary">
               Getting started
             </Link>
           </div>

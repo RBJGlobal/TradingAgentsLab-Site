@@ -51,8 +51,18 @@ const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'mermaid-'));
 const manifest = {};
 const rendered = [];
 
-for (const file of fs.readdirSync(docsDir).filter((f) => f.endsWith('.md'))) {
-  const slug = file.replace(/\.md$/, '');
+const docFiles = fs
+  .readdirSync(docsDir, { withFileTypes: true })
+  .filter((d) => d.isDirectory())
+  .flatMap((d) =>
+    fs
+      .readdirSync(path.join(docsDir, d.name))
+      .filter((f) => f.endsWith('.md'))
+      .map((f) => path.join(d.name, f)),
+  );
+
+for (const file of docFiles) {
+  const slug = file.replace(/\.md$/, '').replace(/[\\/]/g, '-');
   const markdown = fs.readFileSync(path.join(docsDir, file), 'utf8');
   let match;
   let idx = 0;

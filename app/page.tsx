@@ -196,7 +196,7 @@ function DiligenceSection() {
                 See the full process →
               </Link>
               <Link
-                href="/docs/reading-the-debate/"
+                href="/docs/lite/reading-the-debate/"
                 className="text-sm text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]"
                 style={{ fontFamily: 'var(--font-mono)' }}
               >
@@ -603,7 +603,7 @@ function CTASection() {
               <GithubMark />
               GitHub
             </a>
-            <Link href="/docs/getting-started/" className="btn-secondary">
+            <Link href="/docs/lite/getting-started/" className="btn-secondary">
               Docs
             </Link>
           </div>

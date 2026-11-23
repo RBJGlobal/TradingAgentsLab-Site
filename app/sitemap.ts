@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/metadata';
-import { getAllDocSlugs } from '@/lib/docs';
+import { DOC_SETS, getAllDocSlugs } from '@/lib/docs';
 
 // Required for `output: 'export'`, without this, Next.js treats the route
 // as dynamic and refuses to emit a static sitemap.xml.
@@ -15,6 +15,8 @@ const STATIC_ROUTES = [
   '/about/',
   '/download/',
   '/docs/',
+  '/docs/lite/',
+  '/docs/pro/',
   '/tour/',
   '/flow/',
   '/tradingagents-desktop/',
@@ -27,7 +29,9 @@ const FAMILY_ROUTE = '/family/';
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
-  const docRoutes = getAllDocSlugs().map((slug) => `/docs/${slug}/`);
+  const docRoutes = DOC_SETS.flatMap((set) =>
+    getAllDocSlugs(set).map((slug) => `/docs/${set}/${slug}/`),
+  );
   const all = [...STATIC_ROUTES, ...docRoutes, FAMILY_ROUTE];
 
   return all.map((path) => {

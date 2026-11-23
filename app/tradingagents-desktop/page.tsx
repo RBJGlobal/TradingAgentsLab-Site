@@ -80,14 +80,14 @@ export default function TradingAgentsDesktop() {
               <Add label="Bring your own model, or run local">
                 OpenAI, Anthropic, OpenRouter, Google Gemini, xAI Grok, and
                 MiniMax via your own key, or run fully offline through{' '}
-                <Link href="/docs/local-llm/" className="prose-link">
+                <Link href="/docs/lite/local-llm/" className="prose-link">
                   Ollama and LM Studio
                 </Link>
                 .
               </Add>
               <Add label="Use a ChatGPT subscription, no per-token billing">
                 Sign in with{' '}
-                <Link href="/docs/oauth/" className="prose-link">
+                <Link href="/docs/lite/oauth/" className="prose-link">
                   ChatGPT OAuth
                 </Link>{' '}
                 to power debates from your existing plan instead of paying the
@@ -96,7 +96,7 @@ export default function TradingAgentsDesktop() {
               <Add label="Read the debate">
                 Every analyst argument, rebuttal, and the final call are laid
                 out so you can follow the reasoning, not just the verdict. See{' '}
-                <Link href="/docs/reading-the-debate/" className="prose-link">
+                <Link href="/docs/lite/reading-the-debate/" className="prose-link">
                   Reading the debate
                 </Link>
                 .
@@ -113,7 +113,7 @@ export default function TradingAgentsDesktop() {
             <p className="mt-8 text-sm text-[var(--color-text-muted)]">
               Looking for the full research-grade pipeline the upstream project
               describes?{' '}
-              <Link href="/docs/pro/" className="prose-link">
+              <Link href="/docs/lite/pro/" className="prose-link">
                 See what Trading Agents Lab Pro adds
               </Link>
               . It is a separate desktop app, free and open source, with a
@@ -136,24 +136,24 @@ export default function TradingAgentsDesktop() {
             </p>
             <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
               <DocLink
-                href="/docs/getting-started/"
+                href="/docs/lite/getting-started/"
                 title="Getting started"
                 detail="Install, pick a provider, run your first diligence on any ticker."
               />
               <DocLink
-                href="/docs/local-llm/"
+                href="/docs/lite/local-llm/"
                 title="Local models"
                 detail="Run offline with Ollama or LM Studio, no API key and no per-token cost."
               />
               <DocLink
-                href="/docs/oauth/"
+                href="/docs/lite/oauth/"
                 title="ChatGPT OAuth"
                 detail="Power debates from your paid ChatGPT plan instead of the per-token API."
               />
             </div>
             <p className="mt-8 text-sm text-[var(--color-text-muted)]">
               New to the agent model itself? Start with{' '}
-              <Link href="/docs/how-it-works/" className="prose-link">
+              <Link href="/docs/lite/how-it-works/" className="prose-link">
                 How it works
               </Link>
               , then browse the full{' '}

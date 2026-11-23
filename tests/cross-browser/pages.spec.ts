@@ -9,7 +9,11 @@ const PAGES: { name: string; path: string }[] = [
   { name: 'download', path: '/download/' },
   { name: 'flow', path: '/flow/' },
   { name: 'docs-index', path: '/docs/' },
+  { name: 'docs-lite', path: '/docs/lite/' },
   { name: 'docs-pro', path: '/docs/pro/' },
+  { name: 'docs-lite-page', path: '/docs/lite/how-it-works/' },
+  { name: 'docs-pro-page', path: '/docs/pro/how-it-works/' },
+  { name: 'docs-lite-pro', path: '/docs/lite/pro/' },
   { name: 'security', path: '/security/' },
   { name: 'privacy', path: '/legal/privacy/' },
 ];
@@ -87,6 +91,18 @@ test('download page links both pinned release files', async ({ page }) => {
   // The buttons must link exactly the pinned release files.
   expect(hrefs).toContain(releases.lite.url);
   expect(hrefs).toContain(releases.pro.url);
+});
+
+test('docs switch goes to the same page in the other set', async ({ page }) => {
+  await isolate(page);
+  await page.goto('/docs/pro/getting-started/');
+  const sw = page.getByTestId('docs-set-switch');
+  await expect(sw.locator('a[href="/docs/lite/getting-started/"]')).toHaveCount(1);
+  await expect(sw.locator('a[aria-current="true"]')).toHaveAttribute('href', '/docs/pro/getting-started/');
+
+  // A Lite-only page (pro) has no Pro twin, so the switch goes to the Pro index.
+  await page.goto('/docs/lite/pro/');
+  await expect(page.getByTestId('docs-set-switch').locator('a[href="/docs/pro/"]')).toHaveCount(1);
 });
 
 test('mobile menu opens and closes', async ({ page, isMobile }, testInfo) => {

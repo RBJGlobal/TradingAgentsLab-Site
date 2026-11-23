@@ -142,7 +142,7 @@ export default function Security() {
               Settings → About inside the desktop app shows the absolute
               path to each of these files, so you can back them up,
               inspect them, or move them between machines.{' '}
-              <Link href="/docs/security-and-storage/" className="prose-link">
+              <Link href="/docs/lite/security-and-storage/" className="prose-link">
                 Read the full storage doc →
               </Link>
             </p>

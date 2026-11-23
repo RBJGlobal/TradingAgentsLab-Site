@@ -24,9 +24,9 @@ const COLUMNS = [
     title: 'Learn',
     links: [
       { href: '/docs/', label: 'Documentation' },
-      { href: '/docs/getting-started/', label: 'Getting started' },
-      { href: '/docs/how-it-works/', label: 'How it works (deep dive)' },
-      { href: '/docs/reading-the-debate/', label: 'Reading a Diligence run' },
+      { href: '/docs/lite/getting-started/', label: 'Getting started' },
+      { href: '/docs/lite/how-it-works/', label: 'How it works (deep dive)' },
+      { href: '/docs/lite/reading-the-debate/', label: 'Reading a Diligence run' },
     ],
   },
   {

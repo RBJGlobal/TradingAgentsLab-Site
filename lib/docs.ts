@@ -4,7 +4,9 @@ import path from 'node:path';
 /**
  * Build-time docs loader.
  *
- * The docs are kept as plain Markdown under `content/docs/`. We optionally
+ * The docs are kept as plain Markdown in two sets: `content/docs/lite/`
+ * (synced from the Lite app repo) and `content/docs/pro/` (synced from the
+ * Pro app repo). Both sets are rendered under /docs/<set>/<slug>/. We optionally
  * support a YAML-ish front-matter header for `title`, `description`, and
  * `order`, but if absent, we derive title from the first H1 and order
  * alphabetically by slug.
@@ -13,7 +15,21 @@ import path from 'node:path';
  * and a parser is a few lines.
  */
 
-const DOCS_DIR = path.join(process.cwd(), 'content', 'docs');
+export const DOC_SETS = ['lite', 'pro'] as const;
+export type DocSet = (typeof DOC_SETS)[number];
+
+export const DOC_SET_LABELS: Record<DocSet, string> = {
+  lite: 'Lite app',
+  pro: 'Pro app',
+};
+
+export function isDocSet(value: string): value is DocSet {
+  return (DOC_SETS as readonly string[]).includes(value);
+}
+
+function docsDir(set: DocSet): string {
+  return path.join(process.cwd(), 'content', 'docs', set);
+}
 
 export interface DocMeta {
   slug: string;
@@ -27,10 +43,11 @@ export interface DocContent extends DocMeta {
   markdown: string;
 }
 
-function readDir(): string[] {
-  if (!fs.existsSync(DOCS_DIR)) return [];
+function readDir(set: DocSet): string[] {
+  const dir = docsDir(set);
+  if (!fs.existsSync(dir)) return [];
   return fs
-    .readdirSync(DOCS_DIR)
+    .readdirSync(dir)
     .filter((f) => f.endsWith('.md') && f !== 'README.md');
 }
 
@@ -94,14 +111,14 @@ function prettifySlug(slug: string): string {
     .join(' ');
 }
 
-export function getAllDocSlugs(): string[] {
-  return readDir().map((f) => f.replace(/\.md$/, ''));
+export function getAllDocSlugs(set: DocSet): string[] {
+  return readDir(set).map((f) => f.replace(/\.md$/, ''));
 }
 
-export function getAllDocs(): DocMeta[] {
-  const docs = readDir().map((file): DocMeta => {
+export function getAllDocs(set: DocSet): DocMeta[] {
+  const docs = readDir(set).map((file): DocMeta => {
     const slug = file.replace(/\.md$/, '');
-    const raw = fs.readFileSync(path.join(DOCS_DIR, file), 'utf-8');
+    const raw = fs.readFileSync(path.join(docsDir(set), file), 'utf-8');
     const { meta, body } = parseFrontMatter(raw);
 
     return {
@@ -196,8 +213,8 @@ export function extractFaqEntries(markdown: string): FaqEntry[] {
   return entries;
 }
 
-export function getDoc(slug: string): DocContent | null {
-  const file = path.join(DOCS_DIR, `${slug}.md`);
+export function getDoc(set: DocSet, slug: string): DocContent | null {
+  const file = path.join(docsDir(set), `${slug}.md`);
   if (!fs.existsSync(file)) return null;
 
   const raw = fs.readFileSync(file, 'utf-8');

@@ -184,7 +184,7 @@ export default function Download() {
               themselves after the first install. Not sure which to
               start with? Take the Lite app first; Pro is a separate
               install and the two live side by side.{' '}
-              <Link href="/docs/pro/" className="prose-link">
+              <Link href="/docs/lite/pro/" className="prose-link">
                 What Pro adds →
               </Link>
             </p>
@@ -246,7 +246,7 @@ export default function Download() {
               app to use a local Ollama or LM Studio model. Then go to Analyze, type
               a ticker like <code className="rounded bg-[var(--color-bg-sunken)] px-2 py-0.5 text-sm" style={{ fontFamily: 'var(--font-mono)' }}>NVDA</code>, and run.
             </p>
-            <Link href="/docs/getting-started/" className="mt-4 inline-block prose-link">
+            <Link href="/docs/lite/getting-started/" className="mt-4 inline-block prose-link">
               Step-by-step walkthrough →
             </Link>
           </Step>
