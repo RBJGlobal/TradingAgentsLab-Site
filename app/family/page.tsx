@@ -203,7 +203,8 @@ export default function FamilyPage() {
             body={
               <p>
                 A static, browser-only converter for Markdown, PDF, DOCX,
-                and the formats around them. Conversion runs in the tab,
+                and the formats around them, now with a command line tool.
+                Conversion runs in the tab,
                 nothing is sent to a server. For a Trading Agents Lab
                 user,{' '}
                 <a
