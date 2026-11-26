@@ -1,12 +1,12 @@
 {
   "lite": {
-    "version": "v1.1.7",
-    "url": "https://github.com/RBJGlobal/TradingAgentsLab/releases/download/v1.1.7/Trading-Agents-Lab-1.1.7-arm64.dmg",
-    "sha256": "0b9eb51cdbbc2f05470ec27f1e82eb23e6d21537391bbe64d9e7214b1a4f9cf9"
+    "version": "v1.1.8",
+    "url": "https://github.com/RBJGlobal/TradingAgentsLab/releases/download/v1.1.8/Trading-Agents-Lab-1.1.8-arm64.dmg",
+    "sha256": "af5b785aafd02eb4f1023df82a3b68f02e77b2445b0e88220246c988e4d44854"
   },
   "pro": {
-    "version": "v1.1.10",
-    "url": "https://github.com/RBJGlobal/TradingAgentsLab-Pro/releases/download/v1.1.10/Trading-Agents-Lab-Pro-1.1.10-arm64.dmg",
-    "sha256": "5d16350b9ba39ed3118fbf1357107e8687e0286aef1aba711297b8a70c31dfb9"
+    "version": "v1.1.11",
+    "url": "https://github.com/RBJGlobal/TradingAgentsLab-Pro/releases/download/v1.1.11/Trading-Agents-Lab-Pro-1.1.11-arm64.dmg",
+    "sha256": "1296b1013651629f2cccfc1a4d797605d9ca4e1a552a4954b1513e929651a7f4"
   }
 }
